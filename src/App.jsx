@@ -13,17 +13,16 @@ export function App() {
   const navBarFont = "cinzel-regular"
   windowsInit()
 
-  // const { innerWidth: width, innerHeight: height } = window
+  const { innerWidth: width, innerHeight: height } = window
 
-  // console.log("HEIGHT=", innerHeight)
-  // console.log("WIDTH=", innerWidth)
+  console.log("HEIGHT=", innerHeight)
+  console.log("WIDTH=", innerWidth)
 
-  console.log("counters=",GlobalInit.counters)
   const [scale, setScale] = useState(1)
 
   function handleScaleChange(event) {
     setScale(event.instance.transformState.scale)
-    console.log("scale=", scale)
+    // console.log("scale=", scale)
   }
 
   // console.log(">>> width=", dimensions.width)
@@ -46,7 +45,7 @@ export function App() {
               <img
                 style={{
                   width: `${innerWidth}px`,
-                  height: `776px`,
+                  height: `864px`,
                 }}
                 src={img1}
               ></img>

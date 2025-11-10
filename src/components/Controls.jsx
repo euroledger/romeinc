@@ -4,9 +4,9 @@ import Nav from "react-bootstrap/Nav"
 import Button from "react-bootstrap/Button"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import { useControls } from "react-zoom-pan-pinch"
-// import App.css from "../App,css"
+import { Image } from "./Image"
 
-export const Controls = ({navBarFont, banner}) => {
+export const Controls = ({ navBarFont, banner }) => {
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
   const font = "12px"
@@ -27,13 +27,14 @@ export const Controls = ({navBarFont, banner}) => {
                 paddingTop: "1.5rem",
               }}
             >
-              <img
+              {/* <img
                 style={{
                   width: `18rem`,
                   height: `3.5rem`,
                 }}
                 src={banner}
-              ></img>
+              ></img> */}
+              <Image w="18rem" h="3.5rem" src={banner}></Image>
             </div>
           </Nav>
           <Button
@@ -41,7 +42,7 @@ export const Controls = ({navBarFont, banner}) => {
             style={{
               position: "absolute",
               left: "25%",
-              top: "4.5%",
+              top: "4.0%",
               fontSize: font,
               borderColor: "white",
               color: "white",
@@ -55,8 +56,8 @@ export const Controls = ({navBarFont, banner}) => {
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "50%",
-              top: "5.5%",
+              left: "45%",
+              top: "4.5%",
               fontSize: "14px",
               color: "white",
             }}
@@ -64,7 +65,7 @@ export const Controls = ({navBarFont, banner}) => {
             Game State: EVENT PHASE
           </Navbar.Text>
           <ButtonGroup
-            style={{ position: "absolute", left: "74%", top: "4.5%", fontSize: font }}
+            style={{ position: "absolute", left: "74%", top: "4.0%", fontSize: font }}
             className={navBarFont}
             aria-label="Basic example"
           >

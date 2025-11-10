@@ -1,4 +1,4 @@
-import loadCounters from "../CounterLoader";
+import { loadCounters } from "../CounterLoader";
 import Controller from "../controller/Controller";
 
 export default class GlobalInit {
