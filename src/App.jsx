@@ -1,22 +1,18 @@
-import { useState, } from "react"
+import { useState, useRef, useEffect } from "react"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
-import img1 from "./assets/romemap.jpg"
+import img1 from "./assets/romemap2.jpg"
 import img2 from "./assets/banner.jpg"
 import { windowsInit } from "./utils"
 import { Controls } from "./components/Controls"
-import GlobalInit from "./model/GlobalInit"
 import "./App.css"
 
 export default App
 
 export function App() {
+
   const navBarFont = "cinzel-regular"
   windowsInit()
 
-  const { innerWidth: width, innerHeight: height } = window
-
-  console.log("HEIGHT=", innerHeight)
-  console.log("WIDTH=", innerWidth)
 
   const [scale, setScale] = useState(1)
 
@@ -25,11 +21,8 @@ export function App() {
     // console.log("scale=", scale)
   }
 
-  // console.log(">>> width=", dimensions.width)
-  // console.log(">>> height=", dimensions.height)
-
   return (
-    <>
+    <div >
       <TransformWrapper
         initialScale={1}
         minScale={0.5}
@@ -38,15 +31,14 @@ export function App() {
         onTransformed={(e) => handleScaleChange(e)}
       >
         <Controls navBarFont={navBarFont} banner={img2}></Controls>
-
-        <div className="d-flex p-2">
-          <div>
+        <div>
+          <main className="image-container">
             <TransformComponent>
               <img
-                style={{
-                  width: `${innerWidth}px`,
-                  height: `864px`,
-                }}
+                // style={{
+                //   width: `100%`,
+                //   height: 'auto'
+                // }}
                 src={img1}
               ></img>
               {/* <Board
@@ -64,9 +56,9 @@ export function App() {
                   previousPosition={previousPosition}
                 /> */}
             </TransformComponent>
-          </div>
+          </main>
         </div>
       </TransformWrapper>
-    </>
+    </div>
   )
 }

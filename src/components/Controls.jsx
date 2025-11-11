@@ -9,44 +9,37 @@ import { Image } from "./Image"
 export const Controls = ({ navBarFont, banner }) => {
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
-  const font = "12px"
+  const font = "1.2rem"
   return (
     <Navbar
       style={{ fontSize: font }}
       bg="black"
       data-bs-threme="dark"
-      fixed="top"
-      className="justify-content-between navbar-fixed-top"
+      // fixed="top"
+      className="justify-content-between"
     >
-      <Container style={{ background: "#610C0F", fontSize: font, height: "6rem" }}>
+      <Container style={{ background: "#610C0F", fontSize: font, height: "5rem" }}>
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav style={{ fontSize: font }} className="mr-auto">
             <div
               style={{
                 marginLeft: "1rem",
-                paddingTop: "1.5rem",
+                paddingTop: "0.5rem",
               }}
             >
-              {/* <img
-                style={{
-                  width: `18rem`,
-                  height: `3.5rem`,
-                }}
-                src={banner}
-              ></img> */}
-              <Image w="18rem" h="3.5rem" src={banner}></Image>
+              <Image w="22rem" h="4.0rem" src={banner}></Image>
             </div>
           </Nav>
           <Button
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "25%",
-              top: "4.0%",
+              left: "22%",
+              top: "1.1%",
               fontSize: font,
               borderColor: "white",
               color: "white",
-              width: "7rem",
+              width: "12rem",
               background: "#1844abff",
             }}
           >
@@ -57,15 +50,15 @@ export const Controls = ({ navBarFont, banner }) => {
             style={{
               position: "absolute",
               left: "45%",
-              top: "4.5%",
-              fontSize: "14px",
+              top: "1.7%",
+              fontSize: "1.4rem",
               color: "white",
             }}
           >
             Game State: EVENT PHASE
           </Navbar.Text>
           <ButtonGroup
-            style={{ position: "absolute", left: "74%", top: "4.0%", fontSize: font }}
+            style={{ position: "absolute", left: "74%", top: "1.1%", fontSize: font }}
             className={navBarFont}
             aria-label="Basic example"
           >
@@ -75,7 +68,7 @@ export const Controls = ({ navBarFont, banner }) => {
                 borderColor: "white",
                 fontSize: font,
                 color: "white",
-                width: "6.5rem",
+                width: "10rem",
                 background: "#610C0F",
               }}
               className="me-1"
@@ -91,7 +84,7 @@ export const Controls = ({ navBarFont, banner }) => {
                 borderColor: "white",
                 fontSize: font,
                 color: "white",
-                width: "6.5rem",
+                width: "10rem",
                 background: "#610C0F",
               }}
               className="me-1"
@@ -102,7 +95,7 @@ export const Controls = ({ navBarFont, banner }) => {
               Zoom Out
             </Button>
             <Button
-              style={{ fontSize: font, borderColor: "white", color: "white", width: "6.5rem", background: "#610C0F" }}
+              style={{ fontSize: font, borderColor: "white", color: "white", width: "10rem", background: "#610C0F" }}
               className="me-1"
               size="sm"
               variant="secondary"

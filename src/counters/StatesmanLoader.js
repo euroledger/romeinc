@@ -3,7 +3,7 @@ import Statesman from "./Statesman"
 
 export function loadStatesmen(counters) {
   let augustus = {
-    name: "AUGUSTUS",
+    name: GlobalUnitsModel.STATESMAN.AUGUSTUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.CONQUEST,
     imperial: true,
     military: 2,
@@ -12,10 +12,10 @@ export function loadStatesmen(counters) {
     intrigue: 3,
     image: "./assets/counters/statesmen/Rome-SM-Augustus.png",
   }
-  counters.set("AUGUSTUS", new Statesman(augustus))
+  counters.set(GlobalUnitsModel.STATESMAN.AUGUSTUS, new Statesman(augustus))
 
   let agrippa = {
-    name: "AGRIPPA",
+    name: GlobalUnitsModel.STATESMAN.AGRIPPA,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.CANTABRIAN,
     imperial: false,
     military: 4,
@@ -24,10 +24,10 @@ export function loadStatesmen(counters) {
     intrigue: 3,
     image: "./assets/counters/statesmen/Rome-SM-Agrippa.png",
   }
-  counters.set("AGRIPPA", new Statesman(agrippa))
+  counters.set(GlobalUnitsModel.STATESMAN.AGRIPPA, new Statesman(agrippa))
 
   let tiberius = {
-    name: "TIBERIUS",
+    name: GlobalUnitsModel.STATESMAN.TIBERIUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.ILLYRIAN,
     imperial: true,
     military: 4,
@@ -37,10 +37,10 @@ export function loadStatesmen(counters) {
     image: "./assets/counters/statesmen/Rome-SM-Tiberius.png",
   }
 
-  counters.set("TIBERIUS", new Statesman(tiberius))
+  counters.set(GlobalUnitsModel.STATESMAN.TIBERIUS, new Statesman(tiberius))
 
   let drusus = {
-    name: "DRUSUS",
+    name: GlobalUnitsModel.STATESMAN.DRUSUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.GERMAN,
     imperial: true,
     military: 4,
@@ -50,10 +50,10 @@ export function loadStatesmen(counters) {
     image: "./assets/counters/statesmen/Rome-SM-Drusus.png",
   }
 
-  counters.set("DRUSUS", new Statesman(drusus))
+  counters.set(GlobalUnitsModel.STATESMAN.DRUSUS, new Statesman(drusus))
 
   let germanicus = {
-    name: "GERMANICUS",
+    name: GlobalUnitsModel.STATESMAN.GERMANICUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.GERMAN,
     imperial: true,
     military: 3,
@@ -62,10 +62,10 @@ export function loadStatesmen(counters) {
     intrigue: 2,
     image: "./assets/counters/statesmen/Rome-SM-Germanicus.png",
   }
-  counters.set("GERMANICUS", new Statesman(germanicus))
+  counters.set(GlobalUnitsModel.STATESMAN.GERMANICUS, new Statesman(germanicus))
 
   let sejanus = {
-    name: "SEJANUS",
+    name: GlobalUnitsModel.STATESMAN.SEJANUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
     imperial: false,
     military: 2,
@@ -74,10 +74,10 @@ export function loadStatesmen(counters) {
     intrigue: 4,
     image: "./assets/counters/statesmen/Rome-SM-Sejanus.png",
   }
-  counters.set("SEJANUS", new Statesman(sejanus))
+  counters.set(GlobalUnitsModel.STATESMAN.SEJANUS, new Statesman(sejanus))
 
   let macro = {
-    name: "MACRO",
+    name: GlobalUnitsModel.STATESMAN.MACRO,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
     imperial: false,
     military: 2,
@@ -86,10 +86,10 @@ export function loadStatesmen(counters) {
     intrigue: 4,
     image: "./assets/counters/statesmen/Rome-SM-Macro.png",
   }
-  counters.set("MACRO", new Statesman(macro))
+  counters.set(GlobalUnitsModel.STATESMAN.MACRO, new Statesman(macro))
 
   let caligula = {
-    name: "CALIGULA",
+    name: GlobalUnitsModel.STATESMAN.CALIGULA,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.TERROR,
     imperial: true,
     military: 1,
@@ -98,10 +98,10 @@ export function loadStatesmen(counters) {
     intrigue: 5,
     image: "./assets/counters/statesmen/Rome-SM-Caligula.png",
   }
-  counters.set("CALIGULA", new Statesman(caligula))
+  counters.set(GlobalUnitsModel.STATESMAN.CALIGULA, new Statesman(caligula))
 
   let paulinus = {
-    name: "PAULINUS",
+    name: GlobalUnitsModel.STATESMAN.PAULINUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.MOORISH,
     imperial: false,
     military: 4,
@@ -113,7 +113,7 @@ export function loadStatesmen(counters) {
   counters.set(paulinus.name, new Statesman(paulinus))
 
   let claudius = {
-    name: "CLAUDIUS",
+    name: GlobalUnitsModel.STATESMAN.CLAUDIUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.CONQUEST,
     imperial: true,
     military: 1,
@@ -127,7 +127,7 @@ export function loadStatesmen(counters) {
   // 10
 
   let plautius = {
-    name: "PLAUTIUS",
+    name: GlobalUnitsModel.STATESMAN.PLAUTIUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.BRITISH,
     imperial: false,
     military: 4,
@@ -139,7 +139,7 @@ export function loadStatesmen(counters) {
   counters.set(plautius.name, new Statesman(plautius))
 
   let nero = {
-    name: "NERO",
+    name: GlobalUnitsModel.STATESMAN.NERO,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.USURPER,
     imperial: true,
     military: 1,
@@ -151,7 +151,7 @@ export function loadStatesmen(counters) {
   counters.set(nero.name, new Statesman(nero))
 
   let corbulo = {
-    name: "CORBULO",
+    name: GlobalUnitsModel.STATESMAN.CORBULO,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PARTHIAN,
     imperial: false,
     military: 4,
@@ -163,7 +163,7 @@ export function loadStatesmen(counters) {
   counters.set(corbulo.name, new Statesman(corbulo))
 
   let silvanus = {
-    name: "SILVANUS",
+    name: GlobalUnitsModel.STATESMAN.SILVANUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.SARMATIAN,
     imperial: false,
     military: 4,
@@ -175,7 +175,7 @@ export function loadStatesmen(counters) {
   counters.set(silvanus.name, new Statesman(silvanus))
 
   let galba = {
-    name: "GALBA",
+    name: GlobalUnitsModel.STATESMAN.GALBA,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.STALEMATE,
     imperial: false,
     military: 3,
@@ -187,7 +187,7 @@ export function loadStatesmen(counters) {
   counters.set(galba.name, new Statesman(galba))
 
   let otho = {
-    name: "OTHO",
+    name: GlobalUnitsModel.STATESMAN.OTHO,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.EVENT,
     imperial: false,
     military: 1,
@@ -199,7 +199,7 @@ export function loadStatesmen(counters) {
   counters.set(otho.name, new Statesman(otho))
 
   let vitellius = {
-    name: "VITELLIUS",
+    name: GlobalUnitsModel.STATESMAN.VITELLIUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
     imperial: false,
     military: 2,
@@ -211,7 +211,7 @@ export function loadStatesmen(counters) {
   counters.set(vitellius.name, new Statesman(vitellius))
 
   let vespasian = {
-    name: "VESPASIAN",
+    name: GlobalUnitsModel.STATESMAN.VESPASIAN,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.JUDEAN,
     imperial: true,
     military: 3,
@@ -223,7 +223,7 @@ export function loadStatesmen(counters) {
   counters.set(vespasian.name, new Statesman(vespasian))
 
   let cerialis = {
-    name: "CERIALIS",
+    name: GlobalUnitsModel.STATESMAN.CERIALIS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.GERMAN,
     imperial: false,
     military: 3,
@@ -235,7 +235,7 @@ export function loadStatesmen(counters) {
   counters.set(cerialis.name, new Statesman(cerialis))
 
   let titus = {
-    name: "TITUS",
+    name: GlobalUnitsModel.STATESMAN.TITUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.JUDEAN,
     imperial: true,
     military: 4,
@@ -247,7 +247,7 @@ export function loadStatesmen(counters) {
   counters.set(titus.name, new Statesman(titus))
 
   let domitian = {
-    name: "DOMITIAN",
+    name: GlobalUnitsModel.STATESMAN.DOMITIAN,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.TERROR,
     imperial: true,
     military: 2,
@@ -259,7 +259,7 @@ export function loadStatesmen(counters) {
   counters.set(domitian.name, new Statesman(domitian))
 
   let agricola = {
-    name: "AGRICOLA",
+    name: GlobalUnitsModel.STATESMAN.AGRICOLA,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.CALEDONIAN,
     imperial: false,
     military: 4,
@@ -271,7 +271,7 @@ export function loadStatesmen(counters) {
   counters.set(agricola.name, new Statesman(agricola))
 
   let aelianus = {
-    name: "AELIANUS",
+    name: GlobalUnitsModel.STATESMAN.AELIANUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
     imperial: false,
     military: 2,
@@ -283,7 +283,7 @@ export function loadStatesmen(counters) {
   counters.set(aelianus.name, new Statesman(aelianus))
 
   let nerva = {
-    name: "NERVA",
+    name: GlobalUnitsModel.STATESMAN.NERVA,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
     imperial: true,
     military: 1,
@@ -295,7 +295,7 @@ export function loadStatesmen(counters) {
   counters.set(nerva.name, new Statesman(nerva))
 
   let trajan = {
-    name: "TRAJAN",
+    name: GlobalUnitsModel.STATESMAN.TRAJAN,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.CONQUEST,
     imperial: true,
     military: 5,
@@ -307,7 +307,7 @@ export function loadStatesmen(counters) {
   counters.set(trajan.name, new Statesman(trajan))
 
   let quietus = {
-    name: "QUIETUS",
+    name: GlobalUnitsModel.STATESMAN.QUIETUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.JUDEAN,
     imperial: false,
     military: 3,
@@ -319,7 +319,7 @@ export function loadStatesmen(counters) {
   counters.set(quietus.name, new Statesman(quietus))
 
   let hadrian = {
-    name: "HADRIAN",
+    name: GlobalUnitsModel.STATESMAN.HADRIAN,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.STALEMATE,
     imperial: true,
     military: 3,
@@ -331,7 +331,7 @@ export function loadStatesmen(counters) {
   counters.set(hadrian.name, new Statesman(hadrian))
 
   let turbo = {
-    name: "TURBO",
+    name: GlobalUnitsModel.STATESMAN.TURBO,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.MOORISH,
     imperial: false,
     military: 4,
@@ -343,7 +343,7 @@ export function loadStatesmen(counters) {
   counters.set(turbo.name, new Statesman(turbo))
 
   let arrian = {
-    name: "ARRIAN",
+    name: GlobalUnitsModel.STATESMAN.ARRIAN,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.ALAN,
     imperial: false,
     military: 3,
@@ -355,7 +355,7 @@ export function loadStatesmen(counters) {
   counters.set(arrian.name, new Statesman(arrian))
 
   let antoninus = {
-    name: "ANTONINUS",
+    name: GlobalUnitsModel.STATESMAN.ANTONINUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
     imperial: true,
     military: 1,
@@ -367,7 +367,7 @@ export function loadStatesmen(counters) {
   counters.set(antoninus.name, new Statesman(antoninus))
 
   let marcus = {
-    name: "MARCUS",
+    name: GlobalUnitsModel.STATESMAN.MARCUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.SARMATIAN,
     imperial: true,
     military: 3,
@@ -379,7 +379,7 @@ export function loadStatesmen(counters) {
   counters.set(marcus.name, new Statesman(marcus))
 
   let lucius = {
-    name: "LUCIUS",
+    name: GlobalUnitsModel.STATESMAN.LUCIUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
     imperial: true,
     military: 2,
@@ -391,7 +391,7 @@ export function loadStatesmen(counters) {
   counters.set(lucius.name, new Statesman(lucius))
 
   let avidius = {
-    name: "AVIDIUS",
+    name: GlobalUnitsModel.STATESMAN.AVIDIUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PARTHIAN,
     imperial: false,
     military: 4,
@@ -403,7 +403,7 @@ export function loadStatesmen(counters) {
   counters.set(avidius.name, new Statesman(avidius))
 
   let pompeianus = {
-    name: "POMPEIANUS",
+    name: GlobalUnitsModel.STATESMAN.POMPEIANUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.MARCOMANNIC,
     imperial: false,
     military: 4,
@@ -415,7 +415,7 @@ export function loadStatesmen(counters) {
   counters.set(pompeianus.name, new Statesman(pompeianus))
 
   let commodus = {
-    name: "COMMODUS",
+    name: GlobalUnitsModel.STATESMAN.COMMODUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.TERROR,
     imperial: true,
     military: 2,
@@ -427,7 +427,7 @@ export function loadStatesmen(counters) {
   counters.set(commodus.name, new Statesman(commodus))
 
   let laetus = {
-    name: "LAETUS",
+    name: GlobalUnitsModel.STATESMAN.LAETUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
     imperial: false,
     military: 2,
@@ -439,7 +439,7 @@ export function loadStatesmen(counters) {
   counters.set(laetus.name, new Statesman(laetus))
 
   let pertinax = {
-    name: "PERTINAX",
+    name: GlobalUnitsModel.STATESMAN.PERTINAX,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.STALEMATE,
     imperial: false,
     military: 3,
@@ -451,7 +451,7 @@ export function loadStatesmen(counters) {
   counters.set(pertinax.name, new Statesman(pertinax))
 
   let julianus = {
-    name: "JULIANUS",
+    name: GlobalUnitsModel.STATESMAN.JULIANUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.GERMAN,
     imperial: false,
     military: 3,
@@ -463,7 +463,7 @@ export function loadStatesmen(counters) {
   counters.set(julianus.name, new Statesman(julianus))
 
   let severus = {
-    name: "SEVERUS",
+    name: GlobalUnitsModel.STATESMAN.SEVERUS,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PARTHIAN,
     imperial: true,
     military: 4,
@@ -475,7 +475,7 @@ export function loadStatesmen(counters) {
   counters.set(severus.name, new Statesman(severus))
 
   let niger = {
-    name: "NIGER",
+    name: GlobalUnitsModel.STATESMAN.NIGER,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.EVENT,
     imperial: false,
     military: 3,
