@@ -485,4 +485,316 @@ export function loadStatesmen(counters) {
     image: "./assets/counters/statesmen/Rome-SM-Niger.png",
   }
   counters.set(niger.name, new Statesman(niger))
+
+  let albinus = {
+    name: GlobalUnitsModel.STATESMAN.ALBINUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.EVENT,
+    imperial: false,
+    military: 3,
+    administration: 3,
+    popularity: 3,
+    intrigue: 2,
+    image: "./assets/counters/statesmen/Rome-SM-Albinus.png",
+  }
+  counters.set(albinus.name, new Statesman(albinus))
+
+  let plautianus = {
+    name: GlobalUnitsModel.STATESMAN.PLAUTIANUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
+    imperial: false,
+    military: 2,
+    administration: 3,
+    popularity: 3,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Plautianus.png",
+  }
+  counters.set(plautianus.name, new Statesman(plautianus))
+
+  let caracalla = {
+    name: GlobalUnitsModel.STATESMAN.CARACALLA,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.TERROR,
+    imperial: true,
+    military: 3,
+    administration: 4,
+    popularity: 4,
+    intrigue: 5,
+    image: "./assets/counters/statesmen/Rome-SM-Caracalla.png",
+  }
+  counters.set(caracalla.name, new Statesman(caracalla))
+
+  let macrinus = {
+    name: GlobalUnitsModel.STATESMAN.MACRINUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
+    imperial: false,
+    military: 2,
+    administration: 4,
+    popularity: 2,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Macrinus.png",
+  }
+  counters.set(macrinus.name, new Statesman(macrinus))
+
+  let elagabalus = {
+    name: GlobalUnitsModel.STATESMAN.ELAGABALUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.EVENT,
+    imperial: true,
+    military: 1,
+    administration: 1,
+    popularity: 1,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Elagabalus.png",
+  }
+  counters.set(elagabalus.name, new Statesman(elagabalus))
+
+  let alexander = {
+    name: GlobalUnitsModel.STATESMAN.ALEXANDER,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
+    imperial: true,
+    military: 2,
+    administration: 3,
+    popularity: 2,
+    intrigue: 1,
+    image: "./assets/counters/statesmen/Rome-SM-Alexander.png",
+  }
+  counters.set(alexander.name, new Statesman(alexander))
+
+  let maximinus = {
+    name: GlobalUnitsModel.STATESMAN.MAXIMINUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.ALAMANNIC,
+    imperial: false,
+    military: 4,
+    administration: 1,
+    popularity: 4,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Maximinus.png",
+  }
+  counters.set(maximinus.name, new Statesman(maximinus))
+
+  let gordian = {
+    name: GlobalUnitsModel.STATESMAN.GORDIAN,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
+    imperial: true,
+    military: 1,
+    administration: 3,
+    popularity: 2,
+    intrigue: 1,
+    image: "./assets/counters/statesmen/Rome-SM-Gordian.png",
+  }
+  counters.set(gordian.name, new Statesman(gordian))
+
+  let timesitheus = {
+    name: GlobalUnitsModel.STATESMAN.TIMESITHEUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PERSIAN,
+    imperial: false,
+    military: 4,
+    administration: 4,
+    popularity: 3,
+    intrigue: 2,
+    image: "./assets/counters/statesmen/Rome-SM-Timesitheus.png",
+  }
+  counters.set(timesitheus.name, new Statesman(timesitheus))
+
+  let philip = {
+    name: GlobalUnitsModel.STATESMAN.PHILIP,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PREFECT,
+    imperial: false,
+    military: 3,
+    administration: 3,
+    popularity: 2,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Philip.png",
+  }
+  counters.set(philip.name, new Statesman(philip))
+
+  let decius = {
+    name: GlobalUnitsModel.STATESMAN.DECIUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PERSECUTION,
+    imperial: false,
+    military: 2,
+    administration: 4,
+    popularity: 3,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Decius.png",
+  }
+  counters.set(decius.name, new Statesman(decius))
+
+  let gallus = {
+    name: GlobalUnitsModel.STATESMAN.GALLUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.STALEMATE,
+    imperial: false,
+    military: 3,
+    administration: 3,
+    popularity: 2,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Gallus.png",
+  }
+  counters.set(gallus.name, new Statesman(gallus))
+
+  let aemilian = {
+    name: GlobalUnitsModel.STATESMAN.AEMILIAN,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.EVENT,
+    imperial: false,
+    military: 3,
+    administration: 2,
+    popularity: 2,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Aemilian.png",
+  }
+  counters.set(aemilian.name, new Statesman(aemilian))
+
+  let valerian = {
+    name: GlobalUnitsModel.STATESMAN.VALERIAN,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PERSECUTION,
+    imperial: true,
+    military: 2,
+    administration: 3,
+    popularity: 2,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Valerian.png",
+  }
+  counters.set(valerian.name, new Statesman(valerian))
+
+  let gallienus = {
+    name: GlobalUnitsModel.STATESMAN.GALLIENUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.USURPER,
+    imperial: true,
+    military: 4,
+    administration: 2,
+    popularity: 1,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Gallienus.png",
+  }
+  counters.set(gallienus.name, new Statesman(gallienus))
+
+  let odaenath = {
+    name: GlobalUnitsModel.STATESMAN.ODAENATH,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PERSIAN,
+    imperial: false,
+    military: 4,
+    administration: 2,
+    popularity: 4,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Odaenath.png",
+  }
+  counters.set(odaenath.name, new Statesman(odaenath))
+
+  let postumus = {
+    name: GlobalUnitsModel.STATESMAN.POSTUMUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.FRANKISH,
+    imperial: false,
+    military: 3,
+    administration: 2,
+    popularity: 3,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Postumus.png",
+  }
+  counters.set(postumus.name, new Statesman(postumus))
+
+  let gothicus = {
+    name: GlobalUnitsModel.STATESMAN.GOTHICUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.GOTHIC,
+    imperial: false,
+    military: 4,
+    administration: 3,
+    popularity: 4,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Gothicus.png",
+  }
+  counters.set(gothicus.name, new Statesman(gothicus))
+
+  let aurelian = {
+    name: GlobalUnitsModel.STATESMAN.AURELIAN,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PALMYRENE,
+    imperial: false,
+    military: 5,
+    administration: 4,
+    popularity: 2,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Aurelian.png",
+  }
+  counters.set(aurelian.name, new Statesman(aurelian))
+
+  let tacitus = {
+    name: GlobalUnitsModel.STATESMAN.TACITUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PRESTIGE,
+    imperial: false,
+    military: 3,
+    administration: 3,
+    popularity: 3,
+    intrigue: 1,
+    image: "./assets/counters/statesmen/Rome-SM-Tacitus.png",
+  }
+  counters.set(tacitus.name, new Statesman(tacitus))
+
+  let probus = {
+    name: GlobalUnitsModel.STATESMAN.PROBUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.BURGUNDIAN,
+    imperial: false,
+    military: 4,
+    administration: 3,
+    popularity: 2,
+    intrigue: 2,
+    image: "./assets/counters/statesmen/Rome-SM-Probus.png",
+  }
+  counters.set(probus.name, new Statesman(probus))
+
+  let carus = {
+    name: GlobalUnitsModel.STATESMAN.CARUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PERSIAN,
+    imperial: true,
+    military: 3,
+    administration: 3,
+    popularity: 3,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Carus.png",
+  }
+  counters.set(carus.name, new Statesman(carus))
+
+  let carinus = {
+    name: GlobalUnitsModel.STATESMAN.CARINUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.SAXON,
+    imperial: true,
+    military: 3,
+    administration: 2,
+    popularity: 3,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Carinus.png",
+  }
+  counters.set(carinus.name, new Statesman(carinus))
+
+  let diocletian = {
+    name: GlobalUnitsModel.STATESMAN.DIOCLETIAN,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.PERSECUTION,
+    imperial: false,
+    military: 2,
+    administration: 5,
+    popularity: 3,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Diocletian.png",
+  }
+  counters.set(diocletian.name, new Statesman(diocletian))
+
+    let maximian = {
+    name: GlobalUnitsModel.STATESMAN.MAXIMIAN,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.MOORISH,
+    imperial: false,
+    military: 3,
+    administration: 3,
+    popularity: 3,
+    intrigue: 4,
+    image: "./assets/counters/statesmen/Rome-SM-Maximian.png",
+  }
+  counters.set(maximian.name, new Statesman(maximian))
+
+  let carausius = {
+    name: GlobalUnitsModel.STATESMAN.CARAUSIUS,
+    specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.FRANKISH,
+    imperial: false,
+    military: 4,
+    administration: 2,
+    popularity: 3,
+    intrigue: 3,
+    image: "./assets/counters/statesmen/Rome-SM-Carausius.png",
+  }
+  counters.set(carausius.name, new Statesman(carausius))
 }

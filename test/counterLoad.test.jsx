@@ -9,11 +9,11 @@ describe("Counter Load tests", () => {
     counters = new Map()
     controller = new Controller()
   })
-  
+
   it("loads all statesmen", () => {
     loadStatesmen(counters)
     const keysArray = Array.from(counters.keys())
-    expect(keysArray.length).toEqual(40)
+    expect(keysArray.length).toEqual(66)
   })
 
   it("loads statesmen values correctly", () => {
@@ -26,6 +26,7 @@ describe("Counter Load tests", () => {
     expect(augustus.military).toEqual(2)
     expect(augustus.popularity).toEqual(4)
     expect(augustus.intrigue).toEqual(3)
+    expect(augustus.image).toContain("Augustus")
 
     const agrippa = counters.get(GlobalUnitsModel.STATESMAN.AGRIPPA)
     expect(agrippa.specialAbility).toEqual(GlobalUnitsModel.SPECIAL_ABILITY.CANTABRIAN)
@@ -34,6 +35,7 @@ describe("Counter Load tests", () => {
     expect(agrippa.military).toEqual(4)
     expect(agrippa.administration).toEqual(4)
     expect(agrippa.popularity).toEqual(4)
+    expect(agrippa.image).toContain("Agrippa")
 
     const macro = counters.get(GlobalUnitsModel.STATESMAN.MACRO)
     expect(macro.specialAbility).toEqual(GlobalUnitsModel.SPECIAL_ABILITY.PREFECT)
@@ -42,5 +44,6 @@ describe("Counter Load tests", () => {
     expect(macro.administration).toEqual(2)
     expect(macro.popularity).toEqual(2)
     expect(macro.intrigue).toEqual(4)
+    expect(macro.image).toContain("Macro")
   })
 })
