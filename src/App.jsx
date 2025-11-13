@@ -1,28 +1,34 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, createContext } from "react"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
-import img1 from "./assets/romemap2.jpg"
-import img2 from "./assets/banner.jpg"
+import img1 from "/images/romemap2.jpg"
+import img2 from "/images/banner.jpg"
 import { windowsInit } from "./utils"
 import { Controls } from "./components/Controls"
+import { DialogContext } from "./Context"
 import "./App.css"
+import Dialogs from "./components/dialogs/Dialogs"
 
 export default App
 
 export function App() {
-
+  const bollocksStr = "PISS OFF"
   const navBarFont = "cinzel-regular"
   windowsInit()
 
-
   const [scale, setScale] = useState(1)
+
+  const [modalShow, setModalShow] = useState(false)
 
   function handleScaleChange(event) {
     setScale(event.instance.transformState.scale)
     // console.log("scale=", scale)
   }
+  function bollocks() {
+    setModalShow(true)
+  }
 
   return (
-    <div >
+    <>
       <TransformWrapper
         initialScale={1}
         minScale={0.5}
@@ -30,10 +36,19 @@ export function App() {
         limitToBounds={false}
         onTransformed={(e) => handleScaleChange(e)}
       >
-        <Controls navBarFont={navBarFont} banner={img2}></Controls>
+        <Controls clicky={bollocks} setnavBarFont={navBarFont} banner={img2}></Controls>
         <div>
           <main className="image-container">
             <TransformComponent>
+              <DialogContext.Provider
+                value={{
+                  modalShow: modalShow,
+                  setModalShow,
+                }}
+              >
+                <Dialogs></Dialogs>
+              </DialogContext.Provider>
+
               <img
                 // style={{
                 //   width: `100%`,
@@ -59,6 +74,6 @@ export function App() {
           </main>
         </div>
       </TransformWrapper>
-    </div>
+    </>
   )
 }

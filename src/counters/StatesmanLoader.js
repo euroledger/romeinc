@@ -10,7 +10,8 @@ export function loadStatesmen(counters) {
     administration: 5,
     popularity: 4,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Augustus.png",
+    image: "/images/counters/statesmen/Rome-SM-Augustus.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(GlobalUnitsModel.STATESMAN.AUGUSTUS, new Statesman(augustus))
 
@@ -22,7 +23,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 4,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Agrippa.png",
+    image: "/images/counters/statesmen/Rome-SM-Agrippa.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(GlobalUnitsModel.STATESMAN.AGRIPPA, new Statesman(agrippa))
 
@@ -34,7 +36,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Tiberius.png",
+    image: "/images/counters/statesmen/Rome-SM-Tiberius.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
 
   counters.set(GlobalUnitsModel.STATESMAN.TIBERIUS, new Statesman(tiberius))
@@ -47,7 +50,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 4,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Drusus.png",
+    image: "/images/counters/statesmen/Rome-SM-Drusus.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
 
   counters.set(GlobalUnitsModel.STATESMAN.DRUSUS, new Statesman(drusus))
@@ -60,7 +64,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 5,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Germanicus.png",
+    image: "/images/counters/statesmen/Rome-SM-Germanicus.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(GlobalUnitsModel.STATESMAN.GERMANICUS, new Statesman(germanicus))
 
@@ -72,7 +77,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Sejanus.png",
+    image: "/images/counters/statesmen/Rome-SM-Sejanus.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(GlobalUnitsModel.STATESMAN.SEJANUS, new Statesman(sejanus))
 
@@ -84,7 +90,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 2,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Macro.png",
+    image: "/images/counters/statesmen/Rome-SM-Macro.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(GlobalUnitsModel.STATESMAN.MACRO, new Statesman(macro))
 
@@ -96,7 +103,8 @@ export function loadStatesmen(counters) {
     administration: 1,
     popularity: 4,
     intrigue: 5,
-    image: "./assets/counters/statesmen/Rome-SM-Caligula.png",
+    image: "/images/counters/statesmen/Rome-SM-Caligula.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(GlobalUnitsModel.STATESMAN.CALIGULA, new Statesman(caligula))
 
@@ -108,7 +116,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Paulinus.png",
+    image: "/images/counters/statesmen/Rome-SM-Paulinus.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(paulinus.name, new Statesman(paulinus))
 
@@ -120,7 +129,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 4,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Claudius.png",
+    image: "/images/counters/statesmen/Rome-SM-Claudius.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(claudius.name, new Statesman(claudius))
 
@@ -134,7 +144,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 2,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Plautius.png",
+    image: "/images/counters/statesmen/Rome-SM-Plautius.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(plautius.name, new Statesman(plautius))
 
@@ -146,7 +157,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 4,
     intrigue: 5,
-    image: "./assets/counters/statesmen/Rome-SM-Nero.png",
+    image: "/images/counters/statesmen/Rome-SM-Nero.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(nero.name, new Statesman(nero))
 
@@ -158,7 +170,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 1,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Corbulo.png",
+    image: "/images/counters/statesmen/Rome-SM-Corbulo.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(corbulo.name, new Statesman(corbulo))
 
@@ -170,7 +183,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Silvanus.png",
+    image: "/images/counters/statesmen/Rome-SM-Silvanus.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(silvanus.name, new Statesman(silvanus))
 
@@ -182,7 +196,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 1,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Galba.png",
+    image: "/images/counters/statesmen/Rome-SM-Galba.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(galba.name, new Statesman(galba))
 
@@ -194,7 +209,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Otho.png",
+    image: "/images/counters/statesmen/Rome-SM-Otho.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(otho.name, new Statesman(otho))
 
@@ -206,7 +222,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Vitellius.png",
+    image: "/images/counters/statesmen/Rome-SM-Vitellius.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(vitellius.name, new Statesman(vitellius))
 
@@ -218,7 +235,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Vespasian.png",
+    image: "/images/counters/statesmen/Rome-SM-Vespasian.png",
+    scenario: GlobalUnitsModel.SCENARIO.BC_27,
   }
   counters.set(vespasian.name, new Statesman(vespasian))
 
@@ -230,7 +248,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 4,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Cerialis.png",
+    image: "/images/counters/statesmen/Rome-SM-Cerialis.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(cerialis.name, new Statesman(cerialis))
 
@@ -242,7 +261,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 4,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Titus.png",
+    image: "/images/counters/statesmen/Rome-SM-Titus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(titus.name, new Statesman(titus))
 
@@ -254,7 +274,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 5,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Domitian.png",
+    image: "/images/counters/statesmen/Rome-SM-Domitian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(domitian.name, new Statesman(domitian))
 
@@ -266,7 +287,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 4,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Agricola.png",
+    image: "/images/counters/statesmen/Rome-SM-Agricola.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(agricola.name, new Statesman(agricola))
 
@@ -278,7 +300,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Aelianus.png",
+    image: "/images/counters/statesmen/Rome-SM-Aelianus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(aelianus.name, new Statesman(aelianus))
 
@@ -290,7 +313,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Nerva.png",
+    image: "/images/counters/statesmen/Rome-SM-Nerva.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(nerva.name, new Statesman(nerva))
 
@@ -302,7 +326,8 @@ export function loadStatesmen(counters) {
     administration: 5,
     popularity: 5,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Trajan.png",
+    image: "/images/counters/statesmen/Rome-SM-Trajan.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(trajan.name, new Statesman(trajan))
 
@@ -314,7 +339,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Quietus.png",
+    image: "/images/counters/statesmen/Rome-SM-Queitus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(quietus.name, new Statesman(quietus))
 
@@ -326,7 +352,8 @@ export function loadStatesmen(counters) {
     administration: 5,
     popularity: 4,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Hadrian.png",
+    image: "/images/counters/statesmen/Rome-SM-Hadrian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(hadrian.name, new Statesman(hadrian))
 
@@ -338,7 +365,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Turbo.png",
+    image: "/images/counters/statesmen/Rome-SM-Turbo.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(turbo.name, new Statesman(turbo))
 
@@ -350,7 +378,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 3,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Arrian.png",
+    image: "/images/counters/statesmen/Rome-SM-Arrian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(arrian.name, new Statesman(arrian))
 
@@ -362,7 +391,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 3,
     intrigue: 1,
-    image: "./assets/counters/statesmen/Rome-SM-Antoninus.png",
+    image: "/images/counters/statesmen/Rome-SM-Antoninus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_70,
   }
   counters.set(antoninus.name, new Statesman(antoninus))
 
@@ -374,7 +404,8 @@ export function loadStatesmen(counters) {
     administration: 5,
     popularity: 3,
     intrigue: 1,
-    image: "./assets/counters/statesmen/Rome-SM-Marcus.png",
+    image: "/images/counters/statesmen/Rome-SM-Marcus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(marcus.name, new Statesman(marcus))
 
@@ -386,7 +417,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Lucius.png",
+    image: "/images/counters/statesmen/Rome-SM-Lucius.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(lucius.name, new Statesman(lucius))
 
@@ -398,7 +430,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Avidius.png",
+    image: "/images/counters/statesmen/Rome-SM-Avidius.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(avidius.name, new Statesman(avidius))
 
@@ -410,7 +443,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Pompeianus.png",
+    image: "/images/counters/statesmen/Rome-SM-Pompeianus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(pompeianus.name, new Statesman(pompeianus))
 
@@ -422,7 +456,8 @@ export function loadStatesmen(counters) {
     administration: 1,
     popularity: 4,
     intrigue: 5,
-    image: "./assets/counters/statesmen/Rome-SM-Commodus.png",
+    image: "/images/counters/statesmen/Rome-SM-Commodus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(commodus.name, new Statesman(commodus))
 
@@ -434,7 +469,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Laetus.png",
+    image: "/images/counters/statesmen/Rome-SM-Laetus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(laetus.name, new Statesman(laetus))
 
@@ -446,7 +482,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 1,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Pertinax.png",
+    image: "/images/counters/statesmen/Rome-SM-Pertinax.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(pertinax.name, new Statesman(pertinax))
 
@@ -458,7 +495,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Julianus.png",
+    image: "/images/counters/statesmen/Rome-SM-Julianus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(julianus.name, new Statesman(julianus))
 
@@ -470,7 +508,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 5,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Cerialis.png",
+    image: "/images/counters/statesmen/Rome-SM-Cerialis.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(severus.name, new Statesman(severus))
 
@@ -482,7 +521,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 4,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Niger.png",
+    image: "/images/counters/statesmen/Rome-SM-Niger.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(niger.name, new Statesman(niger))
 
@@ -494,7 +534,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Albinus.png",
+    image: "/images/counters/statesmen/Rome-SM-Albinus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(albinus.name, new Statesman(albinus))
 
@@ -506,7 +547,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Plautianus.png",
+    image: "/images/counters/statesmen/Rome-SM-Plautianus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(plautianus.name, new Statesman(plautianus))
 
@@ -518,7 +560,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 4,
     intrigue: 5,
-    image: "./assets/counters/statesmen/Rome-SM-Caracalla.png",
+    image: "/images/counters/statesmen/Rome-SM-Caracalla.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(caracalla.name, new Statesman(caracalla))
 
@@ -530,7 +573,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 2,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Macrinus.png",
+    image: "/images/counters/statesmen/Rome-SM-Macrinus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(macrinus.name, new Statesman(macrinus))
 
@@ -542,7 +586,8 @@ export function loadStatesmen(counters) {
     administration: 1,
     popularity: 1,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Elagabalus.png",
+    image: "/images/counters/statesmen/Rome-SM-Elagabalus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(elagabalus.name, new Statesman(elagabalus))
 
@@ -554,7 +599,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 1,
-    image: "./assets/counters/statesmen/Rome-SM-Alexander.png",
+    image: "/images/counters/statesmen/Rome-SM-Alexander.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_138,
   }
   counters.set(alexander.name, new Statesman(alexander))
 
@@ -566,7 +612,8 @@ export function loadStatesmen(counters) {
     administration: 1,
     popularity: 4,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Maximinus.png",
+    image: "/images/counters/statesmen/Rome-SM-Maximinus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(maximinus.name, new Statesman(maximinus))
 
@@ -578,7 +625,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 1,
-    image: "./assets/counters/statesmen/Rome-SM-Gordian.png",
+    image: "/images/counters/statesmen/Rome-SM-Gordian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(gordian.name, new Statesman(gordian))
 
@@ -590,7 +638,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 3,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Timesitheus.png",
+    image: "/images/counters/statesmen/Rome-SM-Timesitheus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(timesitheus.name, new Statesman(timesitheus))
 
@@ -602,7 +651,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Philip.png",
+    image: "/images/counters/statesmen/Rome-SM-Philip.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(philip.name, new Statesman(philip))
 
@@ -614,7 +664,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Decius.png",
+    image: "/images/counters/statesmen/Rome-SM-Decius.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(decius.name, new Statesman(decius))
 
@@ -626,7 +677,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Gallus.png",
+    image: "/images/counters/statesmen/Rome-SM-Gallus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(gallus.name, new Statesman(gallus))
 
@@ -638,7 +690,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 2,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Aemilian.png",
+    image: "/images/counters/statesmen/Rome-SM-Aemilian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(aemilian.name, new Statesman(aemilian))
 
@@ -650,7 +703,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Valerian.png",
+    image: "/images/counters/statesmen/Rome-SM-Valerian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(valerian.name, new Statesman(valerian))
 
@@ -662,7 +716,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 1,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Gallienus.png",
+    image: "/images/counters/statesmen/Rome-SM-Gallienus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(gallienus.name, new Statesman(gallienus))
 
@@ -674,7 +729,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 4,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Odaenath.png",
+    image: "/images/counters/statesmen/Rome-SM-Odaenath.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(odaenath.name, new Statesman(odaenath))
 
@@ -686,7 +742,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Postumus.png",
+    image: "/images/counters/statesmen/Rome-SM-Postumus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(postumus.name, new Statesman(postumus))
 
@@ -698,7 +755,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 4,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Gothicus.png",
+    image: "/images/counters/statesmen/Rome-SM-Gothicus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(gothicus.name, new Statesman(gothicus))
 
@@ -710,7 +768,8 @@ export function loadStatesmen(counters) {
     administration: 4,
     popularity: 2,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Aurelian.png",
+    image: "/images/counters/statesmen/Rome-SM-Aurelian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(aurelian.name, new Statesman(aurelian))
 
@@ -722,7 +781,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 1,
-    image: "./assets/counters/statesmen/Rome-SM-Tacitus.png",
+    image: "/images/counters/statesmen/Rome-SM-Tacitus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(tacitus.name, new Statesman(tacitus))
 
@@ -734,7 +794,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 2,
     intrigue: 2,
-    image: "./assets/counters/statesmen/Rome-SM-Probus.png",
+    image: "/images/counters/statesmen/Rome-SM-Probus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(probus.name, new Statesman(probus))
 
@@ -746,7 +807,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Carus.png",
+    image: "/images/counters/statesmen/Rome-SM-Carus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(carus.name, new Statesman(carus))
 
@@ -758,7 +820,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Carinus.png",
+    image: "/images/counters/statesmen/Rome-SM-Carinus.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(carinus.name, new Statesman(carinus))
 
@@ -770,11 +833,12 @@ export function loadStatesmen(counters) {
     administration: 5,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Diocletian.png",
+    image: "/images/counters/statesmen/Rome-SM-Diocletian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(diocletian.name, new Statesman(diocletian))
 
-    let maximian = {
+  let maximian = {
     name: GlobalUnitsModel.STATESMAN.MAXIMIAN,
     specialAbility: GlobalUnitsModel.SPECIAL_ABILITY.MOORISH,
     imperial: false,
@@ -782,7 +846,8 @@ export function loadStatesmen(counters) {
     administration: 3,
     popularity: 3,
     intrigue: 4,
-    image: "./assets/counters/statesmen/Rome-SM-Maximian.png",
+    image: "/images/counters/statesmen/Rome-SM-Maximian.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(maximian.name, new Statesman(maximian))
 
@@ -794,7 +859,8 @@ export function loadStatesmen(counters) {
     administration: 2,
     popularity: 3,
     intrigue: 3,
-    image: "./assets/counters/statesmen/Rome-SM-Carausius.png",
+    image: "/images/counters/statesmen/Rome-SM-Carausius.png",
+    scenario: GlobalUnitsModel.SCENARIO.AD_222,
   }
   counters.set(carausius.name, new Statesman(carausius))
 }

@@ -6,6 +6,10 @@ export default class Controller {
     this.emperorsMap = new Map()
   }
 
+  setCounters(counters) {
+    this.counters = counters
+  }
+
   // date is an integer eg -27 is 27BC or 27BCE
   getDateString(date) {
     let dateStr = ""
@@ -32,9 +36,15 @@ export default class Controller {
     return GlobalGameState.emperorsBox.includes(dynasty)
   }
 
-  getStatesmenInDynasty(dynasty) {
+  getStatesmenByDynasty(dynasty) {
     const statesmen = this.emperorsMap.get(dynasty)
-    console.log("STATESMEN IN DYNASTY", dynasty, ":", statesmen)
+    return statesmen
+  }
+
+  getStatesmenByScenario(scenario) {
+    const statesmen = [...this.counters.statesmen].filter(([_, value]) => {
+      return value.scenario === scenario
+    })
     return statesmen
   }
 

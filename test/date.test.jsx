@@ -5,7 +5,7 @@ import Controller from "../src/controller/Controller"
 import GlobalGameState from "../src/model/GlobalGameState"
 
 describe("Date Tests", () => {
-  let controller, counters
+  let controller
   beforeEach(() => {
     controller = new Controller()
   })

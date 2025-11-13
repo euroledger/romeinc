@@ -5,20 +5,30 @@ import Button from "react-bootstrap/Button"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import { useControls } from "react-zoom-pan-pinch"
 import { Image } from "./Image"
+import GlobalUIConstants from "../model/GlobalUIConstants"
 
-export const Controls = ({ navBarFont, banner }) => {
+export const Controls = ({ navBarFont, banner, clicky }) => {
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
   const font = "1.2rem"
   return (
     <Navbar
-      style={{ fontSize: font }}
+      style={{ fontSize: font, margin: "0" }}
       bg="black"
       data-bs-threme="dark"
       // fixed="top"
-      className="justify-content-between"
+      className="py-0"
     >
-      <Container style={{ background: "#610C0F", fontSize: font, height: "5rem" }}>
+      <Container
+        style={{
+          background: GlobalUIConstants.Colors.PRIMARY,
+          fontSize: font,
+          // margin: "0px",
+          padding: "0px",
+          minWidth: "100vw",
+          height: "5rem",
+        }}
+      >
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav style={{ fontSize: font }} className="mr-auto">
             <div
@@ -34,23 +44,39 @@ export const Controls = ({ navBarFont, banner }) => {
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "22%",
-              top: "1.1%",
+              left: "19%",
+              top: "25.0%",
               fontSize: font,
               borderColor: "white",
               color: "white",
-              width: "12rem",
-              background: "#1844abff",
+              width: "9rem",
+              background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
             }}
           >
-            SAVE
+            Save Game
+          </Button>
+          <Button
+            onClick={() => clicky()}
+            className={navBarFont}
+            style={{
+              position: "absolute",
+              left: "26%",
+              top: "25%",
+              fontSize: font,
+              borderColor: "white",
+              color: "white",
+              width: "9rem",
+              background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
+            }}
+          >
+            Counters
           </Button>
           <Navbar.Text
             className={navBarFont}
             style={{
               position: "absolute",
               left: "45%",
-              top: "1.7%",
+              top: "20%",
               fontSize: "1.4rem",
               color: "white",
             }}
@@ -58,7 +84,7 @@ export const Controls = ({ navBarFont, banner }) => {
             Game State: EVENT PHASE
           </Navbar.Text>
           <ButtonGroup
-            style={{ position: "absolute", left: "74%", top: "1.1%", fontSize: font }}
+            style={{ position: "absolute", left: "74%", top: "25%", fontSize: font }}
             className={navBarFont}
             aria-label="Basic example"
           >
@@ -69,7 +95,7 @@ export const Controls = ({ navBarFont, banner }) => {
                 fontSize: font,
                 color: "white",
                 width: "10rem",
-                background: "#610C0F",
+                background: GlobalUIConstants.Colors.PRIMARY,
               }}
               className="me-1"
               size="sm"
@@ -85,7 +111,7 @@ export const Controls = ({ navBarFont, banner }) => {
                 fontSize: font,
                 color: "white",
                 width: "10rem",
-                background: "#610C0F",
+                background: GlobalUIConstants.Colors.PRIMARY,
               }}
               className="me-1"
               size="sm"
@@ -95,7 +121,13 @@ export const Controls = ({ navBarFont, banner }) => {
               Zoom Out
             </Button>
             <Button
-              style={{ fontSize: font, borderColor: "white", color: "white", width: "10rem", background: "#610C0F" }}
+              style={{
+                fontSize: font,
+                borderColor: "white",
+                color: "white",
+                width: "10rem",
+                background: GlobalUIConstants.Colors.PRIMARY,
+              }}
               className="me-1"
               size="sm"
               variant="secondary"

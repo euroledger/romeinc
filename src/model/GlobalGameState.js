@@ -1,6 +1,9 @@
 import GlobalUnitsModel from "./GlobalUnitsModel"
 
 export default class GlobalGameState {
+
+  static caesar = ""
+  static consul = ""
   static dateFormat = GlobalUnitsModel.DATE_FORMAT.TRADITIONAL
 
   static emperorsBox = []
