@@ -1,33 +1,44 @@
 /* CustomTabs.css */
 /* Change the default (inactive) tab button background and color */
 .nav-tabs .nav-link {
-  background-color: #db9393; /* custom gray background */
-  color: #44475a; /* custom text color */
-    border-radius: 0.3rem !important; 
+  background-color: #610c0f; /* custom gray background */
+  color: #f8c51a; /* custom text color */
+  border-radius: 0.3rem !important;
   /* Ensures the bottom border is sharp */
   /* border-bottom-left-radius: 0 !important; 
   border-bottom-right-radius: 0 !important; */
-    width: 15rem;
+  border-color: #610c0f;
 
+  width: 15rem;
 }
 
 /* Change the active (selected) tab button background and color */
 .nav-tabs .nav-link.active {
-  background-color: f0f0f0; /* custom active color */
-  color: black;
-  border-color: f0f0f0;
-   /* Removes default border radius from all corners */
-    border-radius: 0.3rem !important; 
+  background-color: #610c0f; /* custom active color */
+  color: #f8c51a;
+  border-color: #f8c51a !important;
+  /* Removes default border radius from all corners */
+  border-radius: 0.3rem !important;
 
   margin-bottom: 1rem;
-  margin-right: 1rem
+  margin-right: 1rem;
 }
 
 .nav-tabs {
   /* Removes the bottom border from the entire tab list */
-  border-bottom: none !important; 
+  border-color: #610c0f;
+  border-bottom: none !important;
+}
+.nav-link:hover {
+  background-color: #610c0f; /* custom active color */
+  color: #f8c51a;
+  border-color: #610c0f !important;
+  /* Removes default border radius from all corners */
+  border-radius: 0.3rem !important;
 }
 
 .my-custom-tabs .nav-link {
   margin-right: 10px; /* Adjust the value as needed */
+  border-color: #610c0f;
 }
+

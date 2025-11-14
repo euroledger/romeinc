@@ -77,6 +77,7 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
               position: "absolute",
               left: "45%",
               top: "20%",
+              fontFamily: "Cinzel",
               fontSize: "1.4rem",
               color: "white",
             }}

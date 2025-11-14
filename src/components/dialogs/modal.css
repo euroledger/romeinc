@@ -8,6 +8,18 @@
   border-radius: 5px;
   border: none;
 }
+
+.custom-modal-content {
+  /* Example Border */
+  border: 8px solid #0c0c0c !important; /* Adjust color, thickness, and style as needed */
+
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+
+  /* Optional: Adjust default border-radius */
+  border-radius: 15px !important;
+}
+
 .modal-confirm .modal-header {
   border-bottom: none;
   position: relative;
@@ -72,9 +84,7 @@
   background-color: #b11010 !important;
   border-color: white;
 }
-.modal-load {
-  /* width: 1000px !important; */
-}
+
 .trigger-btn {
   display: inline-block;
   margin: 100px auto;

@@ -12,14 +12,13 @@ body,
   overflow: hidden; /* Absolutely prevents unwanted scrolling */
 }
 
-.image-container {
+/* .image-container {
   width: 100%;
-  overflow: hidden; /* Important for 'cover' to clip content */
 }
 
 .image-container img {
   width: 100%;
   height: 100% !important;
-  object-fit: cover; /* or 'contain' */
+  object-fit: cover; 
 }
-
+ */

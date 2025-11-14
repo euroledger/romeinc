@@ -4,6 +4,7 @@ import img1 from "/images/romemap2.jpg"
 import img2 from "/images/banner.jpg"
 import { windowsInit } from "./utils"
 import { Controls } from "./components/Controls"
+import Board from "./components/Board"
 import { DialogContext } from "./Context"
 import "./App.css"
 import Dialogs from "./components/dialogs/Dialogs"
@@ -15,13 +16,19 @@ export function App() {
   const navBarFont = "cinzel-regular"
   windowsInit()
 
-  const [scale, setScale] = useState(1)
+  const [zoomPP, setZoomPP] = useState({})
 
   const [modalShow, setModalShow] = useState(false)
 
   function handleScaleChange(event) {
-    setScale(event.instance.transformState.scale)
+    setZoomPP({
+      scale: event.instance.transformState.scale,
+      panX: event.instance.transformState.positionX,
+      panY: event.instance.transformState.positionY,
+    })
     // console.log("scale=", scale)
+    // console.log("positionX=", event.instance.transformState.positionX)
+    console.log("1 panY=", event.instance.transformState.positionY)
   }
   function bollocks() {
     setModalShow(true)
@@ -48,28 +55,14 @@ export function App() {
               >
                 <Dialogs></Dialogs>
               </DialogContext.Provider>
-
-              <img
+              {/* <img
                 // style={{
                 //   width: `100%`,
                 //   height: 'auto'
                 // }}
                 src={img1}
-              ></img>
-              {/* <Board
-                  scale={scale}
-                  USMapRegions={USMapRegions}
-                  japanMapRegions={japanMapRegions}
-                  japanMIFMapRegions={japanMIFMapRegions}
-                  japanStrikePanelEnabled={japanStrikePanelEnabled}
-                  usStrikePanelEnabled={usStrikePanelEnabled}
-                  enabledJapanFleetBoxes={enabledJapanFleetBoxes}
-                  enabledUSFleetBoxes={enabledUSFleetBoxes}
-                  en%bledJapanReorgBoxes={enabledJapanReorgBoxes}
-                  enabledUSReorgBoxes={enabledUSReorgBoxes}
-                  setPreviousPosition={setPreviousPosition}
-                  previousPosition={previousPosition}
-                /> */}
+              ></img> */}
+              <Board zoomPP={zoomPP} image={img1}></Board>
             </TransformComponent>
           </main>
         </div>

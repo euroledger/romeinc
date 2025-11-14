@@ -27,13 +27,14 @@ function CountersPanel(props) {
   return (
     <Modal
       {...props}
+      contentClassName="custom-modal-content"
       dialogClassName="dynamic-modal-dialog" // Reference the class from CSS
       style={{ "--modal-width": dynamicWidth, "--modal-height": "80rem" }}
       aria-labelledby="contained-modal-title-vcenter"
       centered
       backdrop="static"
     >
-      <Modal.Header
+      {/* <Modal.Header
         style={{
           background: `${sidebg}`,
           color: "white",
@@ -43,8 +44,8 @@ function CountersPanel(props) {
         }}
       >
         <h1>COUNTERS</h1>
-      </Modal.Header>
-      <Modal.Body style={{ background: `${sidebg}`, color: "white" }}>
+      </Modal.Header> */}
+      <Modal.Body style={{ background: `${sidebg}`, color: "#f8c51a" }}>
         <div
           style={{
             display: "flex",
@@ -52,13 +53,14 @@ function CountersPanel(props) {
             alignItems: "center",
             marginBottom: "2rem",
             fontSize: "2rem",
+            color: "#f8c51a"
           }}
         >
-          Click on tab to see Counters
+          COUNTERS
         </div>
-        <div
+        <div 
           style={{
-            marginLeft: "2rem",
+            marginLeft: "1rem",
           }}
         >
           {/* <ImageGrid images={images}></ImageGrid> */}

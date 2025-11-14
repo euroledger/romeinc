@@ -1,20 +1,49 @@
+.image-container {
+  /* This is crucial for z-index to work on positioned elements */
+  /* If your image is part of a flex or grid layout, its parent might already be positioned */
+  position: relative; 
+  /* Add other styling for your layout, e.g., margin, padding */
+  /* margin: 10px; */
+  display: inline-block; /* Helps with side-by-side display for example */
+}
+
 .image-gallery11 {
   display: grid;
   /* Creates exactly 11 columns, each taking up an equal fraction of the space */
-  grid-template-columns: repeat(11, 1fr); 
-  gap: 10px; /* Adds space between images */
+  grid-template-columns: repeat(11, 1fr);
+  gap: 1rem; /* Adds space between images */
 }
 
 .image-gallery5 {
   display: grid;
   /* Creates exactly 11 columns, each taking up an equal fraction of the space */
-  grid-template-columns: repeat(5, 1fr); 
-  gap: 5rem; /* Adds space between images */
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3rem; /* Adds space between images */
 }
 
+.grid-item {
+  position: relative;
+}
 .grid-item img {
+    position: relative;
+
   width: 100%; /* Ensures images fill their grid column horizontally */
   height: 5rem; /* Set a fixed height */
   width: 5rem;
+  transform-origin: center center;
+
+  /* Apply a smooth transition effect */
+  transition: transform 0.3s ease-in-out;
+  z-index: 0;
+
+  /* Initial state: no transformation */
+  transform: scale(1) translate(0, 0);
   object-fit: cover; /* Prevents images from stretching and crops them to fit the container while maintaining aspect ratio */
+}
+
+.grid-item img:hover {
+  transform: scale(3) translate(-10px, 10px);
+  z-index: 10;
+
+  transition: transform 0.3s ease-in-out, z-index 0s;
 }

@@ -1,0 +1,47 @@
+.overlay-container {
+  /* This is crucial: it establishes a positioning context for absolute children */
+  position: relative; 
+  /* The image naturally defines the size of this container */
+  display: inline-block; 
+  /* Optional: Add some constraints if you want the large image to scale down in the view */
+  max-width: 100%; 
+  height: auto;
+}
+
+.covered-image {
+  /* Remove absolute positioning. Let the image determine the container size. */
+  /* position: absolute; <--- REMOVED */ 
+  /* top: 0; <--- REMOVED */ 
+  /* left: 0; <--- REMOVED */ 
+
+  /* Ensure the image scales responsively */
+  width: 100%; 
+  height: auto; 
+}
+
+.covering-canvas {
+  /* Keep absolute positioning relative to the container */
+  position: absolute; 
+  top: 0;
+  left: 0;
+  
+  /* These percentages make the canvas visually cover the image */
+  width: 100%; 
+  height: 100%; 
+  
+  /* Ensure the canvas is on top of the image */
+  z-index: 10; 
+  background-color: rgba(255, 255, 255, 0.0); /* Transparent background */
+}
+
+.popup-box {
+  position: absolute; /* Position relative to the .overlay-container */
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 20; /* Ensure it is above the canvas */
+  pointer-events: none; /* Allows mouse events to pass through to the canvas underneath */
+  white-space: nowrap; /* Prevents text from wrapping */
+}
