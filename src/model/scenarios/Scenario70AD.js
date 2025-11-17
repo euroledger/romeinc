@@ -4,7 +4,7 @@ import BaseScenario from "./BaseScenario"
 
 export default class Scenario70AD extends BaseScenario {
   constructor(controller) {
-    super(controller, 70)
+    super(controller, GlobalUnitsModel.SCENARIO.AD_70)
     GlobalGameState.emperorsBox = [GlobalUnitsModel.DYNASTY.JULIAN, GlobalUnitsModel.DYNASTY.CLAUDIAN]
   }
 }

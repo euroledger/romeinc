@@ -5,7 +5,9 @@ import Button from "react-bootstrap/Button"
 import ButtonGroup from "react-bootstrap/ButtonGroup"
 import { useControls } from "react-zoom-pan-pinch"
 import { Image } from "./Image"
-import GlobalUIConstants from "../model/GlobalUIConstants"
+import GlobalUIConstants from "../../model/GlobalUIConstants"
+import GlobalInit from "../../model/GlobalInit"
+import GlobalGameState from "../../model/GlobalGameState"
 
 export const Controls = ({ navBarFont, banner, clicky }) => {
   const { zoomIn, zoomOut, resetTransform } = useControls()
@@ -76,16 +78,18 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
             style={{
               position: "absolute",
               left: "45%",
-              top: "20%",
+              top: "1%",
               fontFamily: "Cinzel",
-              fontSize: "1.4rem",
+              fontSize: "1.2rem",
               color: "white",
             }}
           >
-            Game State: EVENT PHASE
+            <div>Scenario: <strong>{GlobalInit.controller.getSelectedLabel(GlobalGameState.scenario)}</strong></div>
+
+            <div> Game State: <strong>SETUP</strong></div>
           </Navbar.Text>
           <ButtonGroup
-            style={{ position: "absolute", left: "74%", top: "25%", fontSize: font }}
+            style={{ position: "absolute", left: "79%", top: "25%", fontSize: font }}
             className={navBarFont}
             aria-label="Basic example"
           >
@@ -95,7 +99,7 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
                 borderColor: "white",
                 fontSize: font,
                 color: "white",
-                width: "10rem",
+                width: "8em",
                 background: GlobalUIConstants.Colors.PRIMARY,
               }}
               className="me-1"
@@ -111,7 +115,7 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
                 borderColor: "white",
                 fontSize: font,
                 color: "white",
-                width: "10rem",
+                width: "8rem",
                 background: GlobalUIConstants.Colors.PRIMARY,
               }}
               className="me-1"
@@ -126,7 +130,7 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
                 fontSize: font,
                 borderColor: "white",
                 color: "white",
-                width: "10rem",
+                width: "8rem",
                 background: GlobalUIConstants.Colors.PRIMARY,
               }}
               className="me-1"

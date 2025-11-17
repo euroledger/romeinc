@@ -114,7 +114,7 @@ export default class GlobalUnitsModel {
     VOLOGASES: "VOLOGASES",
     SHAPUR: "SHAPUR",
   }
-  
+
   static HOMELAND_PROVINCE = {
     BRITISH: "BRITISH",
     CANTABRIAN: "CANTABRIAN",
@@ -136,9 +136,9 @@ export default class GlobalUnitsModel {
     PERSIAN: "PERSIAN",
     PALMYRENE: "PALMYRENE",
     JUDEAN: "JUDEAN",
-    NUBIAN: "NUBIAN"
+    NUBIAN: "NUBIAN",
   }
-  
+
   static DYNASTY = {
     JULIAN: "JULIAN EMPERORS",
     CLAUDIAN: "CLAUDIAN EMPERORS",
@@ -150,16 +150,45 @@ export default class GlobalUnitsModel {
     ILLYRIAN: "ILLYRIAN EMPERORS",
   }
 
+  static SCENARIOS = [
+    {
+      value: "27BCE",
+      longlabelBCECE: "27 BCE: Principate Established",
+      longlabelBCAD: "27 BC: Principate Established",
+      labelBCECE: "27 BCE",
+      labelBCAD: "27 BC",
+    },
+    {
+      value: "70CE",
+      longlabelBCECE: "70 CE: Sack of Jerusalem",
+      longlabelBCAD: "70 AD: Sack of Jerusalem",
+      labelBCECE: "70 CE",
+      labelBCAD: "70 AD",
+    },
+    {
+      value: "138CE",
+      longlabelBCECE: "138 CE: Accession of Antoninus Pius",
+      longlabelBCAD: "138 AD: Accession of Antoninus Pius",
+      labelBCECE: "138 CE",
+      labelBCAD: "138 AD",
+    },
+    {
+      value: "222CE",
+      longlabelBCECE: "222 CE: Crisis of the Third Century Begins",
+      longlabelBCAD: "222 AD: Crisis of the Third Century Begins",
+      labelBCECE: "222 CE",
+      labelBCAD: "222 AD",
+    },
+  ]
   static SCENARIO = {
-    BC_27: "27 BC",
-    AD_70: "70 AD",
-    AD_138: "138 AD",
-    AD_222: "222 AD"
+    BC_27: "27BCE",
+    AD_70: "70CE",
+    AD_138: "138CE",
+    AD_222: "222CE",
   }
 
   static DATE_FORMAT = {
     TRADITIONAL: "TRADITIONAL",
     MODERN: "MODERN",
   }
-
 }

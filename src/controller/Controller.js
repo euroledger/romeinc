@@ -48,6 +48,30 @@ export default class Controller {
     return statesmen
   }
 
+  getScenario() {
+    return GlobalUnitsModel.SCENARIOS.find((s) => s.value === GlobalGameState.scenario)
+  }
+
+  getSelectedLabel = (selectedScenario, useLong) => {
+    console.log("selectedScenario=", selectedScenario)
+    // Find the object in GlobalUnitsModel.SCENARIOS that matches the selected value
+    const currentScenarioObj = GlobalUnitsModel.SCENARIOS.find((s) => s.value === selectedScenario)
+
+    if (currentScenarioObj) {
+      // Return the appropriate label based on the format toggle (amd long/short format)
+      GlobalGameState.scenario = selectedScenario
+      if (useLong) {
+        return GlobalGameState.dateFormat === GlobalUnitsModel.DATE_FORMAT.MODERN
+          ? currentScenarioObj.longlabelBCECE
+          : currentScenarioObj.longlabelBCAD
+      }
+      return GlobalGameState.dateFormat === GlobalUnitsModel.DATE_FORMAT.MODERN
+        ? currentScenarioObj.labelBCECE
+        : currentScenarioObj.labelBCAD
+    }
+    console.log("RETURN ", selectedScenario)
+    return selectedScenario // Fallback to the raw value if not found
+  }
   setUpEmperorsMap() {
     this.emperorsMap.set(GlobalUnitsModel.DYNASTY.JULIAN, [
       GlobalUnitsModel.STATESMAN.AUGUSTUS,

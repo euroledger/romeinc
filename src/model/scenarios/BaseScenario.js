@@ -1,6 +1,6 @@
 export default class BaseScenario {
   constructor(controller, date) {
-    this.dateStr = controller.getDateString(date)
+    this.dateStr = controller.getSelectedLabel(date)
     if (new.target === BaseScenario) {
       throw new Error("Cannot instantiate BaseScenario directly.")
     }

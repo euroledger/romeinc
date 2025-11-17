@@ -3,22 +3,33 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import img1 from "/images/romemap2.jpg"
 import img2 from "/images/banner.jpg"
 import { windowsInit } from "./utils"
-import { Controls } from "./components/Controls"
-import Board from "./components/Board"
+import { Controls } from "./components/mainscreen/Controls"
+import Board from "./components/mainscreen/Board"
 import { DialogContext } from "./Context"
 import "./App.css"
 import Dialogs from "./components/dialogs/Dialogs"
+import SplashScreen from "./components/dialogs/SplashScreen"
+import GlobalGameState from "./model/GlobalGameState"
+import GlobalInit from "./model/GlobalInit"
 
 export default App
 
 export function App() {
-  const bollocksStr = "PISS OFF"
+  const [gameState, setGameState] = useState(false)
+
   const navBarFont = "cinzel-regular"
   windowsInit()
 
   const [zoomPP, setZoomPP] = useState({})
-
+  const [showSplash, setSplashShow] = useState(true)
   const [modalShow, setModalShow] = useState(false)
+
+  function gameStateHandler() {
+    setGameState(!gameState)
+  }
+
+
+  GlobalGameState.stateHandler = gameStateHandler
 
   function handleScaleChange(event) {
     setZoomPP({
@@ -28,7 +39,7 @@ export function App() {
     })
     // console.log("scale=", scale)
     // console.log("positionX=", event.instance.transformState.positionX)
-    console.log("1 panY=", event.instance.transformState.positionY)
+    // console.log("1 panY=", event.instance.transformState.positionY)
   }
   function bollocks() {
     setModalShow(true)
@@ -36,37 +47,40 @@ export function App() {
 
   return (
     <>
-      <TransformWrapper
-        initialScale={1}
-        minScale={0.5}
-        maxScale={6}
-        limitToBounds={false}
-        onTransformed={(e) => handleScaleChange(e)}
-      >
-        <Controls clicky={bollocks} setnavBarFont={navBarFont} banner={img2}></Controls>
-        <div>
-          <main className="image-container">
-            <TransformComponent>
-              <DialogContext.Provider
-                value={{
-                  modalShow: modalShow,
-                  setModalShow,
-                }}
-              >
-                <Dialogs></Dialogs>
-              </DialogContext.Provider>
-              {/* <img
+      {showSplash && <SplashScreen show={showSplash} setSplashShow={setSplashShow}></SplashScreen>}
+      {!showSplash && (
+        <TransformWrapper
+          initialScale={1}
+          minScale={0.5}
+          maxScale={6}
+          limitToBounds={false}
+          onTransformed={(e) => handleScaleChange(e)}
+        >
+          <Controls clicky={bollocks} setnavBarFont={navBarFont} banner={img2}></Controls>
+          <div>
+            <main className="image-container">
+              <TransformComponent>
+                <DialogContext.Provider
+                  value={{
+                    modalShow: modalShow,
+                    setModalShow,
+                  }}
+                >
+                  <Dialogs></Dialogs>
+                </DialogContext.Provider>
+                {/* <img
                 // style={{
                 //   width: `100%`,
                 //   height: 'auto'
                 // }}
                 src={img1}
               ></img> */}
-              <Board zoomPP={zoomPP} image={img1}></Board>
-            </TransformComponent>
-          </main>
-        </div>
-      </TransformWrapper>
+                <Board zoomPP={zoomPP} image={img1}></Board>
+              </TransformComponent>
+            </main>
+          </div>
+        </TransformWrapper>
+      )}
     </>
   )
 }
