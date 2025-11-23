@@ -1,14 +1,15 @@
 export default class BaseScenario {
   constructor(controller, date) {
     this.dateStr = controller.getSelectedLabel(date)
+    this.warsBox = []
     if (new.target === BaseScenario) {
       throw new Error("Cannot instantiate BaseScenario directly.")
     }
   }
 
   // Abstract method (no implementation here)
-  setUpEmperors() {
-    throw new Error("Method 'setUpEmperors()' must be implemented by derived classes.")
+  setUpWars() {
+    throw new Error("Method 'setUpWars()' must be implemented by derived classes.")
   }
 
   getName() {

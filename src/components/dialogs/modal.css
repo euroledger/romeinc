@@ -13,11 +13,26 @@
   /* Example Border */
   border: 8px solid #0c0c0c !important; /* Adjust color, thickness, and style as needed */
 
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-weight: 600;
 
   /* Optional: Adjust default border-radius */
   border-radius: 15px !important;
+}
+/* Centering the image wrapper using Flexbox */
+.modal-body-custom {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  background-color: "#003300";
+}
+
+/* Ensure the image is responsive within the wrapper */
+.modal-image-content {
+  max-width: 100%;
+  height: auto;
+  /* Add padding if the image is touching the edges */
+  padding: 10px;
 }
 
 .modal-confirm .modal-header {
@@ -142,7 +157,6 @@ body.modal-open .modal-backdrop {
   touch-action: manipulation;
 }
 
-
 /* CSS */
 .button-88 {
   display: flex;
@@ -198,8 +212,6 @@ body.modal-open .modal-backdrop {
 .dynamic-modal-dialog {
   max-width: var(--modal-width) !important;
   max-height: var(--modal-height) !important;
-  width: 90% !important; /* Keep it responsive */
-  height: 90% !important; /* Keep it responsive */
 }
 
 .modal-width1 {

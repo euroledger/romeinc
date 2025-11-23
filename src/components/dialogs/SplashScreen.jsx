@@ -161,9 +161,8 @@ function SplashScreen(props) {
                   }}
                 >
                   <button
-                    style={{ background: GlobalUIConstants.Colors.PRIMARY, color: "#f8c51a" }}
                     onClick={beginGameHandler}
-                    className="toggle-button"
+                    className="toggle-button2"
                   >
                     BEGIN GAME
                   </button>

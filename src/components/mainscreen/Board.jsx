@@ -1,11 +1,10 @@
 import Canvas from "./Canvas"
-import { PROVINCES } from "../screenobjects/Provinces"
-function Board({ zoomPP, image }) {
+function Board({ canvasRef, zoomPP, image, setBoardReady }) {
 
 
   return (
     <>
-      <Canvas zoomPP={zoomPP} image={image} circlesList={PROVINCES}></Canvas> 
+      <Canvas ref={canvasRef} zoomPP={zoomPP} image={image} setBoardReady={setBoardReady}></Canvas> 
     </>
   )
 }

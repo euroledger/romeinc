@@ -1,5 +1,6 @@
 import { loadStatesmen } from "./counters/StatesmanLoader"
 import { loadLeaders } from "./counters/LeaderLoader"
+import { loadWars } from "./counters/WarLoader"
 
 export function loadCounters(controller) {
   let counters
@@ -10,9 +11,13 @@ export function loadCounters(controller) {
   let leaders = new Map()
   loadLeaders(leaders)
 
+  let wars = new Map()
+  loadWars(wars)
+
   counters = {
     statesmen: statesmen,
-    leaders: leaders
+    leaders: leaders,
+    wars: wars
   }
   controller.setCounters(counters)
   return counters

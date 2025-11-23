@@ -17,6 +17,7 @@ function CountersPanel(props) {
     }
   })
 
+  console.log("IMAGES STATESMEN =", imagesSm)
   const imagesLdr = props.leaders.map((item) => {
     return {
       name: item.name,

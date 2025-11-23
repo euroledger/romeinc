@@ -9,7 +9,7 @@ import GlobalUIConstants from "../../model/GlobalUIConstants"
 import GlobalInit from "../../model/GlobalInit"
 import GlobalGameState from "../../model/GlobalGameState"
 
-export const Controls = ({ navBarFont, banner, clicky }) => {
+export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
   const font = "1.2rem"
@@ -73,6 +73,22 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
           >
             Counters
           </Button>
+          <Button
+            onClick={onViewAreaClick}
+            className={navBarFont}
+            style={{
+              position: "absolute",
+              left: "33%",
+              top: "25%",
+              fontSize: font,
+              borderColor: "white",
+              color: "white",
+              width: "9rem",
+              background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
+            }}
+          >
+            Treasury
+          </Button>
           <Navbar.Text
             className={navBarFont}
             style={{
@@ -84,9 +100,14 @@ export const Controls = ({ navBarFont, banner, clicky }) => {
               color: "white",
             }}
           >
-            <div>Scenario: <strong>{GlobalInit.controller.getSelectedLabel(GlobalGameState.scenario)}</strong></div>
+            <div>
+              Scenario: <strong>{GlobalInit.controller.getSelectedLabel(GlobalGameState.scenario)}</strong>
+            </div>
 
-            <div> Game State: <strong>SETUP</strong></div>
+            <div>
+              {" "}
+              Game State: <strong>SETUP</strong>
+            </div>
           </Navbar.Text>
           <ButtonGroup
             style={{ position: "absolute", left: "79%", top: "25%", fontSize: font }}

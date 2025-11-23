@@ -9,9 +9,11 @@ export default class GlobalGameState {
   }
   static caesar = ""
   static consul = ""
+  static warsBox = []
+  static emperorsBox = []
+
   static dateFormat = GlobalUnitsModel.DATE_FORMAT.TRADITIONAL
 
-  static emperorsBox = []
 
   static scenario = GlobalUnitsModel.SCENARIO.BC_27
 }

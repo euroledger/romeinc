@@ -22,6 +22,11 @@ describe("Counter Load tests", () => {
     expect(keysArray.length).toEqual(15)
   })
 
+  it("loads all wars", () => {
+    const keysArray = Array.from(counters.wars.keys())
+    expect(keysArray.length).toEqual(45)
+  })
+
   it("loads statesmen values correctly", () => {
     const augustus = counters.statesmen.get(GlobalUnitsModel.STATESMAN.AUGUSTUS)
     expect(augustus.specialAbility).toEqual(GlobalUnitsModel.SPECIAL_ABILITY.CONQUEST)
@@ -57,5 +62,13 @@ describe("Counter Load tests", () => {
     expect(vologases.strength).toEqual(4)
     expect(vologases.homelandProvince).toEqual(GlobalUnitsModel.HOMELAND_PROVINCE.PARTHIAN)
     expect(vologases.imageFront).toContain("Vologases")
+  })
+
+    it("loads war values correctly", () => {
+    const palmyrene14 = counters.wars.get(GlobalUnitsModel.WAR.PALMYRENE_14)
+    expect(palmyrene14.strength).toEqual(14)
+    expect(palmyrene14.navalStrength).toEqual(1)
+    expect(palmyrene14.region).toEqual(GlobalUnitsModel.HOMELAND_PROVINCE.PALMYRENE)
+    expect(palmyrene14.imageFront).toContain("Palmyrene")
   })
 })

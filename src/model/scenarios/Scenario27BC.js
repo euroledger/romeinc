@@ -8,4 +8,11 @@ export default class Scenario27BC extends BaseScenario {
     GlobalGameState.caesar = GlobalUnitsModel.STATESMAN.AUGUSTUS
     GlobalGameState.consul = GlobalUnitsModel.STATESMAN.AGRIPPA
   }
+
+  setUpWars() {
+    GlobalGameState.warsBox.push({ type: GlobalUnitsModel.WAR_BOX_TYPE.LEADER, name: GlobalUnitsModel.LEADER.ARMINIUS })
+    GlobalGameState.warsBox.push({ type: GlobalUnitsModel.WAR_BOX_TYPE.LEADER, name: GlobalUnitsModel.LEADER.BATO })
+
+    // ...etc TODO
+  }
 }

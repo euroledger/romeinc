@@ -53,7 +53,6 @@ export default class Controller {
   }
 
   getSelectedLabel = (selectedScenario, useLong) => {
-    console.log("selectedScenario=", selectedScenario)
     // Find the object in GlobalUnitsModel.SCENARIOS that matches the selected value
     const currentScenarioObj = GlobalUnitsModel.SCENARIOS.find((s) => s.value === selectedScenario)
 

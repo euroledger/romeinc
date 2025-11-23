@@ -1,21 +1,47 @@
-import { useState, useRef, useEffect, createContext } from "react"
+import { useState, useRef } from "react"
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch"
 import img1 from "/images/romemap2.jpg"
 import img2 from "/images/banner.jpg"
 import { windowsInit } from "./utils"
 import { Controls } from "./components/mainscreen/Controls"
 import Board from "./components/mainscreen/Board"
+import generateCroppedModalImage from "./ImageCrop"
 import { DialogContext } from "./Context"
 import "./App.css"
 import Dialogs from "./components/dialogs/Dialogs"
 import SplashScreen from "./components/dialogs/SplashScreen"
 import GlobalGameState from "./model/GlobalGameState"
-import GlobalInit from "./model/GlobalInit"
+import CroppedBoardPanel from "./components/dialogs/CroppedBoardPanel"
 
 export default App
 
 export function App() {
   const [gameState, setGameState] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [zoomedImageSrc, setZoomedImageSrc] = useState("")
+  const [isBoardReady, setIsBoardReady] = useState(false) // Add this state
+
+  const setBoardReady = () => setIsBoardReady(true)
+
+  // We need a ref in the App component to access the Canvas component's underlying canvas element
+  const canvasRef = useRef(null)
+
+  // --- Modal Management Functions ---
+  const openModal = (imageSrc) => {
+    setZoomedImageSrc(imageSrc)
+    setModalOpen(true)
+  }
+
+  const handleViewAreaClick = async () => {
+    if (!isBoardReady || !canvasRef.current) {
+      alert("Board is still loading, please wait.")
+      return
+    }
+
+    // Use a NEW function for the modal that handles both layers
+    const croppedImageDataUrl = await generateCroppedModalImage(canvasRef.current, img1, "Treasury")
+    openModal(croppedImageDataUrl)
+  }
 
   const navBarFont = "cinzel-regular"
   windowsInit()
@@ -27,7 +53,6 @@ export function App() {
   function gameStateHandler() {
     setGameState(!gameState)
   }
-
 
   GlobalGameState.stateHandler = gameStateHandler
 
@@ -47,6 +72,13 @@ export function App() {
 
   return (
     <>
+      <CroppedBoardPanel
+        width="30rem"
+        imagesrc={zoomedImageSrc}
+        show={modalOpen}
+        onHide={() => setModalOpen(false)}
+      ></CroppedBoardPanel>
+
       {showSplash && <SplashScreen show={showSplash} setSplashShow={setSplashShow}></SplashScreen>}
       {!showSplash && (
         <TransformWrapper
@@ -56,7 +88,12 @@ export function App() {
           limitToBounds={false}
           onTransformed={(e) => handleScaleChange(e)}
         >
-          <Controls clicky={bollocks} setnavBarFont={navBarFont} banner={img2}></Controls>
+          <Controls
+            onViewAreaClick={handleViewAreaClick}
+            clicky={bollocks}
+            setnavBarFont={navBarFont}
+            banner={img2}
+          ></Controls>
           <div>
             <main className="image-container">
               <TransformComponent>
@@ -68,14 +105,7 @@ export function App() {
                 >
                   <Dialogs></Dialogs>
                 </DialogContext.Provider>
-                {/* <img
-                // style={{
-                //   width: `100%`,
-                //   height: 'auto'
-                // }}
-                src={img1}
-              ></img> */}
-                <Board zoomPP={zoomPP} image={img1}></Board>
+                <Board canvasRef={canvasRef} zoomPP={zoomPP} image={img1} setBoardReady={setBoardReady}></Board>
               </TransformComponent>
             </main>
           </div>

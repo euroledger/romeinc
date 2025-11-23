@@ -1,10 +1,15 @@
-import React, { useRef, useLayoutEffect, useState, useCallback } from "react"
+import React, { useRef, useLayoutEffect, useState, useCallback, forwardRef } from "react"
+import { PROVINCES } from "../screenobjects/Provinces"
+import { TRACK_AREAS } from "../screenobjects/TrackAreas"
+
 import "./Canvas.css"
 
-const Canvas = ({ image, zoomPP, circlesList }) => {
-  const canvasRef = useRef(null)
+const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
   const imgRef = useRef(null)
   const [activeCircle, setActiveCircle] = useState(null) // Stores the currently hovered circle's data
+
+  const circlesList = PROVINCES
+  const rectList = TRACK_AREAS
 
   // --- Collision Detection Function ---
   const isMouseInCircle = useCallback((mouseX, mouseY, circle) => {
@@ -14,9 +19,12 @@ const Canvas = ({ image, zoomPP, circlesList }) => {
 
   const handleMouseMove = useCallback(
     (event) => {
-      if (!canvasRef.current || !circlesList.length) return
+      if (!ref) {
+        return
+      }
+      if (!ref.current || !circlesList.length) return
 
-      const canvas = canvasRef.current
+      const canvas = ref.current
       const rect = canvas.getBoundingClientRect()
       const root = document.documentElement
 
@@ -58,19 +66,26 @@ const Canvas = ({ image, zoomPP, circlesList }) => {
   )
 
   useLayoutEffect(() => {
-    const canvas = canvasRef.current
+    // Basic check: if the ref isn't attached yet, exit the effect for this cycle
+    if (!ref) {
+      return
+    }
+
+    const canvas = ref.current
     const ctx = canvas.getContext("2d")
     const img = imgRef.current
 
-    const handleLoad = () => {
-      const width = img.naturalWidth
-      const height = img.naturalHeight
-      canvas.width = width
-      canvas.height = height
+    const drawRectangles = (ctx) => {
+      rectList.forEach((rectData) => {
+        ctx.fillStyle = "rgba(255, 100, 0, 0.5)" // Semi-transparent orange
+        ctx.fillRect(rectData.x, rectData.y, rectData.width, rectData.height)
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      // Draw all circles from the list
+        ctx.lineWidth = 2
+        ctx.strokeStyle = "darkorange"
+        ctx.strokeRect(rectData.x, rectData.y, rectData.width, rectData.height)
+      })
+    }
+    const drawCircles = (ctx) => {
       circlesList.forEach((circle) => {
         ctx.beginPath()
         ctx.arc(circle.centerX, circle.centerY, circle.radius, 0, 2 * Math.PI)
@@ -82,16 +97,30 @@ const Canvas = ({ image, zoomPP, circlesList }) => {
         ctx.stroke()
       })
     }
+    const handleLoad = () => {
+      const width = img.naturalWidth
+      const height = img.naturalHeight
+      canvas.width = width
+      canvas.height = height
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+      // Draw all circles from the list
+      drawCircles(ctx)
+      drawRectangles(ctx)
+      setBoardReady()
+    }
 
     img.addEventListener("load", handleLoad)
     if (img.complete) {
       handleLoad()
     }
+
     return () => {
       img.removeEventListener("load", handleLoad)
     }
     // Re-run effect if the list of circles changes
-  }, [image, circlesList])
+  }, [image, rectList, circlesList, ref])
 
   if (activeCircle) {
     console.log("activeCircle.x=", activeCircle.x / zoomPP.scale)
@@ -101,7 +130,7 @@ const Canvas = ({ image, zoomPP, circlesList }) => {
     <div className="overlay-container">
       <img ref={imgRef} src={image} className="covered-image" />
       <canvas
-        ref={canvasRef}
+        ref={ref}
         className="covering-canvas"
         onMouseMove={handleMouseMove} // Attach the mouse move listener here
       />
@@ -121,6 +150,8 @@ const Canvas = ({ image, zoomPP, circlesList }) => {
       )}
     </div>
   )
-}
+})
+
+Canvas.displayName = "Canvas"
 
 export default Canvas
