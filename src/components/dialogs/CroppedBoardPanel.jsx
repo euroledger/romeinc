@@ -30,7 +30,7 @@ function CroppedBoardPanel(props) {
         </div>
       </Modal.Body>
       <Modal.Footer style={{ backgroundColor: "#610C0F", color: "black" }}>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button className="toggle-button2" onClick={props.onHide}>Close</Button>
       </Modal.Footer>
     </Modal>
   )

@@ -79,4 +79,16 @@ export default class Controller {
       GlobalUnitsModel.STATESMAN.CALIGULA,
     ])
   }
+
+  promoteRomanUnit(name) {
+    let unit = this.counters.romanunits.get(name)
+    unit = unit.promote()
+    this.counters.romanunits.set(name, unit)
+  }
+
+  demoteRomanUnit(name) {
+    let unit = this.counters.romanunits.get(name)
+    unit = unit.demote()    
+    this.counters.romanunits.set(name, unit)
+  }
 }

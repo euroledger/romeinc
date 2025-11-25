@@ -4,6 +4,9 @@ import "./modal.css"
 import ImageGrid from "./ImageGrid"
 import GlobalUIConstants from "../../model/GlobalUIConstants"
 import TabbedPane from "./TabbedPane"
+import GlobalUnitsModel from "../../model/GlobalUnitsModel"
+import GlobalInit from "../../model/GlobalInit"
+import GlobalGameState from "../../model/GlobalGameState"
 
 function CountersPanel(props) {
   const sidebg = GlobalUIConstants.Colors.PRIMARY
@@ -17,7 +20,6 @@ function CountersPanel(props) {
     }
   })
 
-  console.log("IMAGES STATESMEN =", imagesSm)
   const imagesLdr = props.leaders.map((item) => {
     return {
       name: item.name,
@@ -25,6 +27,34 @@ function CountersPanel(props) {
       alt: item.name,
     }
   })
+
+  const imagesRu = props.romanunits.map((item) => {
+    return {
+      name: item.name,
+      url: item.image,
+      alt: item.name,
+    }
+  })
+
+  const promoteOrDemote = () => {
+    for (const unit of props.romanunits) {
+      if (unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL) {
+        continue
+      }
+      if (
+        unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION ||
+        unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA ||
+        unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY ||
+        unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET ||
+        unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD
+      ) {
+        GlobalInit.controller.promoteRomanUnit(unit.name)
+      } else {
+        GlobalInit.controller.demoteRomanUnit(unit.name)
+      }
+    }
+    GlobalGameState.updateGlobalState()
+  }
   return (
     <Modal
       {...props}
@@ -35,17 +65,6 @@ function CountersPanel(props) {
       centered
       backdrop="static"
     >
-      {/* <Modal.Header
-        style={{
-          background: `${sidebg}`,
-          color: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h1>COUNTERS</h1>
-      </Modal.Header> */}
       <Modal.Body style={{ background: `${sidebg}`, color: "#f8c51a" }}>
         <div
           style={{
@@ -54,12 +73,12 @@ function CountersPanel(props) {
             alignItems: "center",
             marginBottom: "2rem",
             fontSize: "2rem",
-            color: "#f8c51a"
+            color: "#f8c51a",
           }}
         >
           COUNTERS
         </div>
-        <div 
+        <div
           style={{
             marginLeft: "1rem",
           }}
@@ -70,11 +89,16 @@ function CountersPanel(props) {
             tab1={<ImageGrid images={imagesSm} cols={11}></ImageGrid>}
             label2="Leaders"
             tab2={<ImageGrid images={imagesLdr} cols={5}></ImageGrid>}
+            label3="Roman Units"
+            tab3={<ImageGrid images={imagesRu} cols={10}></ImageGrid>}
+            tab3Click={promoteOrDemote}
           ></TabbedPane>
         </div>
       </Modal.Body>
       <Modal.Footer style={{ background: `${sidebg}`, color: "black" }}>
-        <Button onClick={(e) => props.onHide(false)}>Close</Button>
+        <Button className="toggle-button2" onClick={(e) => props.onHide(false)}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   )

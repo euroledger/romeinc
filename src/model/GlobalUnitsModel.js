@@ -167,15 +167,15 @@ export default class GlobalUnitsModel {
     I_ADIUTRIX: "I ADIUTRIX",
     I_GERMANICA: "I GERMANICA",
     I_ITALICA: "I ITALICA",
-    I_ILLRYCORUM: "I ILLYRICORUM",
-    I_MINERVA: "I MINERVA",
+    I_ILLRYICORUM: "I ILLYRICORUM",
+    I_MINERVIA: "I MINERVIA",
     I_PARTHICA: "I PARTHICA",
     II_ADIUTRIX: "II ADIUTRIX",
     II_AUGUSTA: "II AUGUSTA",
     II_ITALICA: "II ITALICA",
     II_PARTHICA: "II PARTHICA",
     II_TRAJANA: "II TRAJANA",
-    III_AUGUSTA: "II AUGUSTA",
+    III_AUGUSTA: "III AUGUSTA",
     III_CYRENAICA: "III CYRENAICA",
     III_GALLICA: "III GALLICA",
     III_ITALICA: "III ITALICA",
@@ -193,8 +193,37 @@ export default class GlobalUnitsModel {
     VIII_AUGUSTA: "VIII AUGUSTA",
     IX_HISPANA: "IX HISPANA",
     X_FRETENSIS: "X FRETENSIS",
-    X_GEMINA: "X GEMINA"
+    X_GEMINA: "X GEMINA", // 30
+    XI_CLAUDIA: "XI CLAUDIA",
+    XII_FULMINATA: "XII FULMINATA",
+    XIII_GEMINA: "XIII GEMINA",
+    XIV_GEMINA: "XIV GEMINA",
+    XV_APOLLINARIS: "XV APOLLINARIS",
+    XV_PRIMIGENIA: "XV PRIMIGENIA",
+    XVI_FLAVIA: "XVI FLAVIA",
+    XVI_GALLICA: "XVI GALLICA",
+    XVII_VARIANA: "XVII VARIANA",
+    XVIII_VARIANA: "XVIII VARIANA", // 40
+    XIX_VARIANA: "XIX VARIANA",
+    XX_VALERIA: "XX VALERIA",
+    XXI_RAPAX: "XXI RAPAX",
+    XXII_DEIOTARIANA: "XXII DEIOTARIANA",
+    XXII_PRIMIGENIA: "XXII PRIMIGENIA",
+    XXX_ULPIA: "XXX ULPIA", // 46
+    AEGYPTIAN_FLEET: "AEGYPTIAN FLEET",
+    AFRICAN_FLEET: "AFRICAN FLEET",
+    BABYLONIAN_FLEET: "BABYLONIAN FLEET",
+    BOSPORAN_FLEET: "BOSPORAN FLEET",
+    BRITISH_FLEET: "BRITISH FLEET",
+    GERMAN_FLEET: "GERMAN FLEET",
+    MOESIAN_FLEET: "MOESIAN FLEET",
+    PANNONIAN_FLEET: "PANNONIAN FLEET",
+    PONTIC_FLEET: "PONTIC FLEET",
+    PRAETORIAN_FLEET_1: "PRAETORIAN FLEET 1",
+    PRAETORIAN_FLEET_2: "PRAETORIAN FLEET ",
+    SYRIAN_FLEET: "SYRIAN FLEET"
   }
+  
   static HOMELAND_PROVINCE = {
     BRITISH: "BRITISH",
     CANTABRIAN: "CANTABRIAN",
@@ -221,7 +250,7 @@ export default class GlobalUnitsModel {
 
   static WAR_BOX_TYPE = {
     LEADER: "LEADER",
-    WAR: "WAR"
+    WAR: "WAR",
   }
 
   static ROMAN_UNIT_TYPE = {
@@ -248,42 +277,42 @@ export default class GlobalUnitsModel {
     ILLYRIAN: "ILLYRIAN EMPERORS",
   }
 
-  static SCENARIOS = [
-    {
-      value: "27BCE",
-      longlabelBCECE: "27 BCE: Principate Established",
-      longlabelBCAD: "27 BC: Principate Established",
-      labelBCECE: "27 BCE",
-      labelBCAD: "27 BC",
-    },
-    {
-      value: "70CE",
-      longlabelBCECE: "70 CE: Sack of Jerusalem",
-      longlabelBCAD: "70 AD: Sack of Jerusalem",
-      labelBCECE: "70 CE",
-      labelBCAD: "70 AD",
-    },
-    {
-      value: "138CE",
-      longlabelBCECE: "138 CE: Accession of Antoninus Pius",
-      longlabelBCAD: "138 AD: Accession of Antoninus Pius",
-      labelBCECE: "138 CE",
-      labelBCAD: "138 AD",
-    },
-    {
-      value: "222CE",
-      longlabelBCECE: "222 CE: Crisis of the Third Century Begins",
-      longlabelBCAD: "222 AD: Crisis of the Third Century Begins",
-      labelBCECE: "222 CE",
-      labelBCAD: "222 AD",
-    },
-  ]
   static SCENARIO = {
     BC_27: "27BCE",
     AD_70: "70CE",
     AD_138: "138CE",
     AD_222: "222CE",
   }
+  static SCENARIOS = [
+    {
+      value: this.SCENARIO.BC_27,
+      longlabelBCECE: "27 BCE: Principate Established",
+      longlabelBCAD: "27 BC: Principate Established",
+      labelBCECE: "27 BCE",
+      labelBCAD: "27 BC",
+    },
+    {
+      value: this.SCENARIO.AD_70,
+      longlabelBCECE: "70 CE: Sack of Jerusalem",
+      longlabelBCAD: "70 AD: Sack of Jerusalem",
+      labelBCECE: "70 CE",
+      labelBCAD: "70 AD",
+    },
+    {
+      value: this.SCENARIO.AD_138,
+      longlabelBCECE: "138 CE: Accession of Antoninus Pius",
+      longlabelBCAD: "138 AD: Accession of Antoninus Pius",
+      labelBCECE: "138 CE",
+      labelBCAD: "138 AD",
+    },
+    {
+      value: this.SCENARIO.AD_222,
+      longlabelBCECE: "222 CE: Crisis of the Third Century Begins",
+      longlabelBCAD: "222 AD: Crisis of the Third Century Begins",
+      labelBCECE: "222 CE",
+      labelBCAD: "222 AD",
+    },
+  ]
 
   static DATE_FORMAT = {
     TRADITIONAL: "TRADITIONAL",

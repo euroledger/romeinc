@@ -20,6 +20,12 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 3rem; /* Adds space between images */
 }
+.image-gallery10 {
+  display: grid;
+  /* Creates exactly 11 columns, each taking up an equal fraction of the space */
+  grid-template-columns: repeat(10, 1fr);
+  gap: 1rem; /* Adds space between images */
+}
 
 .grid-item {
   position: relative;

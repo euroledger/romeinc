@@ -27,6 +27,14 @@
   background-color: "#003300";
 }
 
+.toggle-button2 {
+  padding: 10px 15px;
+  background-color: #390607; /* Roman bronze color */
+  color: #f8c51a; 
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 /* Ensure the image is responsive within the wrapper */
 .modal-image-content {
   max-width: 100%;

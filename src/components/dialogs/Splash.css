@@ -40,13 +40,8 @@
   box-shadow: 0 0.3em 1em -0.5em #4d080b;
 }
 
-/* App.css or ScenarioSelector.css */
-
-/* App.css or ScenarioSelector.css */
-/* App.css or ScenarioSelector.css */
 
 .scenario-selector-container {
-  /* font-family: 'Times New Roman', serif; */
   padding: 2rem;
   width: 46rem;
   margin: auto;
@@ -64,14 +59,6 @@
   color: white;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
-}
-.toggle-button2 {
-  padding: 10px 15px;
-  background-color: #610C0F; /* Roman bronze color */
-  color: #f8c51a; 
-  border: none;
-  border-radius: 9px;
   cursor: pointer;
 }
 

@@ -27,6 +27,163 @@ describe("Counter Load tests", () => {
     expect(keysArray.length).toEqual(45)
   })
 
+  it("loads all roman legions", () => {
+    const keysArray = Array.from(counters.romanunits.keys())
+    expect(keysArray.length).toEqual(88)
+
+    const gemina14 = counters.romanunits.get(GlobalUnitsModel.ROMAN_UNIT.XIV_GEMINA)
+
+    expect(gemina14.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION)
+    expect(gemina14.image).toEqual(gemina14.imageFront)
+
+    controller.promoteRomanUnit(gemina14.name)
+
+    expect(gemina14.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_LEGION)
+    expect(gemina14.image).toEqual(gemina14.imageBack)
+  })
+
+  it("loads all roman fleets", () => {
+    const british = counters.romanunits.get(GlobalUnitsModel.ROMAN_UNIT.BRITISH_FLEET)
+
+    expect(british.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET)
+    expect(british.image).toEqual(british.imageFront)
+
+    controller.promoteRomanUnit(british.name)
+
+    expect(british.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_FLEET)
+    expect(british.image).toEqual(british.imageBack)
+
+    controller.demoteRomanUnit(british.name)
+
+    expect(british.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET)
+    expect(british.image).toEqual(british.imageFront)
+  })
+
+  it("loads all roman auxilia", () => {
+    const auxilia19 = counters.romanunits.get("AUXILIA 19")
+
+    expect(auxilia19.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
+    expect(auxilia19.image).toEqual(auxilia19.imageFront)
+
+    controller.promoteRomanUnit(auxilia19.name)
+
+    expect(auxilia19.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_AUXILIA)
+    expect(auxilia19.image).toEqual(auxilia19.imageBack)
+  })
+
+  it("loads all roman imperial cavalry", () => {
+    const cavalry2 = counters.romanunits.get("IMPERIAL CAVALRY 2")
+
+    expect(cavalry2.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY)
+    expect(cavalry2.image).toEqual(cavalry2.imageFront)
+
+    controller.promoteRomanUnit(cavalry2.name)
+
+    expect(cavalry2.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_IMPERIAL_CAVALRY)
+    expect(cavalry2.image).toEqual(cavalry2.imageBack)
+  })
+
+  it("loads all roman praetorian guard", () => {
+    const prGuard0 = counters.romanunits.get("PRAETORIAN GUARD 0")
+
+    expect(prGuard0.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD)
+    expect(prGuard0.image).toEqual(prGuard0.imageFront)
+
+    controller.promoteRomanUnit(prGuard0.name)
+
+    expect(prGuard0.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_PRAETORIAN_GUARD)
+    expect(prGuard0.image).toEqual(prGuard0.imageBack)
+  })
+
+  it("loads all roman walls", () => {
+    const wall3 = counters.romanunits.get("WALL 3")
+
+    expect(wall3.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL)
+    expect(wall3.image).toEqual(wall3.imageFront)
+
+    controller.promoteRomanUnit(wall3.name)
+
+    // cannot promote a wall
+    expect(wall3.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL)
+    expect(wall3.image).toEqual(wall3.imageFront)
+  })
+
+  it("promotes and demotes roman legions correctly", () => {
+    const gemina14 = counters.romanunits.get(GlobalUnitsModel.ROMAN_UNIT.XIV_GEMINA)
+
+    // promote legion to veteran
+    expect(gemina14.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION)
+    expect(gemina14.image).toEqual(gemina14.imageFront)
+
+    controller.promoteRomanUnit(gemina14.name)
+
+    expect(gemina14.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_LEGION)
+    expect(gemina14.image).toEqual(gemina14.imageBack)
+
+    // demote veteran back to legion
+    controller.demoteRomanUnit(gemina14.name)
+
+    expect(gemina14.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION)
+    expect(gemina14.image).toEqual(gemina14.imageFront)
+  })
+
+  it("promotes and demotes roman auxiliaries correctly", () => {
+    const auxilia12 = counters.romanunits.get("AUXILIA 12")
+
+    // promote legion to veteran auxilia
+    expect(auxilia12.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
+    expect(auxilia12.image).toEqual(auxilia12.imageFront)
+
+    controller.promoteRomanUnit(auxilia12.name)
+
+    expect(auxilia12.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_AUXILIA)
+    expect(auxilia12.image).toEqual(auxilia12.imageBack)
+
+    // demote veteran back to normal auxilia
+    controller.demoteRomanUnit(auxilia12.name)
+
+    expect(auxilia12.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
+    expect(auxilia12.image).toEqual(auxilia12.imageFront)
+  })
+
+  it("promotes and demotes roman imperial cavalry correctly", () => {
+    const cavalry1 = counters.romanunits.get("IMPERIAL CAVALRY 1")
+
+    // promote legion to veteran cavalry
+    expect(cavalry1.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY)
+    expect(cavalry1.image).toEqual(cavalry1.imageFront)
+
+    controller.promoteRomanUnit(cavalry1.name)
+
+    expect(cavalry1.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_IMPERIAL_CAVALRY)
+    expect(cavalry1.image).toEqual(cavalry1.imageBack)
+
+    // demote veteran back to normal cavalry
+    controller.demoteRomanUnit(cavalry1.name)
+
+    expect(cavalry1.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY)
+    expect(cavalry1.image).toEqual(cavalry1.imageFront)
+  })
+
+  it("promotes and demotes roman praetorian guard correctly", () => {
+    const prGuard1 = counters.romanunits.get("PRAETORIAN GUARD 1")
+
+    // promote legion to veteran praetorian guard
+    expect(prGuard1.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD)
+    expect(prGuard1.image).toEqual(prGuard1.imageFront)
+
+    controller.promoteRomanUnit(prGuard1.name)
+
+    expect(prGuard1.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_PRAETORIAN_GUARD)
+    expect(prGuard1.image).toEqual(prGuard1.imageBack)
+
+    // demote veteran back to normal praetorian guard
+    controller.demoteRomanUnit(prGuard1.name)
+
+    expect(prGuard1.unitType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD)
+    expect(prGuard1.image).toEqual(prGuard1.imageFront)
+  })
+
   it("loads statesmen values correctly", () => {
     const augustus = counters.statesmen.get(GlobalUnitsModel.STATESMAN.AUGUSTUS)
     expect(augustus.specialAbility).toEqual(GlobalUnitsModel.SPECIAL_ABILITY.CONQUEST)
@@ -64,7 +221,7 @@ describe("Counter Load tests", () => {
     expect(vologases.imageFront).toContain("Vologases")
   })
 
-    it("loads war values correctly", () => {
+  it("loads war values correctly", () => {
     const palmyrene14 = counters.wars.get(GlobalUnitsModel.WAR.PALMYRENE_14)
     expect(palmyrene14.strength).toEqual(14)
     expect(palmyrene14.navalStrength).toEqual(1)

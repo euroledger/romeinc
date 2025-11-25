@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
 import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 import GlobalGameState from "../../model/GlobalGameState"
-import GlobalUIConstants from "../../model/GlobalUIConstants"
 import GlobalInit from "../../model/GlobalInit"
 import "./Splash.css"
 
