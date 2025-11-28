@@ -9,7 +9,11 @@ function Dialogs() {
   const romanunits = Array.from(GlobalInit.counters.romanunits.values())
   let provincemarkers = Array.from(GlobalInit.counters.provincemarkers.values())
   const barbarianMarkers = provincemarkers.filter((item) => item.unitType === GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
-
+  const alliedMarkers = provincemarkers.filter((item) => item.unitType === GlobalUnitsModel.PROVINCE_TYPE.ALLIED)
+  const veteranAlliedMarkers = provincemarkers.filter(
+    (item) => item.unitType === GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED
+  )
+  const insurgentMarkers = provincemarkers.filter((item) => item.unitType === GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
 
   const { modalShow, setModalShow } = useContext(DialogContext)
   return (
@@ -21,6 +25,9 @@ function Dialogs() {
       leaders={leaders}
       romanunits={romanunits}
       barbarianMarkers={barbarianMarkers}
+      alliedMarkers={alliedMarkers}
+      veteranAlliedMarkers={veteranAlliedMarkers}
+      insurgentMarkers={insurgentMarkers}
     ></CountersPanel>
   )
 }

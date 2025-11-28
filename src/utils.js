@@ -15,3 +15,8 @@ export function windowsInit() {
     false
   )
 }
+
+export function getAllProvinceMarkersOfType(counters, markerType) {
+  const valuesArray = Array.from(counters.provincemarkers.values())
+  return valuesArray.filter((marker) => marker.unitType === markerType)
+}

@@ -3,6 +3,7 @@ import { describe, expect, it, beforeEach } from "vitest"
 import GlobalUnitsModel from "../src/model/GlobalUnitsModel"
 import Controller from "../src/controller/Controller"
 import { loadCounters } from "../src/CounterLoader"
+import { getAllProvinceMarkersOfType } from "../src/utils"
 
 describe("Counter Load tests", () => {
   let controller, counters
@@ -230,11 +231,34 @@ describe("Counter Load tests", () => {
   })
 
   it("loads all barbarian province markers", () => {
-    const keysArray = Array.from(counters.provincemarkers.keys())
-    expect(keysArray.length).toEqual(60)
+    const alliedMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+    expect(alliedMarkers.length).toEqual(60)
 
-    const barbarian14 = counters.provincemarkers.get("BARBARIAN 14")
+    const allied34 = counters.provincemarkers.get("BARBARIAN 14")
+    expect(allied34.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+  })
 
-    expect(barbarian14.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+  it("loads all allied province markers", () => {
+    const alliedMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.ALLIED)
+    expect(alliedMarkers.length).toEqual(34)
+
+    const allied18 = counters.provincemarkers.get("ALLIED 18")
+    expect(allied18.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.ALLIED)
+  })
+  
+  it("loads all veteran allied province markers", () => {
+    const valliedMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED)
+    expect(valliedMarkers.length).toEqual(20)
+
+    const vallied8 = counters.provincemarkers.get("VETERAN ALLIED 8")
+    expect(vallied8.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED)
+  })
+  
+    it("loads all insurgent province markers", () => {
+    const insurgentMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
+    expect(insurgentMarkers.length).toEqual(14)
+
+    const insurgent3 = counters.provincemarkers.get("INSURGENT 3")
+    expect(insurgent3.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
   })
 })

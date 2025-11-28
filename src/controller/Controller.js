@@ -80,6 +80,7 @@ export default class Controller {
     ])
   }
 
+  
   promoteRomanUnit(name) {
     let unit = this.counters.romanunits.get(name)
     unit = unit.promote()
@@ -90,5 +91,19 @@ export default class Controller {
     let unit = this.counters.romanunits.get(name)
     unit = unit.demote()    
     this.counters.romanunits.set(name, unit)
+  }
+
+  setMapboard(mapBoard) {
+    this.mapBoard = mapBoard
+  }
+
+  getProvince(name) {
+    return this.mapBoard.get(name)
+  }
+
+  getProvincesAdjacentTo(name) {
+    const province = this.mapBoard.get(name)
+    const connectedProvinces = province.connections.map((connection) => connection.to)
+    return connectedProvinces
   }
 }

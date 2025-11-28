@@ -247,7 +247,110 @@ export default class GlobalUnitsModel {
     JUDEAN: "JUDEAN",
     NUBIAN: "NUBIAN",
   }
+  static COMMAND = {
+    BRITANNIA: "BRITANNIA",
+    GALLIA: "GALLIA",
+    PANNONIA: "PANNONIA",
+    MOESIA: "MOESIA",
+    PONITICA: "PONTICA",
+    SYRIA: "SYRIA",
+    AEGYPTUS: "AEGYPTUS",
+    AFRICA: "AFRICA",
+    HISPANA: "HISPANA",
+    ITALIA: "ITALIA",
+  }
 
+  static PROVINCE = {
+    HIBERNIA: "Hibernia",
+    CALEDONIA: "Caledonia",
+    BRITANNIA_INFERIOR: "Britannia Inferior",
+    BRITANNIA_SUPERIOR: "Britannia Superior",
+    NARBONENSIS: "Narbonensis",
+    AQUITANIA: "Aquitania",
+    LUGDUNENSIS: "Lugdudensis",
+    BELGICA: "Belgica",
+    GERMANIA_INFERIOR: "Germania Inferior",
+    GERMANIA_SUPERIOR: "Germania Superior", 
+    FRISIA: "Frisia",
+    GERMANIA_MAGNA: "Germania Magna",
+    AGRI_DECUMATES: "Agri Decumates",
+    RHAETIA: "Rhaetia",
+    BOIOHAEMIA: "Boiohaemia",
+    QUADIA: "Quadia",
+    NORICUM: "Noricum",
+    PANNONIA_SUPERIOR: "Pannonia Superior",
+    PANNONIA_INFERIOR: "Pannonia Inferior",
+    SARMATIA: "Sarmatia",
+    ILLYRIA: "Illyria",
+    DACIA_SUPERIOR: "Dacia Superior",
+    SCYTHIA: "Scythia",
+    BOSPORUS: "Bosporus",
+    DACIA_INFERIOR: "Dacia Inferior",
+    MOESIA_INFERIOR: "Moesia Inferior",
+    MOESIA_SUPERIOR: "Moesia Superior",
+    THRACIA: "Thracia",
+    MACEDONIA: "Macedonia",
+    EPIRUS: "Epirus",
+    ACHAEA: "Achaea",
+    CAUCASIA: "Caucasia",
+    COLCHIS: "Colchis",
+    IBERIA: "Iberia",
+    ALBANIA: "Albania",
+    BITHYNIA: "Bithynia",
+    PONTUS: "Pontus",
+    ARMENIA_MAJOR: "Armenia Major",
+    ARMENIA_MINOR: "Armenia Minor",
+    ASIA: "Asia",
+    GALATIA: "Galatia",
+    CAPPADOCIA: "Cappadocia",
+    RHODUS: "Rhodus",
+    LYCIA_PAMPHILIA: "Lycia & Pamphilia",
+    COMMAGENE: "Commagene",
+    OSRHOENE: "Osrhoene",
+    ASSYTRIA: "Assyria",
+    BABYLONIA: "Babylonia",
+    MESOPOTAMIA: "Mesopotamia",
+    PALMYRA: "Palmyra",
+    SYRIA: "Syria",
+    CILICIA: "Cilicia",
+    CYPRUS: "Cyprus",
+    PHOENECIA: "Phoenecia",
+    JUDEA: "Judea",
+    ARABIA: "Arabia",
+    AETHIOPIA: "Aethiopia",
+    THEBAIS: "Thebais",
+    ARCADIA: "Arcadia",
+    ALEXANDRIA: "Alexandria",
+    CRETA: "Creta",
+    CYRENAICA: "Cyrenaica",
+    LIBYA: "Libya",
+    AFRICA: "Africa",
+    NUMIDIA: "Numidia",
+    MAURETANIA_CAESARIENSIS: "Mauretania Caesariensis",
+    MAURETANIA_TINGITANA: "Mauretania Tingitana",
+    GALLAECIA: "Gallaecia",
+    LUCITANIA: "Lucitania",
+    BAETICA: "Baetica",
+    CARTHAGINENSIS: "Carthaginensis",
+    TARRACONENSIS: "Tarraconensis",
+    BALEARES: "Baleares",
+    SICILIA: "Sicilia",
+    NEAPOLIS: "Neapolis",
+    ROME: "Rome",
+    CORSICA_SARDINIA: "Corsica & Sardinia",
+    RAVENNA: "Ravenna",
+    PISAE: "Pisae",
+    MEDIOLANUM: "Mediolanum",
+    ALPES: "Alpes"
+
+  }
+
+  static MAP_ICON = {
+    UNREST: "UNREST",
+    FLEET: "FLEET",
+    GRAIN: "GRAIN",
+    SUN: "SUN"
+  }
   static WAR_BOX_TYPE = {
     LEADER: "LEADER",
     WAR: "WAR",
@@ -274,6 +377,20 @@ export default class GlobalUnitsModel {
     INSURGENT: "INSURGENT",
     ROMAN: "ROMAN"
   }
+
+  static CONNECTION_TYPE = {
+    ROAD: "ROAD",
+    DESERT: "DESERT",
+    MOUNTAIN: "MOUNTAIN",
+    RIVER_STRAIGHT: "RIVER/STRAIGHT",
+    SEA: "SEA"
+  }
+
+  static DESTINATION_TYPE = {
+    PROVINCE_HOMELAND: "HOMELAND PROVINCE",
+    PROVINCE: "PROVINCE"
+  }
+
   static DYNASTY = {
     JULIAN: "JULIAN EMPERORS",
     CLAUDIAN: "CLAUDIAN EMPERORS",

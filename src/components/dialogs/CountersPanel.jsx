@@ -44,6 +44,32 @@ function CountersPanel(props) {
     }
   })
 
+  const alliedM = props.alliedMarkers.map((item) => {
+    return {
+      name: item.name,
+      url: item.image,
+      alt: item.name,
+    }
+  })
+
+  const valliedM = props.veteranAlliedMarkers.map((item) => {
+    return {
+      name: item.name,
+      url: item.image,
+      alt: item.name,
+    }
+  })
+
+  const insurgentM = props.insurgentMarkers.map((item) => {
+    return {
+      name: item.name,
+      url: item.image,
+      alt: item.name,
+    }
+  })
+
+  const allMarkers = alliedM.concat(valliedM).concat(insurgentM)
+
   const promoteOrDemote = () => {
     for (const unit of props.romanunits) {
       if (unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL) {
@@ -99,8 +125,10 @@ function CountersPanel(props) {
             label3="Roman Units"
             tab3={<ImageGrid images={imagesRu} cols={10}></ImageGrid>}
             tab3Click={promoteOrDemote}
-            label4="Barbarian Markers"
+            label4="Barbarians"
             tab4={<ImageGrid images={imagesBb} cols={10}></ImageGrid>}
+            label5="Other Markers"
+            tab5={<ImageGrid images={allMarkers} cols={10}></ImageGrid>}
           ></TabbedPane>
         </div>
       </Modal.Body>

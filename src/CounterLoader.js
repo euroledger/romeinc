@@ -9,7 +9,12 @@ import {
   loadRomanFleets,
   loadRomanWalls,
 } from "./counters/RomanUnitLoader"
-import { loadBarbarianProvinceMarkers } from "./counters/ProvinceMarkerLoader"
+import {
+  loadAlliedProvinceMarkers,
+  loadBarbarianProvinceMarkers,
+  loadInsurgentProvinceMarkers,
+  loadVeteranAlliedProvinceMarkers,
+} from "./counters/ProvinceMarkerLoader"
 
 export function loadCounters(controller) {
   let counters
@@ -33,13 +38,16 @@ export function loadCounters(controller) {
 
   let provincemarkers = new Map()
   loadBarbarianProvinceMarkers(provincemarkers)
+  loadAlliedProvinceMarkers(provincemarkers)
+  loadVeteranAlliedProvinceMarkers(provincemarkers)
+  loadInsurgentProvinceMarkers(provincemarkers)
 
   counters = {
     statesmen: statesmen,
     leaders: leaders,
     wars: wars,
     romanunits: romanunits,
-    provincemarkers: provincemarkers
+    provincemarkers: provincemarkers,
   }
 
   controller.setCounters(counters)

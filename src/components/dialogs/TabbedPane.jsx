@@ -3,7 +3,7 @@ import Tabs from "react-bootstrap/Tabs"
 import { Button } from "react-bootstrap"
 import "./Tabs.css"
 
-function TabbedPane({ label1, label2, tab1, tab2, label3, tab3, tab3Click, tab4, label4 }) {
+function TabbedPane({ label1, label2, tab1, tab2, label3, tab3, tab3Click, tab4, label4, tab5, label5 }) {
   return (
     <Tabs
       className="my-custom-tabs"
@@ -51,6 +51,11 @@ function TabbedPane({ label1, label2, tab1, tab2, label3, tab3, tab3Click, tab4,
       <Tab eventKey="barbarians" title={label4}>
         <div className="my-custom-tabs" style={{ minHeight: "51rem" }}>
           {tab4}
+        </div>
+      </Tab>
+      <Tab eventKey="others" title={label5}>
+        <div className="my-custom-tabs" style={{ minHeight: "51rem" }}>
+          {tab5}
         </div>
       </Tab>
     </Tabs>
