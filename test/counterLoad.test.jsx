@@ -228,4 +228,13 @@ describe("Counter Load tests", () => {
     expect(palmyrene14.region).toEqual(GlobalUnitsModel.HOMELAND_PROVINCE.PALMYRENE)
     expect(palmyrene14.imageFront).toContain("Palmyrene")
   })
+
+  it("loads all barbarian province markers", () => {
+    const keysArray = Array.from(counters.provincemarkers.keys())
+    expect(keysArray.length).toEqual(60)
+
+    const barbarian14 = counters.provincemarkers.get("BARBARIAN 14")
+
+    expect(barbarian14.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+  })
 })

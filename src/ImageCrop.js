@@ -1,39 +1,56 @@
 const getMapAreaCoordinates = (mapArea) => {
+  console.log("mapArea=", mapArea)
   switch (mapArea) {
     case "Treasury":
-      return { areaWidth: 270, areaHeight: 1480, startX: 50, startY: 1510, scalingFactor: 1.0 }
+      return { areaWidth: 270, areaHeight: 1480, startX: 50, startY: 1510, scalingFactor: 0.5 }
+    case "Event":
+      return { areaWidth: 2900, areaHeight: 930, startX: 2980, startY: 8, scalingFactor: 1.0 }
   }
 }
 
-const generateCroppedModalImage = (overlayCanvas, originalImageUrl, mapArea) => {
-  getMapAreaCoordinates(mapArea)
+const generateCroppedModalImage = (overlayCanvas, originalImageUrl, mapArea, setImageDimensions) => {
+  // We don't need getMapAreaCoordinates here initially
   return new Promise((resolve, reject) => {
-    const tempImage = new Image()
-    tempImage.crossOrigin = "Anonymous"
-    tempImage.src = originalImageUrl
+    const tempImage = new Image();
+    tempImage.crossOrigin = "Anonymous";
+    tempImage.src = originalImageUrl;
 
     tempImage.onload = () => {
-      const { areaWidth, areaHeight, startX, startY, scalingFactor } = getMapAreaCoordinates(mapArea)
-      const modalCanvas = document.createElement("canvas")
-      modalCanvas.width = areaWidth
-      modalCanvas.height = areaHeight
-      const modalCtx = modalCanvas.getContext("2d")
+      const { areaWidth, areaHeight, startX, startY, scalingFactor } = getMapAreaCoordinates(mapArea);
 
-      const displayWidth = areaWidth * scalingFactor
-      const displayHeight = areaHeight * scalingFactor
+      // *** CRITICAL CHANGE: Set canvas dimensions to the FINAL DISPLAY size ***
+      const displayWidth = areaWidth * scalingFactor;
+      const displayHeight = areaHeight * scalingFactor;
 
-      // 1. Draw the background image section (SAFE to do now)
-      modalCtx.drawImage(tempImage, startX, startY, areaWidth, areaHeight, 0, 0, displayWidth, displayHeight)
+      const modalCanvas = document.createElement("canvas");
+      modalCanvas.width = displayWidth; // Canvas is now the exact size needed
+      modalCanvas.height = displayHeight;
+
+      const modalCtx = modalCanvas.getContext("2d");
+
+      // 1. Draw the background image section
+      // We are drawing the source area (startX, startY, areaWidth, areaHeight) 
+      // onto the *entire* destination canvas (0, 0, displayWidth, displayHeight)
+      modalCtx.drawImage(tempImage, 
+                          startX, startY, areaWidth, areaHeight, // Source Coords (from original image)
+                          0, 0, displayWidth, displayHeight);    // Destination Coords (onto our new canvas)
 
       // 2. Draw the overlay shapes from the main canvas on top
-      modalCtx.drawImage(overlayCanvas, startX, startY, areaWidth, areaHeight, 0, 0, displayWidth, displayHeight)
+      // This step might need careful review depending on how the overlayCanvas handles scaling internally,
+      // but generally this approach should work if the overlay maps correctly to the area defined above.
+      modalCtx.drawImage(overlayCanvas, 
+                          startX, startY, areaWidth, areaHeight, 
+                          0, 0, displayWidth, displayHeight);
 
-      // Resolve the promise with the final data URL
-      resolve(modalCanvas.toDataURL("image/png"))
-    }
+      const dim = { w: displayWidth, h: displayHeight, map: mapArea };
+      // This sets the state in your React component that drives dynamicWidth/Height
+      setImageDimensions(() => dim); 
 
-    tempImage.onerror = reject // Reject promise if image fails to load
-  })
-}
+      resolve(modalCanvas.toDataURL("image/png"));
+    };
+
+    tempImage.onerror = reject; 
+  });
+};
 
 export default generateCroppedModalImage

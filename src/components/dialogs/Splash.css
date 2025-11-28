@@ -1,11 +1,9 @@
 .custom-modal-content {
-  /* Example Border */
-  border: 8px solid #0c0c0c !important; /* Adjust color, thickness, and style as needed */
+  border: 8px solid #0c0c0c !important;
 
   font-family: 'Cinzel', serif;
   font-weight: 600;
 
-  /* Optional: Adjust default border-radius */
   border-radius: 15px !important;
 }
 

@@ -36,6 +36,14 @@ function CountersPanel(props) {
     }
   })
 
+  const imagesBb = props.barbarianMarkers.map((item) => {
+    return {
+      name: item.name,
+      url: item.image,
+      alt: item.name,
+    }
+  })
+
   const promoteOrDemote = () => {
     for (const unit of props.romanunits) {
       if (unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL) {
@@ -83,7 +91,6 @@ function CountersPanel(props) {
             marginLeft: "1rem",
           }}
         >
-          {/* <ImageGrid images={images}></ImageGrid> */}
           <TabbedPane
             label1="Statesmen"
             tab1={<ImageGrid images={imagesSm} cols={11}></ImageGrid>}
@@ -92,6 +99,8 @@ function CountersPanel(props) {
             label3="Roman Units"
             tab3={<ImageGrid images={imagesRu} cols={10}></ImageGrid>}
             tab3Click={promoteOrDemote}
+            label4="Barbarian Markers"
+            tab4={<ImageGrid images={imagesBb} cols={10}></ImageGrid>}
           ></TabbedPane>
         </div>
       </Modal.Body>

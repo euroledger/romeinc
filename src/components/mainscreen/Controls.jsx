@@ -12,7 +12,9 @@ import GlobalGameState from "../../model/GlobalGameState"
 export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
-  const font = "1.2rem"
+  const font = "0.8rem"
+  const zoomButtonFont = "1.0rem"
+  const buttonWidth = "6.2rem"
   return (
     <Navbar
       style={{ fontSize: font, margin: "0" }}
@@ -46,12 +48,12 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "19%",
+              left: "18.5%",
               top: "25.0%",
               fontSize: font,
               borderColor: "white",
               color: "white",
-              width: "9rem",
+              width: buttonWidth,
               background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
             }}
           >
@@ -62,32 +64,48 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "26%",
+              left: "23.4%",
               top: "25%",
               fontSize: font,
               borderColor: "white",
               color: "white",
-              width: "9rem",
+              width: buttonWidth,
               background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
             }}
           >
             Counters
           </Button>
           <Button
-            onClick={onViewAreaClick}
+            onClick={() => onViewAreaClick("Treasury")}
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "33%",
+              left: "28.3%",
               top: "25%",
               fontSize: font,
               borderColor: "white",
               color: "white",
-              width: "9rem",
+              width: buttonWidth,
               background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
             }}
           >
             Treasury
+          </Button>
+          <Button
+            onClick={() => onViewAreaClick("Event")}
+            className={navBarFont}
+            style={{
+              position: "absolute",
+              left: "33.2%",
+              top: "25%",
+              fontSize: font,
+              borderColor: "white",
+              color: "white",
+              width: buttonWidth,
+              background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
+            }}
+          >
+            Event
           </Button>
           <Navbar.Text
             className={navBarFont}
@@ -118,7 +136,7 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
               style={{
                 marginRight: "0.3rem",
                 borderColor: "white",
-                fontSize: font,
+                fontSize: zoomButtonFont,
                 color: "white",
                 width: "8em",
                 background: GlobalUIConstants.Colors.PRIMARY,
@@ -134,7 +152,7 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
               style={{
                 marginRight: "0.3rem",
                 borderColor: "white",
-                fontSize: font,
+                fontSize: zoomButtonFont,
                 color: "white",
                 width: "8rem",
                 background: GlobalUIConstants.Colors.PRIMARY,
@@ -148,7 +166,7 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
             </Button>
             <Button
               style={{
-                fontSize: font,
+                fontSize: zoomButtonFont,
                 borderColor: "white",
                 color: "white",
                 width: "8rem",

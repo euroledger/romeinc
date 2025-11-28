@@ -20,7 +20,7 @@ export function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [zoomedImageSrc, setZoomedImageSrc] = useState("")
   const [isBoardReady, setIsBoardReady] = useState(false) // Add this state
-
+  const [imageDimensions, setImageDimensions] = useState({w: 0, h: 0, map: ""})
   const setBoardReady = () => setIsBoardReady(true)
 
   // We need a ref in the App component to access the Canvas component's underlying canvas element
@@ -32,14 +32,14 @@ export function App() {
     setModalOpen(true)
   }
 
-  const handleViewAreaClick = async () => {
+  const handleViewAreaClick = async (mapArea) => {
     if (!isBoardReady || !canvasRef.current) {
       alert("Board is still loading, please wait.")
       return
     }
 
     // Use a NEW function for the modal that handles both layers
-    const croppedImageDataUrl = await generateCroppedModalImage(canvasRef.current, img1, "Treasury")
+    const croppedImageDataUrl = await generateCroppedModalImage(canvasRef.current, img1, mapArea, setImageDimensions)
     openModal(croppedImageDataUrl)
   }
 
@@ -74,6 +74,9 @@ export function App() {
     <>
       <CroppedBoardPanel
         width="30rem"
+        imageWidth={imageDimensions.w}
+        imageHeight={imageDimensions.h}
+        map={imageDimensions.map}
         imagesrc={zoomedImageSrc}
         show={modalOpen}
         onHide={() => setModalOpen(false)}

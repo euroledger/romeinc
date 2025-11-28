@@ -1,36 +1,48 @@
-import Modal from "react-bootstrap/Modal"
 import Button from "react-bootstrap/Button"
-import GlobalUIConstants from "../../model/GlobalUIConstants"
+import { Modal, Image, Container, Row, Col } from "react-bootstrap"
+
 import "./modal.css"
 
 function CroppedBoardPanel(props) {
-  const { show, onClose, title, imagesrc, ...rest } = props
-  const dynamicWidth = props.width ? props.width : GlobalUIConstants.Defaults.MODAL_WIDTH
+  const { show, onClose, imageWidth, imageHeight, map, imagesrc, ...rest } = props
 
-  const bg = GlobalUIConstants.Colors.PRIMARY
+  let dynamicWidth = imageWidth + "px"
+  let dynamicHeight = imageHeight + "px"
 
+  let widthHack = map == "Treasury" ? "100%" : "131%"
   return (
     <Modal
       {...props}
-      contentClassName="custom-modal-content"
-      dialogClassName="dynamic-modal-dialog"
-      style={{ "--modal-width": dynamicWidth, display: "flex", justifyContent: "center", alignItems: "center" }}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
       centered
+      contentClassName="custom-modal-main-content"
+      dialogClassName="dynamic-modal-dialog"
+      // Pass only the image dimensions (the core content width)
+      style={{
+        "--modal-width": dynamicWidth,
+        "--modal-height": dynamicHeight,
+      }}
     >
-      <Modal.Body
-        style={{
-          backgroundColor: "#610C0F",
-          color: "black",
-        }}
-      >
-        <div style={{ display: "block", marginLeft: "auto", marginRight: "auto" }}>
-          {imagesrc && <img src={imagesrc} alt="Zoomed Area" style={{ marginLeft: "7rem", maxHeight: "700px" }} />}
+      <Modal.Body>
+        {/* Uses default Bootstrap padding (1rem horizontal) */}
+        <div className="image-wrapper-with-padding">
+          <div style={{ backgroundColor: "yellow", width: "100%", height: "100%" }}>
+            <img
+              src={imagesrc}
+              alt="Dynamic content"
+              style={{
+                width: widthHack,
+                height: "100%",
+                objectFit: "fill",
+              }}
+            />
+          </div>
         </div>
       </Modal.Body>
-      <Modal.Footer style={{ backgroundColor: "#610C0F", color: "black" }}>
-        <Button className="toggle-button2" onClick={props.onHide}>Close</Button>
+
+      <Modal.Footer>
+        <Button className="toggle-button2" onClick={props.onHide}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   )

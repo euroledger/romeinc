@@ -266,6 +266,14 @@ export default class GlobalUnitsModel {
     VETERAN_FLEET: "VETERAN FLEET",
     WALL: "WALL",
   }
+  
+  static PROVINCE_TYPE = {
+    BARBARIAN: "BARBARIAN",
+    ALLIED: "ALLIED",
+    VETERAN_ALLIED: "VETERAN ALLIED",
+    INSURGENT: "INSURGENT",
+    ROMAN: "ROMAN"
+  }
   static DYNASTY = {
     JULIAN: "JULIAN EMPERORS",
     CLAUDIAN: "CLAUDIAN EMPERORS",
