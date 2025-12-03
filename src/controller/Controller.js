@@ -1,13 +1,30 @@
+import ProvinceMarker from "../counters/ProvinceMarker"
 import GlobalGameState from "../model/GlobalGameState"
 import GlobalUnitsModel from "../model/GlobalUnitsModel"
+import { buildMap } from "../model/map/MapBuilder"
+import {
+  getNextBarbarianMarker,
+  getNextAlliedMarker,
+  getNextVeteranAlliedMarker,
+  getNextInsurgentMarker,
+  getCounterType,
+  getNextImperialCavalryMarker,
+  getNextPraetorianGuardMarker,
+  getNextRomanWallMarker,
+} from "../utils"
 
 export default class Controller {
   constructor() {
     this.emperorsMap = new Map()
+    this.locationMap = new Map() // map location name -> list of counters
   }
 
   setCounters(counters) {
     this.counters = counters
+  }
+
+  getCounters() {
+    return this.counters
   }
 
   // date is an integer eg -27 is 27BC or 27BCE
@@ -32,7 +49,6 @@ export default class Controller {
   }
 
   isInEmperorsBox(dynasty) {
-    console.log("")
     return GlobalGameState.emperorsBox.includes(dynasty)
   }
 
@@ -68,7 +84,6 @@ export default class Controller {
         ? currentScenarioObj.labelBCECE
         : currentScenarioObj.labelBCAD
     }
-    console.log("RETURN ", selectedScenario)
     return selectedScenario // Fallback to the raw value if not found
   }
   setUpEmperorsMap() {
@@ -80,7 +95,6 @@ export default class Controller {
     ])
   }
 
-  
   promoteRomanUnit(name) {
     let unit = this.counters.romanunits.get(name)
     unit = unit.promote()
@@ -89,7 +103,7 @@ export default class Controller {
 
   demoteRomanUnit(name) {
     let unit = this.counters.romanunits.get(name)
-    unit = unit.demote()    
+    unit = unit.demote()
     this.counters.romanunits.set(name, unit)
   }
 
@@ -98,6 +112,9 @@ export default class Controller {
   }
 
   getProvince(name) {
+    if (!this.mapBoard) {
+      buildMap(this)
+    }
     return this.mapBoard.get(name)
   }
 
@@ -105,5 +122,131 @@ export default class Controller {
     const province = this.mapBoard.get(name)
     const connectedProvinces = province.connections.map((connection) => connection.to)
     return connectedProvinces
+  }
+
+  getCountersInProvince(province) {
+    const units = this.locationMap.get(province)
+    if (!units) {
+      return []
+    }
+    return units
+  }
+
+  addToProvince = (counter, province) => {
+    let counters = this.locationMap.get(province)
+    if (!counters) {
+      counters = new Array()
+    }
+
+    counters.push(counter)
+    this.locationMap.set(province, counters)
+  }
+
+  // alternative way to add a lot of counters to provinces using an array
+  addCountersToProvinces(listOfCountersAndProvinces) {
+    for (const item of listOfCountersAndProvinces) {
+      const province = item.province
+      for (const counter of item.counters) {
+        if (counter.veteran) {
+          this.addVeteranCounterToProvince(counter.name, province)
+        } else {
+          this.addCounterToProvince(counter.name, province)
+        }
+      }
+    }
+  }
+
+  addCounterToProvince(counter, province) {
+    const counterType = getCounterType(counter)
+    switch (counterType) {
+      case GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN: {
+        const marker = getNextBarbarianMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+      case GlobalUnitsModel.PROVINCE_TYPE.ALLIED: {
+        const marker = getNextAlliedMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+      case GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED: {
+        const marker = getNextVeteranAlliedMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+      case GlobalUnitsModel.PROVINCE_TYPE.INSURGENT: {
+        const marker = getNextInsurgentMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION:
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET: {
+        const unit = this.counters.romanunits.get(counter)
+        this.addToProvince(unit, province)
+        break
+      }
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY: {
+        const marker = getNextImperialCavalryMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD: {
+        const marker = getNextPraetorianGuardMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL: {
+        const marker = getNextRomanWallMarker(this.counters)
+        this.addToProvince(marker, province)
+        break
+      }
+
+      case GlobalUnitsModel.WAR_BOX_TYPE.WAR: {
+        const war = this.counters.wars.get(counter)
+        this.addToProvince(war, province)
+        break
+      }
+      case GlobalUnitsModel.WAR_BOX_TYPE.LEADER: {
+        const leader = this.counters.leaders.get(counter)
+        this.addToProvince(leader, province)
+        break
+      }
+    }
+    // 11. Add the counter to the model
+    // i) set location of counter to be the province
+    // ii) add counter to list of counters present in that province
+
+    // This will be done in the <Stacks> component
+    // 2. Add the counter to the stack for the right box in that province
+    // => i) province type is top left
+    // => ii) roman units top right
+    // +> iii) roman fleets bottom left
+    // => iv) war/leader markers bottom right
+  }
+
+  addVeteranCounterToProvince(counter, province) {
+    const counterType = getCounterType(counter)
+    switch (counterType) {
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION:
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET: {
+        const unit = this.counters.romanunits.get(counter)
+        this.promoteRomanUnit(unit.name)
+        this.addToProvince(unit, province)
+        break
+      }
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY: {
+        const unit = getNextImperialCavalryMarker(this.counters)
+        this.promoteRomanUnit(unit.name)
+        this.addToProvince(unit, province)
+        break
+      }
+      case GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD: {
+        const unit = getNextPraetorianGuardMarker(this.counters)
+        this.promoteRomanUnit(unit.name)
+        this.addToProvince(unit, province)
+        break
+      }
+    }
   }
 }

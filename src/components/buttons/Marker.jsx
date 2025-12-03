@@ -1,6 +1,4 @@
 import React, { useState } from "react"
-// import "../../board.css"
-// import "./counter.css"
 
 function Marker({ counterData }) {
   const [position, setPosition] = useState({

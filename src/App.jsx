@@ -20,7 +20,7 @@ export function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [zoomedImageSrc, setZoomedImageSrc] = useState("")
   const [isBoardReady, setIsBoardReady] = useState(false) // Add this state
-  const [imageDimensions, setImageDimensions] = useState({w: 0, h: 0, map: ""})
+  const [imageDimensions, setImageDimensions] = useState({ w: 0, h: 0, map: "" })
   const setBoardReady = () => setIsBoardReady(true)
 
   // We need a ref in the App component to access the Canvas component's underlying canvas element
@@ -87,6 +87,7 @@ export function App() {
         <TransformWrapper
           initialScale={1}
           minScale={0.5}
+          doubleClick={{ disabled: true }}
           maxScale={6}
           limitToBounds={false}
           onTransformed={(e) => handleScaleChange(e)}

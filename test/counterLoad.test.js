@@ -3,7 +3,7 @@ import { describe, expect, it, beforeEach } from "vitest"
 import GlobalUnitsModel from "../src/model/GlobalUnitsModel"
 import Controller from "../src/controller/Controller"
 import { loadCounters } from "../src/CounterLoader"
-import { getAllProvinceMarkersOfType } from "../src/utils"
+import { getAllProvinceMarkersOfType, getCounterType } from "../src/utils"
 
 describe("Counter Load tests", () => {
   let controller, counters
@@ -228,14 +228,20 @@ describe("Counter Load tests", () => {
     expect(palmyrene14.navalStrength).toEqual(1)
     expect(palmyrene14.region).toEqual(GlobalUnitsModel.HOMELAND_PROVINCE.PALMYRENE)
     expect(palmyrene14.imageFront).toContain("Palmyrene")
+
+    const british6 = counters.wars.get(GlobalUnitsModel.WAR.BRITISH_6)
+    expect(british6.strength).toEqual(6)
+    expect(british6.navalStrength).toEqual(1)
+    expect(british6.region).toEqual(GlobalUnitsModel.HOMELAND_PROVINCE.BRITISH)
+    expect(british6.imageFront).toContain("British")
   })
 
   it("loads all barbarian province markers", () => {
     const alliedMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
     expect(alliedMarkers.length).toEqual(60)
 
-    const allied34 = counters.provincemarkers.get("BARBARIAN 14")
-    expect(allied34.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+    const barbarian14 = counters.provincemarkers.get("BARBARIAN 14")
+    expect(barbarian14.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
   })
 
   it("loads all allied province markers", () => {
@@ -245,7 +251,7 @@ describe("Counter Load tests", () => {
     const allied18 = counters.provincemarkers.get("ALLIED 18")
     expect(allied18.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.ALLIED)
   })
-  
+
   it("loads all veteran allied province markers", () => {
     const valliedMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED)
     expect(valliedMarkers.length).toEqual(20)
@@ -253,12 +259,44 @@ describe("Counter Load tests", () => {
     const vallied8 = counters.provincemarkers.get("VETERAN ALLIED 8")
     expect(vallied8.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED)
   })
-  
-    it("loads all insurgent province markers", () => {
+
+  it("loads all insurgent province markers", () => {
     const insurgentMarkers = getAllProvinceMarkersOfType(counters, GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
     expect(insurgentMarkers.length).toEqual(14)
 
     const insurgent3 = counters.provincemarkers.get("INSURGENT 3")
     expect(insurgent3.unitType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
+  })
+
+  it("returns the type of counter", () => {
+    let counterType = getCounterType(GlobalUnitsModel.WAR.BRITISH_7)
+    expect(counterType).toEqual(GlobalUnitsModel.WAR_BOX_TYPE.WAR)
+
+    counterType = getCounterType(GlobalUnitsModel.LEADER.CALGACUS)
+    expect(counterType).toEqual(GlobalUnitsModel.WAR_BOX_TYPE.LEADER)
+
+    counterType = getCounterType(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+    expect(counterType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN)
+
+    counterType = getCounterType(GlobalUnitsModel.ROMAN_UNIT.III_AUGUSTA)
+    expect(counterType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION)
+
+    counterType = getCounterType(GlobalUnitsModel.ROMAN_UNIT.AFRICAN_FLEET)
+    expect(counterType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET)
+
+    counterType = getCounterType(GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL)
+    expect(counterType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL)
+
+    counterType = getCounterType(GlobalUnitsModel.PROVINCE_TYPE.ALLIED)
+    expect(counterType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.ALLIED)
+
+    counterType = getCounterType(GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED)
+    expect(counterType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED)
+
+    counterType = getCounterType(GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
+    expect(counterType).toEqual(GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
+
+    counterType = getCounterType(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
+    expect(counterType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
   })
 })

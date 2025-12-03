@@ -8,10 +8,7 @@ import "./Canvas.css";
 const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
   const imgRef = useRef(null);
   const containerRef = useRef(null); // ADDED: Ref for the overlay container
-  const popupRef = useRef(null);     // ADDED: Ref for the popup box element
   const [activeCircle, setActiveCircle] = useState(null); 
-  const [popupStyle, setPopupStyle] = useState({}); // ADDED: State for dynamic popup positioning
-
   const circlesList = PROVINCES;
   const rectList = TRACK_AREAS;
 
@@ -67,32 +64,7 @@ const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
     [circlesList, isMouseInCircle, ref]
   );
 
-  // --- Dynamic Positioning Logic using useLayoutEffect (ADDED) ---
-  useLayoutEffect(() => {
-    if (!activeCircle || !popupRef.current) return;
 
-    const popupElement = popupRef.current;
-    const viewportHeight = window.innerHeight;
-    const popupHeight = popupElement.offsetHeight; // Get the rendered height of the popup
-    const cursorY = activeCircle.y; // Viewport Y coordinate
-
-    let transformY = '-100%'; // Default: Above the cursor
-    let offsetX = '10px';     // Default: 10px to the right
-
-    // Check if the space above the cursor is less than the popup height
-    if (cursorY - popupHeight < 0) {
-      // If true, position it below the cursor
-      transformY = '0%'; 
-    }
-
-    setPopupStyle({
-      left: `${activeCircle.x}px`,
-      top: `${activeCircle.y}px`,
-      transform: `translate(${offsetX}, ${transformY})`,
-      position: 'fixed', // Must be fixed as we are using clientX/Y coordinates
-    });
-
-  }, [activeCircle]);
 
 
   useLayoutEffect(() => {
@@ -135,16 +107,7 @@ const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
         className="covering-canvas"
         onMouseMove={handleMouseMove}
       />
-      {activeCircle && (
-        <div
-          ref={popupRef} // ADDED: popupRef attached here
-          className="popup-box"
-          style={popupStyle} // CHANGED: Use dynamic style object
-        >
-          <strong>{activeCircle.data.name}</strong>
-          <p>{activeCircle.data.info}</p>
-        </div>
-      )}
+     
     </div>
   );
 });

@@ -1,3 +1,7 @@
+import { BOTTOM_LEFT, BOTTOM_RIGHT, PROVINCES, TOP_LEFT, TOP_RIGHT } from "./components/screenobjects/Provinces"
+import GlobalGameState from "./model/GlobalGameState"
+import GlobalUnitsModel from "./model/GlobalUnitsModel"
+
 export function windowsInit() {
   document.body.style.zoom = "100%"
 
@@ -19,4 +23,93 @@ export function windowsInit() {
 export function getAllProvinceMarkersOfType(counters, markerType) {
   const valuesArray = Array.from(counters.provincemarkers.values())
   return valuesArray.filter((marker) => marker.unitType === markerType)
+}
+
+export function getNextBarbarianMarker(counters) {
+  const marker = GlobalUnitsModel.PROVINCE_TYPE.BARBARIAN + " " + GlobalGameState.barbarianMarker++
+  const counter = counters.provincemarkers.get(marker)
+  return counter
+}
+export function getNextAlliedMarker(counters) {
+  const marker = GlobalUnitsModel.PROVINCE_TYPE.ALLIED + " " + GlobalGameState.alliedMarker++
+  const counter = counters.provincemarkers.get(marker)
+  return counter
+}
+
+export function getNextVeteranAlliedMarker(counters) {
+  const marker = GlobalUnitsModel.PROVINCE_TYPE.VETERAN_ALLIED + " " + GlobalGameState.veteranAlliedMarker++
+  const counter = counters.provincemarkers.get(marker)
+  return counter
+}
+
+export function getNextInsurgentMarker(counters) {
+  const marker = GlobalUnitsModel.PROVINCE_TYPE.INSURGENT + " " + GlobalGameState.insurgentMarker++
+  const counter = counters.provincemarkers.get(marker)
+  return counter
+}
+
+export function getNextImperialCavalryMarker(counters) {
+  const marker = GlobalUnitsModel.ROMAN_UNIT_TYPE.IMPERIAL_CAVALRY + " " + GlobalGameState.imperialCavalry++
+  const counter = counters.romanunits.get(marker)
+  return counter
+}
+
+export function getNextPraetorianGuardMarker(counters) {
+  const marker = GlobalUnitsModel.ROMAN_UNIT_TYPE.PRAETORIAN_GUARD + " " + GlobalGameState.praetorianGuard++
+
+  const counter = counters.romanunits.get(marker)
+  return counter
+}
+
+export function getNextRomanWallMarker(counters) {
+  const marker = GlobalUnitsModel.ROMAN_UNIT_TYPE.WALL + " " + GlobalGameState.romanwall++
+  const counter = counters.romanunits.get(marker)
+  return counter
+}
+
+export function getCounterType(counter) {
+  // if the counter is a name in the WARS list return WAR_BOX_TYPE.WAR
+  const wars = Object.values(GlobalUnitsModel.WAR)
+  if (wars.includes(counter)) {
+    return GlobalUnitsModel.WAR_BOX_TYPE.WAR
+  }
+
+  const leaders = Object.values(GlobalUnitsModel.LEADER)
+  if (leaders.includes(counter)) {
+    return GlobalUnitsModel.WAR_BOX_TYPE.LEADER
+  }
+
+  const romanUnits = Object.values(GlobalUnitsModel.ROMAN_UNIT)
+  if (romanUnits.includes(counter)) {
+    if (counter.includes("FLEET")) {
+      return GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET
+    } else {
+      return GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION
+    }
+  }
+  return counter
+}
+
+export function getProvinceByName(name) {
+  const province = PROVINCES.find((province) => (province.name = name))
+  return province
+}
+
+export function getPositionForCounter(counter) {
+  switch (counter.constructor.name) {
+    case "ProvinceMarker": {
+      return TOP_LEFT
+    }
+    case "RomanLegion":
+    case "RomanAuxilia":
+    case "RomanImperialCavalry":
+    case "RomanPraetorianGuard":
+    case 'RomanWall':
+      return TOP_RIGHT
+    case 'RomanFleet':
+      return BOTTOM_LEFT
+    case 'War':
+    case 'Leader':
+      return BOTTOM_RIGHT
+  }
 }

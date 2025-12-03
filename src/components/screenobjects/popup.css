@@ -1,0 +1,25 @@
+/* Popup.css */
+
+/* Initial state when entering, or final state when exiting */
+.popup-enter, .popup-exit-active {
+  opacity: 0;
+}
+
+/* State during the enter animation, transition applied here */
+.popup-enter-active {
+  opacity: 1;
+  /* Must match the timeout value in Stack.jsx */
+  transition: opacity 0.7s ease-in-out; 
+}
+
+/* State during the exit animation */
+.popup-exit {
+  opacity: 1;
+}
+
+/* State during the exit-active animation, transition applied here */
+.popup-exit-active {
+  opacity: 0;
+  /* Must match the timeout value in Stack.jsx */
+  transition: opacity 0.7s ease-in-out;
+}

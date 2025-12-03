@@ -5,6 +5,7 @@ class War {
     this.strength = strength
     this.region = region
     this.imageFront = imageFront
+    this.image = imageFront
     this.imageBack = "/images/counters/leaders/Ldr-War-Back.png"
   }
 }
