@@ -111,6 +111,18 @@ export default class Controller {
     this.mapBoard = mapBoard
   }
 
+  getAllProvincesInMapboard() {
+    const provinceArray = Array.from(this.mapBoard.keys())
+    return provinceArray
+  }
+
+  getGoldForCommand(command) {
+    const valuesArray = Array.from(this.mapBoard.values())
+    const provinces = valuesArray.filter((province) => province.command === command)
+    const gold = provinces.reduce((accumulator, province) => accumulator + province.gold, 0)
+    return gold
+  }
+
   getProvince(name) {
     if (!this.mapBoard) {
       buildMap(this)

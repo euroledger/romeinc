@@ -252,7 +252,7 @@ export default class GlobalUnitsModel {
     GALLIA: "GALLIA",
     PANNONIA: "PANNONIA",
     MOESIA: "MOESIA",
-    PONITICA: "PONTICA",
+    PONTICA: "PONTICA",
     SYRIA: "SYRIA",
     AEGYPTUS: "AEGYPTUS",
     AFRICA: "AFRICA",
@@ -329,10 +329,10 @@ export default class GlobalUnitsModel {
     MAURETANIA_CAESARIENSIS: "Mauretania Caesariensis",
     MAURETANIA_TINGITANA: "Mauretania Tingitana",
     GALLAECIA: "Gallaecia",
-    LUCITANIA: "Lucitania",
     BAETICA: "Baetica",
     CARTHAGINENSIS: "Carthaginensis",
     TARRACONENSIS: "Tarraconensis",
+    LUSITANIA: "Lusitania",
     BALEARES: "Baleares",
     SICILIA: "Sicilia",
     NEAPOLIS: "Neapolis",
@@ -349,7 +349,8 @@ export default class GlobalUnitsModel {
     UNREST: "UNREST",
     FLEET: "FLEET",
     GRAIN: "GRAIN",
-    SUN: "SUN"
+    SUN: "SUN",
+    PRAETORIAN_GUARD: "PRAETORIAN GUARD"
   }
   static WAR_BOX_TYPE = {
     LEADER: "LEADER",
