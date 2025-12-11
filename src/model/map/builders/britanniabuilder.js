@@ -48,7 +48,7 @@ export function buildBritannia(mapBoard) {
       },
       {
         to: GlobalUnitsModel.HOMELAND_PROVINCE.BRITISH,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.SEA,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE_HOMELAND,
       },
       {

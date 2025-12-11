@@ -7,6 +7,8 @@ import { buildMoesia } from "./builders/moesiabuilder"
 import { buildPontica } from "./builders/ponticabuilder"
 import { buildSyria } from "./builders/syriabuilder"
 import { buildAegyptus } from "./builders/aegyptusbuilder"
+import { buildAfrica } from "./builders/africabuilder"
+import { buildItalia } from "./builders/italiabuilder"
 
 export function buildMap(controller) {
   const mapBoard = new Map()
@@ -20,6 +22,8 @@ export function buildMap(controller) {
   buildPontica(mapBoard)
   buildSyria(mapBoard)
   buildAegyptus(mapBoard)
+  buildAfrica(mapBoard)
+  buildItalia(mapBoard)
 
   controller.setMapboard(mapBoard)
 }

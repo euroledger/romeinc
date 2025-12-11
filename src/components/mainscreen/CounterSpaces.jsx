@@ -1,5 +1,11 @@
 import { PROVINCE_OFFSETS } from "../screenobjects/Provinces"
 
+export const drawHomelandProvinceSpaces = (ctx, rectList) => {
+  rectList.forEach((rectData) => {
+    ctx.fillStyle = "rgba(74, 138, 65, 0.5)" // Semi-transparent green
+    ctx.fillRect(rectData.x, rectData.y, rectData.width, rectData.height)
+  })
+}
 
 export const drawProvinceSpaces = (ctx, circle) => {
   // add the rectangle offset TOP LEFT

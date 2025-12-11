@@ -17,44 +17,78 @@ describe("Mapboard Tests", () => {
   })
 
   describe("Tests all mapboard connections for reciprocity", () => {
-    it("traverse all connections, ensure reverse is present and same", () => {
+    it("traverse all connections, ensure reverse is present and same type", () => {
       // 1. Get list of all provinces in the mapboard
       const provinces = controller.getAllProvincesInMapboard()
 
+      console.log("TOTAL NUMBER OF PROVINCES:", provinces.length)
+      let connections = 0
       // 2. Iterate over provinces
       for (const provinceName of provinces) {
+        // if (provinceName !== GlobalUnitsModel.PROVINCE.QUADIA) {
+        //   continue
+        // }
         // 3. => get Province object
         const province = controller.getProvince(provinceName)
 
         // 4. => get the list of connections for that province
         const connectionListA = province.connections
         // console.log("PROVINCE:", provinceName, "CONNECTIONS:", connectionListA)
+        connections += connectionListA.length
 
         // 5 => => Iterate over connections
         for (const connection of connectionListA) {
+          // console.log(
+          //   "*** YO ----------- PROCESS ",
+          //   province.name,
+          //   "CONNECTION",
+          //   connection.to,
+          //   "TYPE=",
+          //   connection.connectionType
+          // )
+
+          const connectionTypeOut = connection.connectionType
           // 6 => => Get the connection to and type (TYPE 1)
-          // console.log("CONNECTION TO=", connection.to)
-          // console.log("CONNECTION TYPE=", connection.connectionType)
+          // console.log("\tCONNECTION=", connection.to)
 
           // 7 => => Get the province for the 'to' property
           const otherProvince = controller.getProvince(connection.to)
-          // expect (otherProvince).toBeDefined
-          // console.log("OTHER PROVINCE=", otherProvince)
+          expect(otherProvince).toBeDefined
 
           if (!otherProvince) {
             console.log("Province", connection.to, "NOT FOUND ON MAP")
           }
 
-          // // 8 => => Find connection to province
-          // console.log("LOOKING FOR CONNECTION FROM", otherProvince)
+          // // 8 => => Find connection to province, ensure connection back exists
+          // console.log("\t=> LOOKING FOR CONNECTION FROM", otherProvince)
 
-          // const connectionBackToProvince = otherProvince.connections.find((connection) => connection.to === province)
-          // console.log("")
-          // expect (connectionBackToProvince).toBeDefined()
+          const connectionBackToProvince = otherProvince.connections.find(
+            (connection) => connection.to === province.name
+          )
+          // console.log("\t\tconnectionBackToProvince=", connectionBackToProvince)
+          if (!connectionBackToProvince) {
+            console.log("NO CONNECTION BACK FROM", otherProvince.name, "TO", province.name)
+          }
+          expect(connectionBackToProvince).toBeDefined()
+
+  
+          // console.log(
+          //   "OUT NAME:",
+          //   province.name,
+          //   "OUT TYPE:",
+          //   connectionTypeOut,
+          //   "BACK NAME:",
+          //   otherProvince.name,
+          //   "BACK TYPE:",
+          //   connectionBackToProvince.connectionType
+          // )
+
+          // 9 => => Compare connection type to TYPE OUT
+          expect(connectionBackToProvince.connectionType).toEqual(connectionTypeOut)
         }
       }
+            console.log("TOTAL NUMBER OF CONNECTIONS:", connections)
 
-      // 9 => => Compare connection type to TYPE 1
     })
   })
   describe("Mapboard Tests for Britannia", () => {
@@ -391,6 +425,7 @@ describe("Mapboard Tests", () => {
       expect(rhaetia.connections.length).toEqual(6)
       expect(rhaetia.icons.length).toEqual(1)
       expect(rhaetia.gold).toEqual(2)
+      expect(rhaetia.emperors.length).toEqual(1)
       expect(rhaetia.command).toEqual(GlobalUnitsModel.COMMAND.GALLIA)
       expect(rhaetia.homeland).toEqual(false)
 
@@ -503,6 +538,8 @@ describe("Mapboard Tests", () => {
       expect(sarmatia.connections.length).toEqual(6)
       expect(sarmatia.icons.length).toEqual(1)
       expect(sarmatia.gold).toEqual(1)
+      expect(sarmatia.emperors.length).toEqual(0)
+
       expect(sarmatia.command).toEqual(GlobalUnitsModel.COMMAND.PANNONIA)
       expect(sarmatia.homeland).toEqual(false)
 
@@ -522,6 +559,7 @@ describe("Mapboard Tests", () => {
       expect(noricum.connections.length).toEqual(4)
       expect(noricum.icons.length).toEqual(1)
       expect(noricum.gold).toEqual(3)
+      expect(noricum.emperors.length).toEqual(1)
       expect(noricum.command).toEqual(GlobalUnitsModel.COMMAND.PANNONIA)
       expect(noricum.homeland).toEqual(false)
 
@@ -841,6 +879,7 @@ describe("Mapboard Tests", () => {
       expect(syria.connections.length).toEqual(7)
       expect(syria.icons.length).toEqual(2)
       expect(syria.gold).toEqual(4)
+      expect(syria.emperors.length).toEqual(1)
       expect(syria.command).toEqual(GlobalUnitsModel.COMMAND.SYRIA)
       expect(syria.homeland).toEqual(false)
 
@@ -1278,7 +1317,7 @@ describe("Mapboard Tests", () => {
       expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.AETHIOPIA)
     })
 
-     it("loads Aethiopia province", () => {
+    it("loads Aethiopia province", () => {
       const thebais = controller.getProvince(GlobalUnitsModel.PROVINCE.AETHIOPIA)
 
       expect(thebais.connections.length).toEqual(2)
@@ -1294,6 +1333,225 @@ describe("Mapboard Tests", () => {
     it("returns gold for Aegyptus command", () => {
       const gold = controller.getGoldForCommand(GlobalUnitsModel.COMMAND.AEGYPTUS)
       expect(gold).toEqual(20)
+    })
+  })
+  describe("Mapboard Tests for Africa", () => {
+    it("loads Libya province", () => {
+      const libya = controller.getProvince(GlobalUnitsModel.PROVINCE.LIBYA)
+
+      expect(libya.connections.length).toEqual(2)
+      expect(libya.icons.length).toEqual(0)
+      expect(libya.gold).toEqual(3)
+      expect(libya.command).toEqual(GlobalUnitsModel.COMMAND.AFRICA)
+      expect(libya.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.LIBYA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.CYRENAICA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.AFRICA)
+    })
+
+    it("loads Africa province", () => {
+      const africa = controller.getProvince(GlobalUnitsModel.PROVINCE.AFRICA)
+
+      expect(africa.connections.length).toEqual(4)
+      expect(africa.icons.length).toEqual(2)
+      expect(africa.gold).toEqual(5)
+      expect(africa.emperors.length).toEqual(1)
+      expect(africa.command).toEqual(GlobalUnitsModel.COMMAND.AFRICA)
+      expect(africa.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.AFRICA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.LIBYA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NUMIDIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.SICILIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.CORSICA_SARDINIA)
+    })
+
+    it("loads Numidia province", () => {
+      const numidia = controller.getProvince(GlobalUnitsModel.PROVINCE.NUMIDIA)
+
+      expect(numidia.connections.length).toEqual(4)
+      expect(numidia.icons.length).toEqual(1)
+      expect(numidia.gold).toEqual(4)
+      expect(numidia.emperors.length).toEqual(0)
+      expect(numidia.command).toEqual(GlobalUnitsModel.COMMAND.AFRICA)
+      expect(numidia.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.NUMIDIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.AFRICA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.BALEARES)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.HOMELAND_PROVINCE.MOORISH)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.MAURETANIA_CAESARIENSIS)
+    })
+
+    it("loads Mauretania Caesariensis province", () => {
+      const mauretania_c = controller.getProvince(GlobalUnitsModel.PROVINCE.MAURETANIA_CAESARIENSIS)
+
+      expect(mauretania_c.connections.length).toEqual(3)
+      expect(mauretania_c.icons.length).toEqual(0)
+      expect(mauretania_c.gold).toEqual(3)
+      expect(mauretania_c.emperors.length).toEqual(0)
+      expect(mauretania_c.command).toEqual(GlobalUnitsModel.COMMAND.AFRICA)
+      expect(mauretania_c.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.MAURETANIA_CAESARIENSIS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NUMIDIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.MAURETANIA_TINGITANA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.CARTHAGINENSIS)
+    })
+
+    it("loads Mauretania Tingitana province", () => {
+      const mauretania_t = controller.getProvince(GlobalUnitsModel.PROVINCE.MAURETANIA_TINGITANA)
+
+      expect(mauretania_t.connections.length).toEqual(2)
+      expect(mauretania_t.icons.length).toEqual(0)
+      expect(mauretania_t.gold).toEqual(2)
+      expect(mauretania_t.emperors.length).toEqual(0)
+      expect(mauretania_t.command).toEqual(GlobalUnitsModel.COMMAND.AFRICA)
+      expect(mauretania_t.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.MAURETANIA_TINGITANA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.MAURETANIA_CAESARIENSIS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.BAETICA)
+    })
+
+    it("returns gold for Africa command", () => {
+      const gold = controller.getGoldForCommand(GlobalUnitsModel.COMMAND.AFRICA)
+      expect(gold).toEqual(17)
+    })
+  })
+
+  describe("Mapboard Tests for Italia", () => {
+    it("loads Alpes province", () => {
+      const alpes = controller.getProvince(GlobalUnitsModel.PROVINCE.ALPES)
+
+      expect(alpes.connections.length).toEqual(3)
+      expect(alpes.icons.length).toEqual(0)
+      expect(alpes.gold).toEqual(2)
+      expect(alpes.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(alpes.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.ALPES)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.GERMANIA_SUPERIOR)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.MEDIOLANUM)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NARBONENSIS)
+    })
+
+    it("loads Mediolanum province", () => {
+      const mediolanum = controller.getProvince(GlobalUnitsModel.PROVINCE.MEDIOLANUM)
+
+      expect(mediolanum.connections.length).toEqual(4)
+      expect(mediolanum.icons.length).toEqual(0)
+      expect(mediolanum.gold).toEqual(4)
+      expect(mediolanum.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(mediolanum.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.MEDIOLANUM)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ALPES)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.RHAETIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.PISAE)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.CORSICA_SARDINIA)
+    })
+
+    it("loads Pisae province", () => {
+      const pisae = controller.getProvince(GlobalUnitsModel.PROVINCE.PISAE)
+
+      expect(pisae.connections.length).toEqual(4)
+      expect(pisae.icons.length).toEqual(0)
+      expect(pisae.gold).toEqual(4)
+      expect(pisae.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(pisae.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.PISAE)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.MEDIOLANUM)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.RAVENNA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ROME)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.CORSICA_SARDINIA)
+    })
+
+    it("loads Ravenna province", () => {
+      const ravenna = controller.getProvince(GlobalUnitsModel.PROVINCE.RAVENNA)
+
+      expect(ravenna.connections.length).toEqual(5)
+      expect(ravenna.icons.length).toEqual(1)
+      expect(ravenna.gold).toEqual(4)
+      expect(ravenna.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(ravenna.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.RAVENNA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.RHAETIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NORICUM)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ROME)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ILLYRIA)
+    })
+
+    it("loads Rome province", () => {
+      const rome = controller.getProvince(GlobalUnitsModel.PROVINCE.ROME)
+
+      expect(rome.connections.length).toEqual(4)
+      expect(rome.icons.length).toEqual(1)
+      expect(rome.gold).toEqual(5)
+      expect(rome.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(rome.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.ROME)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.PISAE)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.RAVENNA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NEAPOLIS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.CORSICA_SARDINIA)
+    })
+
+    it("loads Neapolis province", () => {
+      const neapolis = controller.getProvince(GlobalUnitsModel.PROVINCE.NEAPOLIS)
+
+      expect(neapolis.connections.length).toEqual(4)
+      expect(neapolis.icons.length).toEqual(1)
+      expect(neapolis.gold).toEqual(4)
+      expect(neapolis.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(neapolis.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.NEAPOLIS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.SICILIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.EPIRUS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ILLYRIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ROME)
+    })
+
+    it("loads Sicilia province", () => {
+      const sicilia = controller.getProvince(GlobalUnitsModel.PROVINCE.SICILIA)
+
+      expect(sicilia.connections.length).toEqual(3)
+      expect(sicilia.icons.length).toEqual(1)
+      expect(sicilia.gold).toEqual(4)
+      expect(sicilia.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(sicilia.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.SICILIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NEAPOLIS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ACHAEA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.AFRICA)
+    })
+
+    it("loads Corsica and Sardinia province", () => {
+      const corsica = controller.getProvince(GlobalUnitsModel.PROVINCE.CORSICA_SARDINIA)
+
+      expect(corsica.connections.length).toEqual(6)
+      expect(corsica.icons.length).toEqual(0)
+      expect(corsica.gold).toEqual(3)
+      expect(corsica.command).toEqual(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(corsica.homeland).toEqual(false)
+
+      const connectedProvinces = controller.getProvincesAdjacentTo(GlobalUnitsModel.PROVINCE.CORSICA_SARDINIA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.NARBONENSIS)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.MEDIOLANUM)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.PISAE)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.ROME)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.AFRICA)
+      expect(connectedProvinces).toContain(GlobalUnitsModel.PROVINCE.BALEARES)
+    })
+    it("returns gold for Italia command", () => {
+      const gold = controller.getGoldForCommand(GlobalUnitsModel.COMMAND.ITALIA)
+      expect(gold).toEqual(30)
     })
   })
 })

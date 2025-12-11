@@ -16,12 +16,12 @@ export function buildGallia(mapBoard) {
       },
       {
         to: GlobalUnitsModel.HOMELAND_PROVINCE.GERMAN,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.ROAD,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE_HOMELAND,
       },
       {
         to: GlobalUnitsModel.PROVINCE.GERMANIA_INFERIOR,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.ROAD,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
       },
     ],
@@ -217,6 +217,7 @@ export function buildGallia(mapBoard) {
     name: GlobalUnitsModel.PROVINCE.RHAETIA,
     homeland: false,
     command: GlobalUnitsModel.COMMAND.GALLIA,
+    emperors: [GlobalUnitsModel.DYNASTY.ANTONINE],
     gold: 2,
     icons: [GlobalUnitsModel.MAP_ICON.UNREST],
     connections: [
@@ -264,7 +265,7 @@ export function buildGallia(mapBoard) {
     connections: [
       {
         to: GlobalUnitsModel.PROVINCE.BRITANNIA_SUPERIOR,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.SEA,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
       },
       {

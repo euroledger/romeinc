@@ -327,7 +327,7 @@ export function buildHomelands(mapBoard) {
   mapBoard.set(alan.name, alan)
 
   const parthian = new Province({
-    name: GlobalUnitsModel.HOMELAND_PROVINCE.ALAN,
+    name: GlobalUnitsModel.HOMELAND_PROVINCE.PARTHIAN,
     homeland: true,
     gold: 0,
     icons: [],
@@ -344,7 +344,7 @@ export function buildHomelands(mapBoard) {
       },
       {
         to: GlobalUnitsModel.PROVINCE.BABYLONIA,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
       },
     ],
@@ -359,7 +359,7 @@ export function buildHomelands(mapBoard) {
     connections: [
       {
         to: GlobalUnitsModel.PROVINCE.BABYLONIA,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
       },
     ],
@@ -392,6 +392,11 @@ export function buildHomelands(mapBoard) {
         connectionType: GlobalUnitsModel.CONNECTION_TYPE.DESERT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
       },
+       {
+        to: GlobalUnitsModel.PROVINCE.ARABIA,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.DESERT,
+        destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
+      },
     ],
   })
   mapBoard.set(judean.name, judean)
@@ -412,7 +417,7 @@ export function buildHomelands(mapBoard) {
   mapBoard.set(nubian.name, nubian)
 
   const moorish = new Province({
-    name: GlobalUnitsModel.HOMELAND_PROVINCE.NUBIAN,
+    name: GlobalUnitsModel.HOMELAND_PROVINCE.MOORISH,
     homeland: true,
     gold: 0,
     icons: [],

@@ -136,6 +136,7 @@ export function buildSyria(mapBoard) {
     homeland: false,
     command: GlobalUnitsModel.COMMAND.SYRIA,
     gold: 4,
+    emperors: [GlobalUnitsModel.DYNASTY.FLAVIAN],
     icons: [GlobalUnitsModel.MAP_ICON.UNREST, GlobalUnitsModel.MAP_ICON.FLEET],
     connections: [
       {
@@ -299,7 +300,7 @@ export function buildSyria(mapBoard) {
       },
       {
         to: GlobalUnitsModel.PROVINCE.SYRIA,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.SEA,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.ROAD,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE,
       },
       {

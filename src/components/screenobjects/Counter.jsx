@@ -17,7 +17,7 @@ function Counter({ counterData, index, offsetAmount, onDoubleClick }) {
     width: counterData.width,
     left: `${counterData.position.left}%`,
     top: `${counterData.position.top}%`,
-    zIndex: 100 + index,
+    zIndex: 10 + index,
     display: "block",
     transform: `translate(${offsetX}px, ${offsetY}px)`,
     cursor: "pointer",

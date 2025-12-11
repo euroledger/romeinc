@@ -135,6 +135,7 @@ export function buildPannonia(mapBoard) {
     homeland: false,
     command: GlobalUnitsModel.COMMAND.PANNONIA,
     gold: 3,
+    emperors: [GlobalUnitsModel.DYNASTY.ANTONINE],
     icons: [GlobalUnitsModel.MAP_ICON.UNREST],
     connections: [
       {

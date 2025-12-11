@@ -47,12 +47,12 @@ export function buildMoesia(mapBoard) {
     connections: [
       {
         to: GlobalUnitsModel.HOMELAND_PROVINCE.GOTHIC,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.MOUNTAIN,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE_HOMELAND,
       },
       {
         to: GlobalUnitsModel.HOMELAND_PROVINCE.DACIAN,
-        connectionType: GlobalUnitsModel.CONNECTION_TYPE.RIVER_STRAIGHT,
+        connectionType: GlobalUnitsModel.CONNECTION_TYPE.MOUNTAIN,
         destinationType: GlobalUnitsModel.DESTINATION_TYPE.PROVINCE_HOMELAND,
       },
       {

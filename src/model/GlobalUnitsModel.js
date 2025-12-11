@@ -352,6 +352,7 @@ export default class GlobalUnitsModel {
     SUN: "SUN",
     PRAETORIAN_GUARD: "PRAETORIAN GUARD"
   }
+  
   static WAR_BOX_TYPE = {
     LEADER: "LEADER",
     WAR: "WAR",

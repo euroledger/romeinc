@@ -19,27 +19,27 @@ const createStackData = (province, counter) => {
     image: counter.image,
     position: {
       left: left, // Raw number (e.g., 13.5)
-      top: top,   // Raw number (e.g., 27.2)
+      top: top, // Raw number (e.g., 27.2)
     },
     width: "1.9%",
     id: counter.name, // Assuming counter.name is globally unique
     name: counter.name,
-    stackPositionId: positionId, 
+    stackPositionId: positionId,
   }
   return counterData
 }
 
-function Stacks({ controller }) {
+function Stacks({ controller, currentScale }) {
   const [stackArray, setStackArray] = useState([])
 
   const generateAllStacks = useCallback(() => {
     console.log("Regenerating all stacks due to controller change or initial load.")
     const newStackArray = [] // Array of objects containing province info and counters
     for (const province of PROVINCES) {
-      const counters = controller.getCountersInProvince(province.name);
-      const provinceStack = new Array(); // All counters for this province
+      const counters = controller.getCountersInProvince(province.name)
+      const provinceStack = new Array() // All counters for this province
       for (const counter of counters) {
-        provinceStack.push(createStackData(province, counter));
+        provinceStack.push(createStackData(province, counter))
       }
       // Push an object containing both the counters data and the province details
       const p = controller.getProvince(province.name)
@@ -48,27 +48,30 @@ function Stacks({ controller }) {
       if (p !== undefined) {
         gold = p.gold
       }
-      console.log(">>>>>>>PROVINCE=", p)
-      newStackArray.push({ 
-          provinceName: province.name, 
-          provinceGold: gold,
-          counters: provinceStack 
-      }); 
+      newStackArray.push({
+        provinceName: province.name,
+        provinceGold: gold,
+        counters: provinceStack,
+        baseTop: province.top,
+        baseLeft: province.left,
+      })
     }
     setStackArray(newStackArray)
   }, [controller])
 
   useEffect(() => {
     generateAllStacks()
-  }, [generateAllStacks]) 
+  }, [generateAllStacks])
 
   const renderedStacks = useMemo(() => {
     // We map over the enriched stack data
+    
     return stackArray.map((stackData, i) => {
+
       // Pass the province info and the counters array as a single 'provinceData' prop
-      return <Stack key={i} provinceData={stackData} />
+      return <Stack key={i} provinceData={stackData} currentScale={currentScale}/>
     })
-  }, [stackArray]) 
+  }, [stackArray, currentScale])
 
   return <>{renderedStacks}</>
 }

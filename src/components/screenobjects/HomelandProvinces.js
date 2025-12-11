@@ -1,59 +1,44 @@
 import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 
-export const PROVINCES = [
-  {
-    id: 1,
-    name: GlobalUnitsModel.PROVINCE.PANNONIA_INFERIOR,
-    info: "Region: Moesia",
-    centerX: 2550,
-    centerY: 1513,
-    radius: 87,
-    top: "42.8%",
-    left: "47.0%",
-  },
-  {
-    id: 2,
-    name: GlobalUnitsModel.PROVINCE.HIBERNIA,
-    info: "Region: Britannia",
-    centerX: 1095,
-    centerY: 313,
-    radius: 87,
-     top: 6.5,
-    left: 15.2,
-  },
+export const HOMELAND_PROVINCES = [
+  // {
+  //   id: 1,
+  //   name: GlobalUnitsModel.PROVINCE.PANNONIA_INFERIOR,
+  //   info: "Region: Moesia",
+  //   centerX: 2550,
+  //   centerY: 1513,
+  //   radius: 87,
+  //   top: "42.8%",
+  //   left: "47.0%",
+  // },
+  // {
+  //   id: 2,
+  //   name: GlobalUnitsModel.PROVINCE.HIBERNIA,
+  //   info: "Region: Britannia",
+  //   centerX: 1095,
+  //   centerY: 313,
+  //   radius: 87,
+  //    top: 6.5,
+  //   left: 15.2,
+  // },
 
   //   // Add more circles with their specific center coordinates (in image's natural pixels)
 
   {
-    id: 3,
-    name: GlobalUnitsModel.PROVINCE.BRITANNIA_INFERIOR,
+    id: 1,
+    name: GlobalUnitsModel.HOMELAND_PROVINCE.BRITISH,
     info: "Region: Britannia",
 
     // TO DO REMOVE 
-
-    // Might need the circle to highlight certain subset
-    // of provinces
-
-    // OR might we use transparent buttons???
-    
     centerX: 1413,
     centerY: 547,
     radius: 87,
     // ---------------
 
-    top: 13.5,
-    left: 25.2,
+    top: 15.5,
+    left: 18.2,
   },
-  {
-    id: 4,
-    name: GlobalUnitsModel.PROVINCE.CALEDONIA,
-    info: "Region: Caledonia",
-    // centerX: 1365,
-    // centerY: 240,
-    // radius: 87,
-    top: 7.1,
-    left: 26.2,
-  },
+ 
 ]
 
 export const TOP_LEFT = 0
