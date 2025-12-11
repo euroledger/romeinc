@@ -43,25 +43,25 @@ const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
 
       let hoveredCircle = null
 
-      for (const circle of circlesList) {
-        if (isMouseInCircle(mouseX_Canvas, mouseY_Canvas, circle)) {
-          hoveredCircle = circle
-          break
-        }
-      }
+      // for (const circle of circlesList) {
+      //   if (isMouseInCircle(mouseX_Canvas, mouseY_Canvas, circle)) {
+      //     hoveredCircle = circle
+      //     break
+      //   }
+      // }
 
-      if (hoveredCircle) {
-        document.body.style.cursor = "pointer"
-        setActiveCircle({
-          data: hoveredCircle,
-          // CHANGED: Store VIEWPORT coordinates (clientX/Y) for fixed positioning
-          x: event.clientX,
-          y: event.clientY,
-        })
-      } else {
-        document.body.style.cursor = "default"
-        setActiveCircle(null)
-      }
+      // if (hoveredCircle) {
+      //   document.body.style.cursor = "pointer"
+      //   setActiveCircle({
+      //     data: hoveredCircle,
+      //     // CHANGED: Store VIEWPORT coordinates (clientX/Y) for fixed positioning
+      //     x: event.clientX,
+      //     y: event.clientY,
+      //   })
+      // } else {
+      //   document.body.style.cursor = "default"
+      //   setActiveCircle(null)
+      // }
     },
     [circlesList, isMouseInCircle, ref]
   )
@@ -82,9 +82,9 @@ const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Draw all circles and rectangles from the list (Original drawing code)
-      drawCircles(ctx, circlesList)
-      drawRectangles(ctx, rectList)
-      drawHomelandProvinceSpaces(ctx, squareList)
+      // drawCircles(ctx, circlesList)
+      // drawRectangles(ctx, rectList)
+      // drawHomelandProvinceSpaces(ctx, squareList)
       setBoardReady()
     }
 

@@ -1,16 +1,16 @@
 import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 
 export const PROVINCES = [
-  {
-    id: 1,
-    name: GlobalUnitsModel.PROVINCE.PANNONIA_INFERIOR,
-    info: "Region: Moesia",
-    centerX: 2550,
-    centerY: 1513,
-    radius: 87,
-    top: "42.8%",
-    left: "47.0%",
-  },
+  // {
+  //   id: 1,
+  //   name: GlobalUnitsModel.PROVINCE.PANNONIA_INFERIOR,
+  //   info: "Region: Moesia",
+  //   centerX: 2550,
+  //   centerY: 1513,
+  //   radius: 87,
+  //   top: "42.8%",
+  //   left: "47.0%",
+  // },
   {
     id: 2,
     name: GlobalUnitsModel.PROVINCE.HIBERNIA,
@@ -18,8 +18,8 @@ export const PROVINCES = [
     centerX: 1095,
     centerY: 313,
     radius: 87,
-     top: 6.5,
-    left: 15.2,
+     top: 9.5,
+    left: 21.0,
   },
 
   //   // Add more circles with their specific center coordinates (in image's natural pixels)
@@ -35,14 +35,14 @@ export const PROVINCES = [
     // of provinces
 
     // OR might we use transparent buttons???
-    
+
     centerX: 1413,
     centerY: 547,
     radius: 87,
     // ---------------
 
-    top: 13.5,
-    left: 25.2,
+    top: 16.7,
+    left: 27.2,
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ export const PROVINCES = [
     // centerX: 1365,
     // centerY: 240,
     // radius: 87,
-    top: 7.1,
+    top: 7.4,
     left: 26.2,
   },
 ]

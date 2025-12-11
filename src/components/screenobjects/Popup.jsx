@@ -46,10 +46,11 @@ function Popup({ counters, basePosition, provinceName, provinceGold, flipDirecti
     >
       <div style={{ fontWeight: "bold", marginBottom: "8px" }}>
         <div style={{ marginBottom: "2px", fontSize: "1.3rem", fontWeight: "700" }}>{provinceName}</div>
-
-        <div style={{ borderBottom: "1px solid white", paddingTop: "10px", paddingBottom: "16px" }}>
-          Gold: {provinceGold}
-        </div>
+        {provinceGold && (
+          <div style={{ borderBottom: "1px solid white", paddingTop: "10px", paddingBottom: "16px" }}>
+            Gold: {provinceGold}
+          </div>
+        )}
       </div>
 
       <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>

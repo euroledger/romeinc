@@ -35,8 +35,9 @@ export const HOMELAND_PROVINCES = [
     radius: 87,
     // ---------------
 
-    top: 15.5,
-    left: 18.2,
+    top: 18.9,
+    left: 22.2,
+    // width: 
   },
  
 ]

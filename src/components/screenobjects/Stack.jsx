@@ -10,8 +10,7 @@ const TOP_THRESHOLD_PERCENT = 20
 // Set a timeout duration for the animation (must match CSS transition time in Popup.css)
 const ANIMATION_TIMEOUT = 300
 
-function Stack({ provinceData, currentScale  }) {
-
+function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   // We no longer need hoverBasePosition state as it's derived from useMemo
@@ -43,6 +42,29 @@ function Stack({ provinceData, currentScale  }) {
   // Check if the stack is near the top edge based on the stable position
   const isNearTopEdge = stableAnchorPosition.top < TOP_THRESHOLD_PERCENT
 
+  // --- NEW ANCHOR COMPONENT ---
+  const HoverAnchor = memo(({ stableAnchorPosition, areaWidth, areaHeight, onMouseEnter, onMouseLeave }) => {
+    const style = {
+      position: "absolute",
+      top: `${stableAnchorPosition.top}%`,
+      left: `${stableAnchorPosition.left}%`,
+      width: `${areaWidth}%`,
+      height: `${areaHeight}%`,
+      transform: "translate(-50%, -50%)",
+      backgroundColor: "rgba(75, 60, 52, 0.6)",
+
+      zIndex: 100, // Above canvas
+      cursor: "pointer",
+      // backgroundColor: "rgba(0, 255, 0, 0.3)", // Debug color for the anchor div
+    }
+    // This div captures all mouse events for the province area
+    return <div style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
+  })
+
+  // *** FIX: Add display name ***
+  HoverAnchor.displayName = "HoverAnchor"
+
+  // ----------------------------
   const renderedCounters = useMemo(() => {
     const groups = {}
     provinceData.counters.forEach((counterData) => {
@@ -65,74 +87,53 @@ function Stack({ provinceData, currentScale  }) {
             index={i}
             offsetAmount={OFFSET_AMOUNT_PX}
             onDoubleClick={toggleExpand}
-            // Hover handlers are managed by the parent div, not individual counters
+            // Handlers passed to every counter for hover detection
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            currentScale={currentScale}
           />
         )
       })
     })
-  }, [provinceData.counters, OFFSET_AMOUNT_PX, toggleExpand])
+  }, [provinceData.counters, OFFSET_AMOUNT_PX, toggleExpand, currentScale, handleMouseEnter, handleMouseLeave])
 
-  const hoverAreaStyle = useMemo(() => {
-    if (provinceData.counters.length === 0) {
-      return {
-        position: "absolute",
-        top: `${stableAnchorPosition.top}%`,
-        left: `${stableAnchorPosition.left}%`,
-        width: "3.6%",
-        zIndex: 100,
-        cursor: "pointer",
-        height: "5.6%", // Example hoverable area for empty space
-        transform: "translate(-50%, -50%)", // Center the hover area on the anchor
-      }
-    }
-    // If not empty, the counters themselves capture the hover events implicitly
-    // via Counter.jsx, so we don't need a wrapper style here
-    return {}
-  }, [provinceData.counters, stableAnchorPosition])
-
-      console.log(("STACK", provinceData.provinceName, "SCALE=", currentScale))
-
+  const PopupComponent = (
+    <CSSTransition in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
+      <Popup
+        provinceName={provinceData.provinceName}
+        provinceGold={provinceData.provinceGold}
+        counters={provinceData.counters}
+        basePosition={stableAnchorPosition}
+        flipDirection={isNearTopEdge}
+        currentScale={currentScale}
+      />
+    </CSSTransition>
+  )
   if (renderedCounters.length === 0) {
     return (
-      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={hoverAreaStyle}>
-        {renderedCounters}
-
-        <CSSTransition in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
-          <Popup
-            provinceName={provinceData.provinceName}
-            provinceGold={provinceData.provinceGold}
-            counters={provinceData.counters}
-            basePosition={stableAnchorPosition}
-            flipDirection={isNearTopEdge}
-            currentScale={currentScale}
-          />
-        </CSSTransition>
-      </div>
+      <>
+        <HoverAnchor
+          stableAnchorPosition={stableAnchorPosition}
+          areaWidth={areaWidth}
+          areaHeight={areaHeight}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
+        {PopupComponent}
+      </>
     )
   } else {
-    console.log("************************ QUACK *************************** currentScale=", currentScale)
     return (
-      // Attach hover handlers to this main wrapper div for the entire stack area
-      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div>
+        <HoverAnchor
+          stableAnchorPosition={stableAnchorPosition}
+          areaWidth={areaWidth}
+          areaHeight={areaHeight}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
         {renderedCounters}
-
-        {/* Use CSSTransition to manage the fade */}
-        <CSSTransition
-          in={isHovered} // 'in' prop toggles visibility/animation state
-          timeout={ANIMATION_TIMEOUT}
-          classNames="popup" // Prefixes CSS classes (popup-enter, popup-enter-active, etc.)
-          unmountOnExit // Removes the component entirely when finished exiting
-        >
-          {/* CSSTransition expects the component to animate inside it */}
-          <Popup
-            provinceName={provinceData.provinceName}
-            provinceGold={provinceData.provinceGold}
-            counters={provinceData.counters}
-            basePosition={stableAnchorPosition}
-            flipDirection={isNearTopEdge}
-            currentScale={currentScale}
-          />
-        </CSSTransition>
+        {PopupComponent}
       </div>
     )
   }
