@@ -9,7 +9,7 @@ const BORDER_RADIUS_PX = 8
 
 const MIN_POPUP_WIDTH_PX = 200
 
-function Popup({ counters, basePosition, provinceName, provinceGold, flipDirection, currentScale }) {
+function Popup({ counters, basePosition, provinceName, provinceHomeland, provinceGold, provinceCommand, flipDirection, currentScale }) {
   const topOffset = flipDirection ? POPUP_OFFSET_Y_PX : -POPUP_OFFSET_Y_PX
   const transformValue = `scale(${1 / currentScale}) translateY(${flipDirection ? "0%" : "-100%"})`
 
@@ -21,6 +21,11 @@ function Popup({ counters, basePosition, provinceName, provinceGold, flipDirecti
     })
   }, [counters])
 
+  let backgroundColor = "rgba(75, 60, 52, 0.9)"
+
+  if (provinceHomeland) {
+    backgroundColor = "rgba(121, 122, 63, 0.9)"
+  }
   return (
     <div
       className="popup-container"
@@ -28,12 +33,11 @@ function Popup({ counters, basePosition, provinceName, provinceGold, flipDirecti
         position: "absolute",
         top: `calc(${basePosition.top}% + ${topOffset}px)`,
         left: `calc(${basePosition.left}% + ${POPUP_OFFSET_X_PX}px)`,
-        backgroundColor: "rgba(75, 60, 52, 0.9)",
+        backgroundColor: backgroundColor,
         border: "1px solid black",
         padding: "16px",
         zIndex: 10000,
         boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-        // transform: transformDirection,
         color: "white",
         fontFamily: "Cinzel, serif",
         borderRadius: `${BORDER_RADIUS_PX}px`,
@@ -45,10 +49,20 @@ function Popup({ counters, basePosition, provinceName, provinceGold, flipDirecti
       }}
     >
       <div style={{ fontWeight: "bold", marginBottom: "8px" }}>
-        <div style={{ marginBottom: "2px", fontSize: "1.3rem", fontWeight: "700" }}>{provinceName}</div>
+        <div style={{ marginBottom: "2px", fontSize: "1.3rem", fontWeight: "600" }}>{provinceName}</div>
         {provinceGold && (
+          <div style={{ borderBottom: "none", paddingTop: "10px", paddingBottom: "6px" }}>
+            Gold: <strong>{provinceGold}</strong>
+          </div>
+        )}
+        {provinceCommand && (
+          <div style={{ borderBottom: "1px solid white", paddingBottom: "16px" }}>
+            Command: <strong>{provinceCommand}</strong>
+          </div>
+        )}
+         {provinceHomeland && (
           <div style={{ borderBottom: "1px solid white", paddingTop: "10px", paddingBottom: "16px" }}>
-            Gold: {provinceGold}
+            (Homeland)
           </div>
         )}
       </div>

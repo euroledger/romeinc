@@ -42,6 +42,12 @@ export default class Scenario27BC extends BaseScenario {
           { name: GlobalUnitsModel.LEADER.BOUDICCA },
         ],
       },
+       {
+        province: GlobalUnitsModel.HOMELAND_PROVINCE.BRITISH,
+        counters: [
+          { name: GlobalUnitsModel.LEADER.BOUDICCA },
+        ],
+      },
     ])
   }
 }

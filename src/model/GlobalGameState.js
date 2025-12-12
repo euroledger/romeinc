@@ -24,4 +24,10 @@ export default class GlobalGameState {
   static praetorianGuard = 0
   static imperialCavalry = 0
   static romanwall = 0
+
+  static prestige = 11
+  static unrest = 32
+  static pay = 0
+  static gold = 11
+  static gameTurn = 1
 }

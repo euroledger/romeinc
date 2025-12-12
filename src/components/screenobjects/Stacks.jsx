@@ -45,12 +45,15 @@ function Stacks({ controller, currentScale }) {
       const p = controller.getProvince(province.name)
 
       let gold = 0
+      let command
       if (p !== undefined) {
         gold = p.gold
+        command = p.command
       }
       newStackArray.push({
         provinceName: province.name,
         provinceGold: gold,
+        provinceCommand: command,
         counters: provinceStack,
         baseTop: province.top,
         baseLeft: province.left,

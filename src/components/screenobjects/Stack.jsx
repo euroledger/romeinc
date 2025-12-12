@@ -8,7 +8,7 @@ import Popup from "./Popup"
 // Define the threshold (e.g., if the stack is within the top 20% of the board, flip the popup direction)
 const TOP_THRESHOLD_PERCENT = 20
 // Set a timeout duration for the animation (must match CSS transition time in Popup.css)
-const ANIMATION_TIMEOUT = 300
+const ANIMATION_TIMEOUT = 700
 
 function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -51,7 +51,7 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
       width: `${areaWidth}%`,
       height: `${areaHeight}%`,
       transform: "translate(-50%, -50%)",
-      backgroundColor: "rgba(75, 60, 52, 0.6)",
+      // backgroundColor: "rgba(75, 60, 52, 0.6)",
 
       zIndex: 100, // Above canvas
       cursor: "pointer",
@@ -65,6 +65,7 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   HoverAnchor.displayName = "HoverAnchor"
 
   // ----------------------------
+
   const renderedCounters = useMemo(() => {
     const groups = {}
     provinceData.counters.forEach((counterData) => {
@@ -74,6 +75,13 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
       }
       groups[key].push(counterData)
     })
+    let COMP_LEFT_PERCENT = 1.8
+    let COMP_TOP_PERCENT = 2.6
+
+    if (provinceData.homeland) {
+      COMP_LEFT_PERCENT = 0.9
+      COMP_TOP_PERCENT = 1.6
+    }
 
     return Object.keys(groups).flatMap((positionIdKey) => {
       const countersInVisualStack = groups[positionIdKey]
@@ -83,6 +91,8 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
         return (
           <Counter
             key={key}
+            leftOffset={COMP_LEFT_PERCENT}
+            topOffset={COMP_TOP_PERCENT}
             counterData={counterData}
             index={i}
             offsetAmount={OFFSET_AMOUNT_PX}
@@ -95,13 +105,15 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
         )
       })
     })
-  }, [provinceData.counters, OFFSET_AMOUNT_PX, toggleExpand, currentScale, handleMouseEnter, handleMouseLeave])
+  }, [OFFSET_AMOUNT_PX, toggleExpand, currentScale, handleMouseEnter, handleMouseLeave, provinceData])
 
   const PopupComponent = (
     <CSSTransition in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
       <Popup
         provinceName={provinceData.provinceName}
         provinceGold={provinceData.provinceGold}
+        provinceHomeland={provinceData.homeland}
+        provinceCommand={provinceData.provinceCommand}
         counters={provinceData.counters}
         basePosition={stableAnchorPosition}
         flipDirection={isNearTopEdge}

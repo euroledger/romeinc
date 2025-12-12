@@ -41,6 +41,7 @@ function SingleStacks({ controller, currentScale }) {
         counters: provinceStack,
         baseTop: province.top,
         baseLeft: province.left,
+        homeland: p.homeland
       })
     }
     setStackArray(newStackArray)
@@ -54,8 +55,6 @@ function SingleStacks({ controller, currentScale }) {
     // We map over the enriched stack data
     
     return stackArray.map((stackData, i) => {
-
-      // Pass the province info and the counters array as a single 'provinceData' prop
       return <Stack key={i} provinceData={stackData} currentScale={currentScale} areaHeight={3.6} areaWidth={2.5}/>
     })
   }, [stackArray, currentScale])

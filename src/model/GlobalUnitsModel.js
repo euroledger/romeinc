@@ -221,9 +221,9 @@ export default class GlobalUnitsModel {
     PONTIC_FLEET: "PONTIC FLEET",
     PRAETORIAN_FLEET_1: "PRAETORIAN FLEET 1",
     PRAETORIAN_FLEET_2: "PRAETORIAN FLEET ",
-    SYRIAN_FLEET: "SYRIAN FLEET"
+    SYRIAN_FLEET: "SYRIAN FLEET",
   }
-  
+
   static HOMELAND_PROVINCE = {
     BRITISH: "BRITISH",
     CANTABRIAN: "CANTABRIAN",
@@ -270,7 +270,7 @@ export default class GlobalUnitsModel {
     LUGDUNENSIS: "Lugdudensis",
     BELGICA: "Belgica",
     GERMANIA_INFERIOR: "Germania Inferior",
-    GERMANIA_SUPERIOR: "Germania Superior", 
+    GERMANIA_SUPERIOR: "Germania Superior",
     FRISIA: "Frisia",
     GERMANIA_MAGNA: "Germania Magna",
     AGRI_DECUMATES: "Agri Decumates",
@@ -341,8 +341,7 @@ export default class GlobalUnitsModel {
     RAVENNA: "Ravenna",
     PISAE: "Pisae",
     MEDIOLANUM: "Mediolanum",
-    ALPES: "Alpes"
-
+    ALPES: "Alpes",
   }
 
   static MAP_ICON = {
@@ -350,9 +349,9 @@ export default class GlobalUnitsModel {
     FLEET: "FLEET",
     GRAIN: "GRAIN",
     SUN: "SUN",
-    PRAETORIAN_GUARD: "PRAETORIAN GUARD"
+    PRAETORIAN_GUARD: "PRAETORIAN GUARD",
   }
-  
+
   static WAR_BOX_TYPE = {
     LEADER: "LEADER",
     WAR: "WAR",
@@ -371,13 +370,13 @@ export default class GlobalUnitsModel {
     VETERAN_FLEET: "VETERAN FLEET",
     WALL: "WALL",
   }
-  
+
   static PROVINCE_TYPE = {
     BARBARIAN: "BARBARIAN",
     ALLIED: "ALLIED",
     VETERAN_ALLIED: "VETERAN ALLIED",
     INSURGENT: "INSURGENT",
-    ROMAN: "ROMAN"
+    ROMAN: "ROMAN",
   }
 
   static CONNECTION_TYPE = {
@@ -385,12 +384,12 @@ export default class GlobalUnitsModel {
     DESERT: "DESERT",
     MOUNTAIN: "MOUNTAIN",
     RIVER_STRAIGHT: "RIVER/STRAIGHT",
-    SEA: "SEA"
+    SEA: "SEA",
   }
 
   static DESTINATION_TYPE = {
     PROVINCE_HOMELAND: "HOMELAND PROVINCE",
-    PROVINCE: "PROVINCE"
+    PROVINCE: "PROVINCE",
   }
 
   static DYNASTY = {
@@ -444,5 +443,28 @@ export default class GlobalUnitsModel {
   static DATE_FORMAT = {
     TRADITIONAL: "TRADITIONAL",
     MODERN: "MODERN",
+  }
+  static TREASURY_TRACK_TYPE = {
+    UNREST: "UNREST",
+    PRESTIGE: "PRESTIGE", 
+    TURN: "TURN",
+    PAY: "PAY",
+    GOLD: "GOLD"
+  }
+
+  static TREASURY_TRACK_MARKER = {
+    PRESTIGE_1: "PRESTIGE x 1",
+    PRESTIGE_MINUS_1: "PRESTIGE x -1",
+    PRESTIGE_10: "PRESTIGE x 10",
+    PRESTIGE_MINUS_10: "PRESTIGE x -10",
+    UNREST_1: "UNREST x 1",
+    UNREST_GT_25: "UNREST > 25",
+    PAY_1: "PAY x 1",
+    PAY_10: "PAY x 10",
+    GOLD_1: "GOLD x 1",
+    GOLD_10: "GOLD x 10",
+    GOLD_MINUS_1: "GOLD x -1",
+    GOLD_PLUS_250: "GOLD + 250",
+    TURN: "TURN",
   }
 }

@@ -2,13 +2,10 @@
 
 import React, { memo } from "react"
 
-function Counter({ counterData, index, offsetAmount, onDoubleClick, onMouseEnter, onMouseLeave }) {
+function Counter({ counterData, index, offsetAmount, onDoubleClick, onMouseEnter, onMouseLeave, topOffset, leftOffset }) {
   // ... (rest of the component logic remains the same) ...
   const offsetX = index * offsetAmount
   const offsetY = index * -offsetAmount
-
-  const COMP_LEFT_PERCENT = 1.8
-  const COMP_TOP_PERCENT = 2.6
 
   const handleDoubleClick = (event) => {
     event.stopPropagation()
@@ -18,8 +15,8 @@ function Counter({ counterData, index, offsetAmount, onDoubleClick, onMouseEnter
   const counterStyle = {
     position: "absolute",
     width: counterData.width,
-    left: `${counterData.position.left - COMP_LEFT_PERCENT}%`,
-    top: `${counterData.position.top - COMP_TOP_PERCENT}%`,
+    left: `${counterData.position.left - leftOffset}%`,
+    top: `${counterData.position.top - topOffset}%`,
     zIndex: 100 + index,
     display: "block",
     transform: `translate(${offsetX}px, ${offsetY}px)`,

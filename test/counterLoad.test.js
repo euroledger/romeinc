@@ -299,4 +299,15 @@ describe("Counter Load tests", () => {
     counterType = getCounterType(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
     expect(counterType).toEqual(GlobalUnitsModel.ROMAN_UNIT_TYPE.AUXILIA)
   })
+
+  it("loads all treasury track markers", () => {
+    const keysArray = Array.from(counters.trackmarkers.keys())
+    expect(keysArray.length).toEqual(13)
+
+    const pay1 = counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PAY_1)
+    expect(pay1.image).toContain("Shield")
+
+     const gold1 = counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_1)
+    expect(gold1.image).toContain("Coin")
+  })
 })

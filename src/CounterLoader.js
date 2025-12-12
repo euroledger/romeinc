@@ -1,6 +1,7 @@
 import { loadStatesmen } from "./counters/StatesmanLoader"
 import { loadLeaders } from "./counters/LeaderLoader"
 import { loadWars } from "./counters/WarLoader"
+import { loadTreasuryTrackMarkers } from "./counters/TreasuryMarkerLoader"
 import {
   loadRomanLegions,
   loadRomanAuxiliaries,
@@ -42,12 +43,16 @@ export function loadCounters(controller) {
   loadVeteranAlliedProvinceMarkers(provincemarkers)
   loadInsurgentProvinceMarkers(provincemarkers)
 
+  let trackmarkers = new Map()
+  loadTreasuryTrackMarkers(trackmarkers)
+
   counters = {
     statesmen: statesmen,
     leaders: leaders,
     wars: wars,
     romanunits: romanunits,
     provincemarkers: provincemarkers,
+    trackmarkers: trackmarkers
   }
 
   controller.setCounters(counters)
