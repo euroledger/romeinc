@@ -76,7 +76,23 @@ function CountersPanel(props) {
     }
   })
 
-  const allMarkers = alliedM.concat(valliedM).concat(insurgentM).concat(trackM)
+  const loyalM = props.othermarkers.map((item) => {
+    return {
+      name: item.name,
+      url: item.image,
+      alt: item.name,
+    }
+  })
+
+  const rebelM = props.othermarkers.map((item) => {
+    return {
+      name: item.name,
+      url: item.imageBack,
+      alt: item.name,
+    }
+  })
+
+  const allMarkers = alliedM.concat(valliedM).concat(insurgentM).concat(trackM).concat(loyalM).concat(rebelM)
 
   const promoteOrDemote = () => {
     for (const unit of props.romanunits) {

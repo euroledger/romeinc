@@ -33,7 +33,4 @@ export function GameStateProvider({ children }) {
   )
 }
 
-// helper for non-context components
-export function forceGlobalRender() {
-  if (externalRender) externalRender()
-}
+

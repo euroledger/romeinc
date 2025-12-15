@@ -15,6 +15,7 @@ function Dialogs() {
   )
   const insurgentMarkers = provincemarkers.filter((item) => item.unitType === GlobalUnitsModel.PROVINCE_TYPE.INSURGENT)
   const trackmarkers = Array.from(GlobalInit.counters.trackmarkers.values())
+  const othermarkers = Array.from(GlobalInit.counters.othermarkers.values())
 
   const { modalShow, setModalShow } = useContext(DialogContext)
   return (
@@ -30,6 +31,7 @@ function Dialogs() {
       veteranAlliedMarkers={veteranAlliedMarkers}
       insurgentMarkers={insurgentMarkers}
       trackmarkers={trackmarkers}
+      othermarkers={othermarkers}
     ></CountersPanel>
   )
 }

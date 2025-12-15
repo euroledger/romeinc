@@ -446,10 +446,10 @@ export default class GlobalUnitsModel {
   }
   static TREASURY_TRACK_TYPE = {
     UNREST: "UNREST",
-    PRESTIGE: "PRESTIGE", 
+    PRESTIGE: "PRESTIGE",
     TURN: "TURN",
     PAY: "PAY",
-    GOLD: "GOLD"
+    GOLD: "GOLD",
   }
 
   static TREASURY_TRACK_MARKER = {
@@ -467,4 +467,21 @@ export default class GlobalUnitsModel {
     GOLD_PLUS_250: "GOLD + 250",
     TURN: "TURN",
   }
+
+  static LOYALTY_TYPE = {
+    LOYAL: "LOYAL",
+    REBEL: "REBEL"
+  }
+  // static MARKER = {
+  //   AEGYPTUS: "LOYAL AEGYPTUS",
+  //   AFRICA: "LOYAL AFRICA",
+  //   BRITANNIA: "LOYAL BRITANNIA",
+  //   GALLIA: "LOYAL GALLIA",
+  //   HISPANIA: "LOYAL HISPANIA",
+  //   ITALIA: "LOYAL ITALIA",
+  //   MOESIA: "LOYAL MOESIA",
+  //   PANNONIA: "LOYAL PANNONIA",
+  //   PONTICA: "LOYAL PONTICA",
+  //   SYRIA: "LOYAL SYRIA",
+  // }
 }

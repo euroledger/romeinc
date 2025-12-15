@@ -5,7 +5,6 @@ import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 import GlobalGameState from "../../model/GlobalGameState"
 import GlobalInit from "../../model/GlobalInit"
 import ScenarioSetupFactory from "../../model/scenarios/ScenarioSetupFactory"
-import { forceGlobalRender } from "../../GameStateProvider"
 import "./Splash.css"
 
 function SplashScreen(props) {

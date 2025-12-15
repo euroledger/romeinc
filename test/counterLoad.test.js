@@ -28,6 +28,20 @@ describe("Counter Load tests", () => {
     expect(keysArray.length).toEqual(45)
   })
 
+  it("loads all miscellaneous markers", () => {
+    const keysArray = Array.from(counters.othermarkers.keys())
+    expect(keysArray.length).toEqual(16)
+
+    const event2 = counters.othermarkers.get("EVENT 2")
+    expect(event2.image).toContain("Event")
+
+    const italia = counters.othermarkers.get(GlobalUnitsModel.COMMAND.ITALIA)
+    expect(italia.ltype).toEqual(GlobalUnitsModel.LOYALTY_TYPE.LOYAL)
+
+    italia.setType(GlobalUnitsModel.LOYALTY_TYPE.REBEL)
+    expect(italia.ltype).toEqual(GlobalUnitsModel.LOYALTY_TYPE.REBEL)
+  })
+
   it("loads all roman legions", () => {
     const keysArray = Array.from(counters.romanunits.keys())
     expect(keysArray.length).toEqual(88)
@@ -250,7 +264,7 @@ describe("Counter Load tests", () => {
     const pay1 = counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PAY_1)
     expect(pay1.image).toContain("Shield")
 
-     const gold1 = counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_1)
+    const gold1 = counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_1)
     expect(gold1.image).toContain("Coin")
   })
 })

@@ -10,6 +10,7 @@ import GlobalUIConstants from "../../model/GlobalUIConstants"
 import GlobalInit from "../../model/GlobalInit"
 import GlobalGameState from "../../model/GlobalGameState"
 import GlobalUnitsModel from "../../model/GlobalUnitsModel"
+import { forceGlobalRender } from "../../GlobalRenderPoke"
 
 export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
   const { gameState, setGameState, render } = useGameState()
@@ -33,7 +34,7 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
       GlobalInit.controller.demoteRomanUnit(GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA)
     }
     console.log("2", GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA, "image=", unit.image, "unit type=", unit.unitType)
-    render()
+    forceGlobalRender()
   }
   const font = "0.8rem"
   const zoomButtonFont = "1.0rem"

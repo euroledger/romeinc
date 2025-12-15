@@ -17,6 +17,8 @@ import {
   loadVeteranAlliedProvinceMarkers,
 } from "./counters/ProvinceMarkerLoader"
 
+import { loadEventMarkers, loadLoyalMarkers } from "./counters/OtherMarkerLoader"
+
 export function loadCounters(controller) {
   let counters
 
@@ -46,13 +48,19 @@ export function loadCounters(controller) {
   let trackmarkers = new Map()
   loadTreasuryTrackMarkers(trackmarkers)
 
+  let othermarkers = new Map()
+  loadEventMarkers(othermarkers)
+  loadLoyalMarkers(othermarkers)
+
+
   counters = {
     statesmen: statesmen,
     leaders: leaders,
     wars: wars,
     romanunits: romanunits,
     provincemarkers: provincemarkers,
-    trackmarkers: trackmarkers
+    trackmarkers: trackmarkers,
+    othermarkers: othermarkers
   }
 
   controller.setCounters(counters)

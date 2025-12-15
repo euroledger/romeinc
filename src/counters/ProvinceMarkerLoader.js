@@ -12,6 +12,8 @@ export function loadBarbarianProvinceMarkers(counters) {
   }
 }
 
+
+
 export function loadAlliedProvinceMarkers(counters) {
   for (let i = 0; i < 34; i++) {
     const allied = new ProvinceMarker({
