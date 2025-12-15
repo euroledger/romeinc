@@ -9,7 +9,7 @@ export default class ScenarioSetupFactory {
   static setupScenario(selectedScenario) {
     let scenario
 
-    console.log("BEZINGA! GlobalInit.controller=", GlobalInit.controller)
+    console.log("BEZINGA! scenario=", scenario)
 
     switch (selectedScenario) {
       case GlobalUnitsModel.SCENARIO.BC_27: {

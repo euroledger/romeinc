@@ -5,19 +5,22 @@ import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 import GlobalGameState from "../../model/GlobalGameState"
 import GlobalInit from "../../model/GlobalInit"
 import ScenarioSetupFactory from "../../model/scenarios/ScenarioSetupFactory"
+import { forceGlobalRender } from "../../GameStateProvider"
 import "./Splash.css"
 
 function SplashScreen(props) {
   const { setSplashShow, ...rest } = props
   const [showButtons, setShowButtons] = useState(true)
   const [selectedScenario, setSelectedScenario] = useState("27BCE")
+  const [format, setFormat] = useState(GlobalGameState.dateFormat) // 👈 local mirror
 
   const toggleDateFormat = () => {
+    console.log("FLIP DATE FORMAT")
     GlobalGameState.dateFormat =
       GlobalGameState.dateFormat === GlobalUnitsModel.DATE_FORMAT.TRADITIONAL
         ? GlobalUnitsModel.DATE_FORMAT.MODERN
         : GlobalUnitsModel.DATE_FORMAT.TRADITIONAL
-    GlobalGameState.updateGlobalState()
+    setFormat(GlobalGameState.dateFormat) // ✅ triggers re-render of SplashScreen
   }
 
   const loady = () => {
@@ -30,6 +33,7 @@ function SplashScreen(props) {
 
   const beginGameHandler = () => {
     ScenarioSetupFactory.setupScenario(selectedScenario)
+    console.log("GET RID OF SPLASH SCREEN...")
     setSplashShow(false)
   }
 
@@ -125,7 +129,7 @@ function SplashScreen(props) {
                         onChange={handleChange}
                       />
                       {/* {useBCE_CE ? scenario.labelBCECE : scenario.labelBCAD} */}
-                      {GlobalGameState.dateFormat === GlobalUnitsModel.DATE_FORMAT.MODERN
+                      {format === GlobalUnitsModel.DATE_FORMAT.MODERN
                         ? scenario.longlabelBCECE
                         : scenario.longlabelBCAD}
                     </label>
@@ -161,10 +165,7 @@ function SplashScreen(props) {
                     alignItems: "center",
                   }}
                 >
-                  <button
-                    onClick={beginGameHandler}
-                    className="toggle-button2"
-                  >
+                  <button onClick={beginGameHandler} className="toggle-button2">
                     BEGIN GAME
                   </button>
                 </div>
