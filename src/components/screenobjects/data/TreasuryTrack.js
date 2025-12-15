@@ -1,4 +1,4 @@
-import GlobalUnitsModel from "../../model/GlobalUnitsModel"
+import GlobalUnitsModel from "../../../model/GlobalUnitsModel"
 
 export const TREASURY_TRACK_START_BOX = {
   // This is only the base position for Row 1 (Index 0)

@@ -11,6 +11,7 @@ export default class Scenario27BC extends BaseScenario {
 
   setUpWars() {
     console.log("SCENARION 27BC...setUpWars")
+    
     GlobalGameState.warsBox.push({ type: GlobalUnitsModel.WAR_BOX_TYPE.LEADER, name: GlobalUnitsModel.LEADER.ARMINIUS })
     GlobalGameState.warsBox.push({ type: GlobalUnitsModel.WAR_BOX_TYPE.LEADER, name: GlobalUnitsModel.LEADER.BATO })
 

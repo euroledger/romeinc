@@ -17,6 +17,25 @@ export default class Controller {
   constructor() {
     this.emperorsMap = new Map()
     this.locationMap = new Map() // map location name -> list of counters
+    // subscriber set
+    this.listeners = new Set()
+  }
+
+  // --- subscription API ---
+  subscribe(listener) {
+    this.listeners.add(listener)
+    // return an unsubscribe function
+    return () => this.listeners.delete(listener)
+  }
+
+  notify() {
+    for (const l of this.listeners) {
+      l(this) // pass the controller itself (or a snapshot)
+    }
+  }
+
+  getRomanUnit(name) {
+    return this.counters.romanunits.get(name)
   }
 
   setCounters(counters) {
@@ -99,6 +118,7 @@ export default class Controller {
     let unit = this.counters.romanunits.get(name)
     unit = unit.promote()
     this.counters.romanunits.set(name, unit)
+    this.notify() // tell subscribers something changed
   }
 
   demoteRomanUnit(name) {

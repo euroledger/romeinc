@@ -6,17 +6,19 @@ import { windowsInit } from "./utils"
 import { Controls } from "./components/mainscreen/Controls"
 import Board from "./components/mainscreen/Board"
 import generateCroppedModalImage from "./ImageCrop"
-import { DialogContext } from "./Context"
+import { DialogContext } from "./GameStateContext"
+import { GameStateProvider } from "./GameStateProvider"
 import "./App.css"
 import Dialogs from "./components/dialogs/Dialogs"
 import SplashScreen from "./components/dialogs/SplashScreen"
 import GlobalGameState from "./model/GlobalGameState"
 import CroppedBoardPanel from "./components/dialogs/CroppedBoardPanel"
+import GlobalInit from "./model/GlobalInit"
 
-export default App
 
-export function App() {
-  const [gameState, setGameState] = useState(false)
+GlobalInit.init()   // ✅ initialize before React renders anything
+
+export default function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [zoomedImageSrc, setZoomedImageSrc] = useState("")
   const [isBoardReady, setIsBoardReady] = useState(false) // Add this state
@@ -25,6 +27,7 @@ export function App() {
 
   // We need a ref in the App component to access the Canvas component's underlying canvas element
   const canvasRef = useRef(null)
+
 
   // --- Modal Management Functions ---
   const openModal = (imageSrc) => {
@@ -51,7 +54,7 @@ export function App() {
   const [modalShow, setModalShow] = useState(false)
 
   function gameStateHandler() {
-    setGameState(!gameState)
+    // force re-render by replacing state with a new object reference
   }
 
   GlobalGameState.stateHandler = gameStateHandler
@@ -84,36 +87,47 @@ export function App() {
 
       {showSplash && <SplashScreen show={showSplash} setSplashShow={setSplashShow}></SplashScreen>}
       {!showSplash && (
-        <TransformWrapper
-          initialScale={1}
-          minScale={0.5}
-          doubleClick={{ disabled: true }}
-          maxScale={6}
-          limitToBounds={false}
-          onTransformed={(e) => handleScaleChange(e)}
-        >
-          <Controls
-            onViewAreaClick={handleViewAreaClick}
-            clicky={bollocks}
-            setnavBarFont={navBarFont}
-            banner={img2}
-          ></Controls>
-          <div>
-            <main className="image-container">
-              <TransformComponent>
-                <DialogContext.Provider
-                  value={{
-                    modalShow: modalShow,
-                    setModalShow,
-                  }}
-                >
-                  <Dialogs></Dialogs>
-                </DialogContext.Provider>
-                <Board canvasRef={canvasRef} zoomPP={zoomPP} image={img1} setBoardReady={setBoardReady}></Board>
-              </TransformComponent>
-            </main>
-          </div>
-        </TransformWrapper>
+        <>
+          <TransformWrapper
+            initialScale={1}
+            minScale={0.5}
+            doubleClick={{ disabled: true }}
+            maxScale={6}
+            limitToBounds={false}
+            onTransformed={(e) => handleScaleChange(e)}
+          >
+            <GameStateProvider>
+              <Controls
+                onViewAreaClick={handleViewAreaClick}
+                clicky={bollocks}
+                setnavBarFont={navBarFont}
+                banner={img2}
+                // setGameState={setGameState}
+              ></Controls>
+              <div>
+                <main className="image-container">
+                  <TransformComponent>
+                    <DialogContext.Provider
+                      value={{
+                        modalShow: modalShow,
+                        setModalShow,
+                      }}
+                    >
+                      <Dialogs></Dialogs>
+                    </DialogContext.Provider>
+                    <Board
+                      // gameState={gameState}
+                      canvasRef={canvasRef}
+                      zoomPP={zoomPP}
+                      image={img1}
+                      setBoardReady={setBoardReady}
+                    ></Board>
+                  </TransformComponent>
+                </main>
+              </div>
+            </GameStateProvider>
+          </TransformWrapper>
+        </>
       )}
     </>
   )

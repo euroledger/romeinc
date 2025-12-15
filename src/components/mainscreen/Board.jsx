@@ -1,5 +1,5 @@
-// Board.jsx
-
+// Board.jsx\
+import { useState } from "react"
 import Canvas from "./Canvas"
 import GlobalInit from "../../model/GlobalInit"
 import Marker from "../buttons/Marker"
@@ -7,8 +7,11 @@ import Stacks from "../screenobjects/Stacks"
 import SingleStacks from "../screenobjects/SingleStacks"
 import TreasuryTrackStacks from "../screenobjects/TreasuryTrackStacks"
 import TestStacks from "../screenobjects/TestStacks"
+import GlobalGameState from "../../model/GlobalGameState"
 
-function Board({ canvasRef, zoomPP, image, setBoardReady }) {
+function Board({ canvasRef, zoomPP, image, setBoardReady, gameState }) {
+
+
   const currentScale = zoomPP.scale
 
   return (
@@ -25,7 +28,7 @@ function Board({ canvasRef, zoomPP, image, setBoardReady }) {
       <Stacks controller={GlobalInit.controller} currentScale={currentScale} />
       <SingleStacks controller={GlobalInit.controller} currentScale={currentScale} />
       {/* <TestStacks controller={GlobalInit.controller} currentScale={currentScale} /> */}
-      <TreasuryTrackStacks controller={GlobalInit.controller} currentScale={currentScale} />
+      <TreasuryTrackStacks gameState={gameState} controller={GlobalInit.controller} currentScale={currentScale} />
     </>
   )
 }

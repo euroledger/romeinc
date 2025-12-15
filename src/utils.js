@@ -1,4 +1,4 @@
-import { BOTTOM_LEFT, BOTTOM_RIGHT, PROVINCES, TOP_LEFT, TOP_RIGHT } from "./components/screenobjects/Provinces"
+import { BOTTOM_LEFT, BOTTOM_RIGHT, PROVINCES, TOP_LEFT, TOP_RIGHT } from "./components/screenobjects/data/Provinces"
 import GlobalGameState from "./model/GlobalGameState"
 import GlobalUnitsModel from "./model/GlobalUnitsModel"
 import GlobalInit from "./model/GlobalInit"
@@ -96,21 +96,8 @@ export function getProvinceByName(name) {
   return province
 }
 
-export function getBoxesFor(boxType) {
-  let box1, box2
-  switch (boxType) {
-    case GlobalUnitsModel.TREASURY_TRACK_TYPE.PRESTIGE:
-      box1 = GlobalGameState.prestige / 10
-      box2 = GlobalGameState.prestige % 10
-      break
-    default:
-      console.error("Unknown Box Type:", boxType)
-  }
-  return { box1, box2 }
-}
-
 export function getImageForCounter(boxType) {
-  let imageSource1, imageSource2
+  let imageSource1, imageSource2, imageSource3
   switch (boxType) {
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.TURN:
       // Return the source string directly for simplicity with the turn logic
@@ -118,27 +105,44 @@ export function getImageForCounter(boxType) {
       break
 
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.PRESTIGE:
-      // Return the source strings for the 1s and 10s markers
-      imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_1).image
-      imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_10).image // Using PRESTIGE_10 which is likely correct
+      if (GlobalGameState.prestige < 0) {
+        imageSource1 = GlobalInit.counters.trackmarkers.get(
+          GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_MINUS_1
+        ).image
+        imageSource2 = GlobalInit.counters.trackmarkers.get(
+          GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_MINUS_10
+        ).image
+      } else {
+        // Return the source strings for the 1s and 10s markers
+        imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_1).image
+        imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_10).image // Using PRESTIGE_10 which is likely correct
+      }
       break
 
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.GOLD:
       // Return the source strings for the 1s and 10s markers
       imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_1).image
       imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_10).image // Using PRESTIGE_10 which is likely correct
+      imageSource3 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_PLUS_250).image // Using PRESTIGE_10 which is likely correct
+
       break
 
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.UNREST:
-      // Return the source strings for the 1s and 10s markers
+      // Return the source strings for the 1s and GT25s markers
       imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.UNREST_1).image
       imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.UNREST_GT_25).image
+      break
+
+    case GlobalUnitsModel.TREASURY_TRACK_TYPE.PAY:
+      // Return the source strings for the 1s and 10s markers
+      imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PAY_1).image
+      imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.PAY_10).image
       break
     default:
       console.error("Unknown Box Type:", boxType)
   }
   // Return consistent object structure
-  return { imageSource1, imageSource2 }
+  return { imageSource1, imageSource2, imageSource3 }
 }
 
 export function getPositionForCounter(counter) {

@@ -1,6 +1,6 @@
 // Stack.jsx
 
-import React, { useMemo, memo, useState, useCallback } from "react"
+import React, { useMemo, memo, useRef, useState, useCallback } from "react"
 import { CSSTransition } from "react-transition-group" // Import CSSTransition
 import Counter from "./Counter"
 import Popup from "./Popup"
@@ -13,6 +13,7 @@ const ANIMATION_TIMEOUT = 700
 function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const nodeRef = useRef(null)
   // We no longer need hoverBasePosition state as it's derived from useMemo
 
   const toggleExpand = useCallback(() => {
@@ -108,7 +109,7 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   }, [OFFSET_AMOUNT_PX, toggleExpand, currentScale, handleMouseEnter, handleMouseLeave, provinceData])
 
   const PopupComponent = (
-    <CSSTransition in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
+    <CSSTransition nodeRef={nodeRef} in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
       <Popup
         provinceName={provinceData.provinceName}
         provinceGold={provinceData.provinceGold}
@@ -118,6 +119,7 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
         basePosition={stableAnchorPosition}
         flipDirection={isNearTopEdge}
         currentScale={currentScale}
+        ref={nodeRef}
       />
     </CSSTransition>
   )

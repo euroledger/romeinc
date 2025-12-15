@@ -1,4 +1,4 @@
-import { PROVINCE_OFFSETS } from "../screenobjects/Provinces"
+import { PROVINCE_OFFSETS } from "../screenobjects/data/Provinces"
 
 export const drawHomelandProvinceSpaces = (ctx, rectList) => {
   rectList.forEach((rectData) => {

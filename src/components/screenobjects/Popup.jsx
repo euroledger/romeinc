@@ -1,39 +1,38 @@
 // Popup.jsx
 
-import React, { memo, useMemo } from "react"
+import React, { memo, useMemo, forwardRef } from "react"
 import "./Popup.css"
 
 const POPUP_OFFSET_Y_PX = 50
 const POPUP_OFFSET_X_PX = 10
 const BORDER_RADIUS_PX = 8
-
 const MIN_POPUP_WIDTH_PX = 200
 
-function Popup({ counters, basePosition, provinceName, provinceHomeland, provinceGold, provinceCommand, flipDirection, currentScale }) {
+const Popup = forwardRef(function Popup(
+  { counters, basePosition, provinceName, provinceHomeland, provinceGold, provinceCommand, flipDirection, currentScale },
+  ref
+) {
   const topOffset = flipDirection ? POPUP_OFFSET_Y_PX : -POPUP_OFFSET_Y_PX
   const transformValue = `scale(${1 / currentScale}) translateY(${flipDirection ? "0%" : "-100%"})`
 
-  // --- ADDED SORTING LOGIC ---
   const sortedCounters = useMemo(() => {
-    // Sort the counters array based on the stackPositionId (0, 1, 2, 3 order)
-    return [...counters].sort((a, b) => {
-      return a.stackPositionId - b.stackPositionId
-    })
+    return [...counters].sort((a, b) => a.stackPositionId - b.stackPositionId)
   }, [counters])
 
   let backgroundColor = "rgba(75, 60, 52, 0.9)"
-
   if (provinceHomeland) {
     backgroundColor = "rgba(121, 122, 63, 0.9)"
   }
+
   return (
     <div
+      ref={ref} // ✅ forward the ref so CSSTransition can use nodeRef safely
       className="popup-container"
       style={{
         position: "absolute",
         top: `calc(${basePosition.top}% + ${topOffset}px)`,
         left: `calc(${basePosition.left}% + ${POPUP_OFFSET_X_PX}px)`,
-        backgroundColor: backgroundColor,
+        backgroundColor,
         border: "1px solid black",
         padding: "16px",
         zIndex: 10000,
@@ -42,16 +41,14 @@ function Popup({ counters, basePosition, provinceName, provinceHomeland, provinc
         fontFamily: "Cinzel, serif",
         borderRadius: `${BORDER_RADIUS_PX}px`,
         minWidth: `${MIN_POPUP_WIDTH_PX}px`,
-        // --- Apply the inverse scale transform ---
         transform: transformValue,
-        // Ensure the transform origin is top-left so it scales correctly from its anchor point
         transformOrigin: "top left",
       }}
     >
       <div style={{ fontWeight: "bold", marginBottom: "8px" }}>
         <div style={{ marginBottom: "2px", fontSize: "1.3rem", fontWeight: "600" }}>{provinceName}</div>
         {provinceGold && (
-          <div style={{ borderBottom: "none", paddingTop: "10px", paddingBottom: "6px" }}>
+          <div style={{ paddingTop: "10px", paddingBottom: "6px" }}>
             Gold: <strong>{provinceGold}</strong>
           </div>
         )}
@@ -60,7 +57,7 @@ function Popup({ counters, basePosition, provinceName, provinceHomeland, provinc
             Command: <strong>{provinceCommand}</strong>
           </div>
         )}
-         {provinceHomeland && (
+        {provinceHomeland && (
           <div style={{ borderBottom: "1px solid white", paddingTop: "10px", paddingBottom: "16px" }}>
             (Homeland)
           </div>
@@ -68,13 +65,12 @@ function Popup({ counters, basePosition, provinceName, provinceHomeland, provinc
       </div>
 
       <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
-        {/* Use the sorted list of counters here */}
         {sortedCounters.map((counter) => (
           <img key={counter.id} src={counter.image} alt={counter.name} style={{ width: "40px", height: "auto" }} />
         ))}
       </div>
     </div>
   )
-}
+})
 
 export default memo(Popup)

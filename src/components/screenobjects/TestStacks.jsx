@@ -6,7 +6,7 @@ import {
   TT_OFFSETS_PERCENT,
   VERTICAL_ROW_SPACING_PERCENT, 
   NUMBER_OF_ROWS                
-} from "./TreasuryTrack" // Ensure path is correct
+} from "./data/TreasuryTrack" // Ensure path is correct
 import TrackBoxVisual from "./TrackBoxVisual" 
 
 // Renamed component from TreasuryTrackStacks to TestStacks as requested

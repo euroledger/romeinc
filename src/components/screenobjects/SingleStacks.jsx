@@ -1,7 +1,7 @@
 // Stacks.jsx
 
 import React, { useCallback, useState, useEffect, useMemo, memo } from "react"
-import { HOMELAND_PROVINCES } from "./HomelandProvinces"
+import { HOMELAND_PROVINCES } from "./data/HomelandProvinces"
 import Stack from "./Stack" // Intermediate Stack component
 
 const createStackData = (province, counter) => {

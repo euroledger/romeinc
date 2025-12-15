@@ -1,3 +1,4 @@
+import { useGameState } from "../../GameStateContext"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
@@ -8,10 +9,32 @@ import { Image } from "./Image"
 import GlobalUIConstants from "../../model/GlobalUIConstants"
 import GlobalInit from "../../model/GlobalInit"
 import GlobalGameState from "../../model/GlobalGameState"
+import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 
 export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
+  const { gameState, setGameState, render } = useGameState()
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
+  const doBollocks = () => {
+    console.log("Increment Gold gold now =", gameState.gold + 1)
+
+    setGameState((prev) => ({
+      ...prev,
+      gold: prev.gold + 1,
+    }))
+  }
+
+  const doCounterPromotion = () => {
+    const unit = GlobalInit.controller.getRomanUnit(GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA)
+    console.log("1", GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA, "unit type=", unit.unitType)
+    if (unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION) {
+      GlobalInit.controller.promoteRomanUnit(GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA)
+    } else if (unit.unitType === GlobalUnitsModel.ROMAN_UNIT_TYPE.VETERAN_LEGION) {
+      GlobalInit.controller.demoteRomanUnit(GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA)
+    }
+    console.log("2", GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA, "image=", unit.image, "unit type=", unit.unitType)
+    render()
+  }
   const font = "0.8rem"
   const zoomButtonFont = "1.0rem"
   const buttonWidth = "6.2rem"
@@ -76,7 +99,9 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
             Counters
           </Button>
           <Button
-            onClick={() => onViewAreaClick("Treasury")}
+            // onClick={() => onViewAreaClick("Treasury")}
+
+            onClick={() => doBollocks()}
             className={navBarFont}
             style={{
               position: "absolute",
@@ -92,7 +117,8 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
             Treasury
           </Button>
           <Button
-            onClick={() => onViewAreaClick("Event")}
+            // onClick={() => onViewAreaClick("Event")}
+            onClick={() => doCounterPromotion()}
             className={navBarFont}
             style={{
               position: "absolute",

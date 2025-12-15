@@ -1,9 +1,10 @@
 // Stacks.jsx
 
 import React, { useCallback, useState, useEffect, useMemo, memo } from "react"
-import { PROVINCES, PROVINCE_OFFSETS_PERCENT } from "./Provinces"
+import { PROVINCES, PROVINCE_OFFSETS_PERCENT } from "./data/Provinces"
 import { getPositionForCounter } from "../../utils"
 import Stack from "./Stack" // Intermediate Stack component
+import { useGameState } from "../../GameStateContext"
 
 const getOffsets = (province, position) => {
   const top = province.top + PROVINCE_OFFSETS_PERCENT[position].top
@@ -18,8 +19,8 @@ const createStackData = (province, counter) => {
   const counterData = {
     image: counter.image,
     position: {
-      left: left, 
-      top: top, 
+      left: left,
+      top: top,
     },
     width: "1.9%",
     id: counter.name, // Assuming counter.name is globally unique
@@ -29,10 +30,15 @@ const createStackData = (province, counter) => {
   return counterData
 }
 
+function printGameState(gameState) {
+}
 function Stacks({ controller, currentScale }) {
+  const { gameState } = useGameState()
+
   const [stackArray, setStackArray] = useState([])
 
   const generateAllStacks = useCallback(() => {
+    printGameState(gameState)
     console.log("Regenerating all stacks due to controller change or initial load.")
     const newStackArray = [] // Array of objects containing province info and counters
     for (const province of PROVINCES) {
@@ -60,7 +66,7 @@ function Stacks({ controller, currentScale }) {
       })
     }
     setStackArray(newStackArray)
-  }, [controller])
+  }, [controller, gameState])
 
   useEffect(() => {
     generateAllStacks()

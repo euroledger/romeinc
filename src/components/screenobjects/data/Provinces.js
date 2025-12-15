@@ -1,4 +1,4 @@
-import GlobalUnitsModel from "../../model/GlobalUnitsModel"
+import GlobalUnitsModel from "../../../model/GlobalUnitsModel"
 
 export const PROVINCES = [
   // {

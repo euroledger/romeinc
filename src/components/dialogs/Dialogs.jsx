@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import CountersPanel from "./CountersPanel"
-import { DialogContext } from "../../Context"
+import { DialogContext } from "../../GameStateContext"
 import GlobalInit from "../../model/GlobalInit"
 import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 function Dialogs() {

@@ -4,7 +4,7 @@ import GlobalUnitsModel from "../src/model/GlobalUnitsModel"
 import { buildMap } from "../src/model/map/MapBuilder"
 import { loadCounters } from "../src/CounterLoader"
 import { getPositionForCounter } from "../src/utils"
-import { BOTTOM_LEFT, BOTTOM_RIGHT, TOP_LEFT, TOP_RIGHT } from "../src/components/screenobjects/Provinces"
+import { BOTTOM_LEFT, BOTTOM_RIGHT, TOP_LEFT, TOP_RIGHT } from "../src/components/screenobjects/data/Provinces"
 
 describe("Mapboard Tests", () => {
   let controller, counters

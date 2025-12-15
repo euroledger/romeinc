@@ -1,5 +1,5 @@
 // TrackBoxVisual.jsx
-import React, { memo } from 'react';
+import { memo } from 'react';
 
 function TrackBoxVisual({ top, left, width, currentScale, color = "rgba(255, 0, 0, 0.5)" }) {
     const style = {

@@ -1,10 +1,10 @@
 import React, { useRef, useLayoutEffect, useState, useCallback, forwardRef } from "react"
-import { PROVINCES } from "../screenobjects/Provinces"
-import { TRACK_AREAS } from "../screenobjects/TrackAreas"
+import { PROVINCES } from "../screenobjects/data/Provinces"
+import { TRACK_AREAS } from "../screenobjects/data/TrackAreas"
 import { drawCircles, drawRectangles, drawHomelandProvinceSpaces } from "./CounterSpaces"
 
 import "./Canvas.css"
-import { HOMELAND_PROVINCES } from "../screenobjects/HomelandProvinces"
+import { HOMELAND_PROVINCES } from "../screenobjects/data/HomelandProvinces"
 
 const Canvas = forwardRef(({ image, zoomPP, setBoardReady }, ref) => {
   const imgRef = useRef(null)
