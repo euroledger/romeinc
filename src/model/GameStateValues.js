@@ -1,12 +1,10 @@
 // src/model/GameStateModel.js
 
 // Define the initial shape of your game state
-export const initialGameState = {
-  gold: 84,
-  prestige: 10,
-  pay: 10,
-  unrest: 0,
-  gameTurn: 1,
-  version: new Date()
-}
+// import GlobalGameState
+import GlobalGameState from "../model/GlobalGameState"
 
+export default function initialGameState() {
+  console.log("BEZINGA! SCENARIO=", GlobalGameState.scenario)
+  return GlobalGameState.treasuryValues
+}

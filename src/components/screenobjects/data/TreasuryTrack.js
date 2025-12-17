@@ -6,7 +6,7 @@ export const TREASURY_TRACK_START_BOX = {
   left: 0.9,
 }
 
-export const VERTICAL_ROW_SPACING_PERCENT = 2.7 // Tweak this value to align with your map visually
+export const VERTICAL_ROW_SPACING_PERCENT = 2.73 // Tweak this value to align with your map visually
 
 export const TT_0 = 0
 export const TT_1 = 1

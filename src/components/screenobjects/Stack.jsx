@@ -21,10 +21,13 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   }, [])
 
   // Stable hover handlers for the entire stack area (attached to the main div)
-  const handleMouseEnter = useCallback(() => {
+  const show = useCallback(() => {
+    console.log("PROVINCE:",provinceData.provinceName, "ENTER")
     setIsHovered(true)
   }, [])
-  const handleMouseLeave = useCallback(() => {
+  const hide = useCallback(() => {
+        console.log("PROVINCE:",provinceData.provinceName, "LEAVE")
+
     setIsHovered(false)
   }, [])
 
@@ -99,14 +102,16 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
             offsetAmount={OFFSET_AMOUNT_PX}
             onDoubleClick={toggleExpand}
             // Handlers passed to every counter for hover detection
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            onMouseEnter={show}
+            onMouseLeave={hide}
+            onPointerEnter={show}
+            onPointerLeave={hide}
             currentScale={currentScale}
           />
         )
       })
     })
-  }, [OFFSET_AMOUNT_PX, toggleExpand, currentScale, handleMouseEnter, handleMouseLeave, provinceData])
+  }, [OFFSET_AMOUNT_PX, toggleExpand, currentScale, show, hide, provinceData])
 
   const PopupComponent = (
     <CSSTransition nodeRef={nodeRef} in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
@@ -130,8 +135,8 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
           stableAnchorPosition={stableAnchorPosition}
           areaWidth={areaWidth}
           areaHeight={areaHeight}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={show}
+          onMouseLeave={hide}
         />
         {PopupComponent}
       </>
@@ -143,8 +148,8 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
           stableAnchorPosition={stableAnchorPosition}
           areaWidth={areaWidth}
           areaHeight={areaHeight}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={show}
+          onMouseLeave={hide}
         />
         {renderedCounters}
         {PopupComponent}

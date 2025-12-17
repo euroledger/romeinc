@@ -32,6 +32,7 @@ export default class ScenarioSetupFactory {
         console.error("Unknown scenario:", selectedScenario)
         return
     }
+    scenario.setTreasuryTrackValues()
     scenario.setUpWars()
     scenario.setUpProvinces()
   }

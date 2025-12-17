@@ -1,33 +1,50 @@
 // Popup.jsx
+import React, { memo, useMemo, forwardRef } from "react";
+import "./Popup.css";
 
-import React, { memo, useMemo, forwardRef } from "react"
-import "./Popup.css"
-
-const POPUP_OFFSET_Y_PX = 50
-const POPUP_OFFSET_X_PX = 10
-const BORDER_RADIUS_PX = 8
-const MIN_POPUP_WIDTH_PX = 200
+const POPUP_OFFSET_Y_PX = 50;
+const POPUP_OFFSET_X_PX = 10;
+const BORDER_RADIUS_PX = 8;
+const MIN_POPUP_WIDTH_PX = 200;
 
 const Popup = forwardRef(function Popup(
-  { counters, basePosition, provinceName, provinceHomeland, provinceGold, provinceCommand, flipDirection, currentScale },
+  {
+    counters,
+    basePosition,
+    provinceName,
+    provinceHomeland,
+    provinceGold,
+    provinceCommand,
+    flipDirection,
+    currentScale,
+    // hover handlers forwarded from parent (optional)
+    onMouseEnter,
+    onMouseLeave,
+    onPointerEnter,
+    onPointerLeave,
+  },
   ref
 ) {
-  const topOffset = flipDirection ? POPUP_OFFSET_Y_PX : -POPUP_OFFSET_Y_PX
-  const transformValue = `scale(${1 / currentScale}) translateY(${flipDirection ? "0%" : "-100%"})`
+  const topOffset = flipDirection ? POPUP_OFFSET_Y_PX : -POPUP_OFFSET_Y_PX;
+  const transformValue = `scale(${1 / currentScale}) translateY(${flipDirection ? "0%" : "-100%"})`;
 
   const sortedCounters = useMemo(() => {
-    return [...counters].sort((a, b) => a.stackPositionId - b.stackPositionId)
-  }, [counters])
+    return [...counters].sort((a, b) => a.stackPositionId - b.stackPositionId);
+  }, [counters]);
 
-  let backgroundColor = "rgba(75, 60, 52, 0.9)"
+  let backgroundColor = "rgba(75, 60, 52, 0.9)";
   if (provinceHomeland) {
-    backgroundColor = "rgba(121, 122, 63, 0.9)"
+    backgroundColor = "rgba(121, 122, 63, 0.9)";
   }
 
   return (
     <div
-      ref={ref} // ✅ forward the ref so CSSTransition can use nodeRef safely
+      ref={ref} // forward the ref so CSSTransition can use nodeRef safely
       className="popup-container"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
       style={{
         position: "absolute",
         top: `calc(${basePosition.top}% + ${topOffset}px)`,
@@ -43,6 +60,7 @@ const Popup = forwardRef(function Popup(
         minWidth: `${MIN_POPUP_WIDTH_PX}px`,
         transform: transformValue,
         transformOrigin: "top left",
+        pointerEvents: "auto", // ensure popup receives pointer events
       }}
     >
       <div style={{ fontWeight: "bold", marginBottom: "8px" }}>
@@ -70,7 +88,7 @@ const Popup = forwardRef(function Popup(
         ))}
       </div>
     </div>
-  )
-})
+  );
+});
 
-export default memo(Popup)
+export default memo(Popup);

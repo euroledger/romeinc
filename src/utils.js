@@ -96,8 +96,8 @@ export function getProvinceByName(name) {
   return province
 }
 
-export function getImageForCounter(boxType) {
-  let imageSource1, imageSource2, imageSource3
+export function getImageForCounter(boxType, value) {
+  let imageSource1, imageSource2
   switch (boxType) {
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.TURN:
       // Return the source string directly for simplicity with the turn logic
@@ -105,7 +105,7 @@ export function getImageForCounter(boxType) {
       break
 
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.PRESTIGE:
-      if (GlobalGameState.prestige < 0) {
+      if (value < 0) {
         imageSource1 = GlobalInit.counters.trackmarkers.get(
           GlobalUnitsModel.TREASURY_TRACK_MARKER.PRESTIGE_MINUS_1
         ).image
@@ -121,10 +121,18 @@ export function getImageForCounter(boxType) {
 
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.GOLD:
       // Return the source strings for the 1s and 10s markers
-      imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_1).image
-      imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_10).image // Using PRESTIGE_10 which is likely correct
-      imageSource3 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_PLUS_250).image // Using PRESTIGE_10 which is likely correct
-
+      if (value < 0) {
+        imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_MINUS_1).image
+      } else {
+        imageSource1 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_1).image
+        if (value <= 250) {
+          imageSource2 = GlobalInit.counters.trackmarkers.get(GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_10).image // Using PRESTIGE_10 which is likely correct
+        } else {
+          imageSource2 = GlobalInit.counters.trackmarkers.get(
+            GlobalUnitsModel.TREASURY_TRACK_MARKER.GOLD_PLUS_250
+          ).image
+        }
+      }
       break
 
     case GlobalUnitsModel.TREASURY_TRACK_TYPE.UNREST:
@@ -142,7 +150,7 @@ export function getImageForCounter(boxType) {
       console.error("Unknown Box Type:", boxType)
   }
   // Return consistent object structure
-  return { imageSource1, imageSource2, imageSource3 }
+  return { imageSource1, imageSource2 }
 }
 
 export function getPositionForCounter(counter) {

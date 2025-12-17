@@ -1,3 +1,6 @@
+
+
+// TreasuryTrackStacks.jsx
 import React, { useCallback, useState, useEffect, useMemo, memo } from "react"
 import { getImageForCounter } from "../../utils"
 import GlobalUnitsModel from "../../model/GlobalUnitsModel"
@@ -42,7 +45,7 @@ function TreasuryTrackStacks() {
 
     doUnrest(occupiedPositions, activeMarkers, gameState.unrest)
 
-    doPay(occupiedPositions, activeMarkers, gameState.unrest)
+    doPay(occupiedPositions, activeMarkers, gameState.pay)
 
     setMarkersToRender(activeMarkers)
   }, [gameState])

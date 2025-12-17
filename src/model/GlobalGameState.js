@@ -25,6 +25,5 @@ export default class GlobalGameState {
   static imperialCavalry = 0
   static romanwall = 0
 
-
-
+  treasuryValues = {}
 }

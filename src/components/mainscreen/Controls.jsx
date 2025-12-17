@@ -13,7 +13,7 @@ import GlobalUnitsModel from "../../model/GlobalUnitsModel"
 import { forceGlobalRender } from "../../GlobalRenderPoke"
 
 export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
-  const { gameState, setGameState, render } = useGameState()
+  const { gameState, setGameState } = useGameState()
   const { zoomIn, zoomOut, resetTransform } = useControls()
 
   const doBollocks = () => {
@@ -23,6 +23,11 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
       ...prev,
       gold: prev.gold + 1,
     }))
+
+    //    setGameState((prev) => ({
+    //   ...prev,
+    //   gameTurn: prev.gameTurn + 1,
+    // }))
   }
 
   const doCounterPromotion = () => {

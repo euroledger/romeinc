@@ -32,6 +32,7 @@ function SplashScreen(props) {
 
   const beginGameHandler = () => {
     ScenarioSetupFactory.setupScenario(selectedScenario)
+    GlobalGameState.scenario = selectedScenario
     console.log("GET RID OF SPLASH SCREEN...")
     setSplashShow(false)
   }

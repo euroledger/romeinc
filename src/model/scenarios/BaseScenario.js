@@ -17,6 +17,10 @@ export default class BaseScenario {
     throw new Error("Method 'setUpProvinces()' must be implemented by derived classes.")
   }
 
+  setTreasuryTrackValues() {
+    throw new Error("Method 'setTreasuryTrackValues()' must be implemented by derived classes.")
+  }
+
   getName() {
     return this.dateStr
   }

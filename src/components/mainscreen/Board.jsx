@@ -8,6 +8,7 @@ import SingleStacks from "../screenobjects/SingleStacks"
 import TreasuryTrackStacks from "../screenobjects/TreasuryTrackStacks"
 import TestStacks from "../screenobjects/TestStacks"
 import GlobalGameState from "../../model/GlobalGameState"
+import TestProvinces from "../screenobjects/TestProvinces"
 
 function Board({ canvasRef, zoomPP, image, setBoardReady, gameState }) {
 
@@ -28,6 +29,7 @@ function Board({ canvasRef, zoomPP, image, setBoardReady, gameState }) {
       <Stacks controller={GlobalInit.controller} currentScale={currentScale} />
       <SingleStacks controller={GlobalInit.controller} currentScale={currentScale} />
       {/* <TestStacks controller={GlobalInit.controller} currentScale={currentScale} /> */}
+      {/* <TestProvinces showLabels={false}></TestProvinces> */}
       <TreasuryTrackStacks gameState={gameState} controller={GlobalInit.controller} currentScale={currentScale} />
     </>
   )
