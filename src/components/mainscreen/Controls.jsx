@@ -41,6 +41,14 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
     console.log("2", GlobalUnitsModel.ROMAN_UNIT.II_AUGUSTA, "image=", unit.image, "unit type=", unit.unitType)
     forceGlobalRender()
   }
+  const showHide = () => {
+      setGameState((prev) => ({
+      ...prev,
+      show: !prev.show
+    }))
+    // forceGlobalRender()
+  }
+
   const font = "0.8rem"
   const zoomButtonFont = "1.0rem"
   const buttonWidth = "6.2rem"
@@ -139,11 +147,28 @@ export const Controls = ({ onViewAreaClick, navBarFont, banner, clicky }) => {
           >
             Event
           </Button>
+          <Button
+            // onClick={() => onViewAreaClick("Event")}
+            onClick={() => showHide()}
+            className={navBarFont}
+            style={{
+              position: "absolute",
+              left: "38.2%",
+              top: "25%",
+              fontSize: font,
+              borderColor: "white",
+              color: "white",
+              width: buttonWidth,
+              background: GlobalUIConstants.Colors.PRIMARY_BUTTON,
+            }}
+          >
+            {gameState.show ? "Hide" : "Show"}
+          </Button>
           <Navbar.Text
             className={navBarFont}
             style={{
               position: "absolute",
-              left: "45%",
+              left: "50%",
               top: "1%",
               fontFamily: "Cinzel",
               fontSize: "1.2rem",

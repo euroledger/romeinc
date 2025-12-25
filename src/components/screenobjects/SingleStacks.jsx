@@ -3,6 +3,7 @@
 import React, { useCallback, useState, useEffect, useMemo, memo } from "react"
 import { HOMELAND_PROVINCES } from "./data/HomelandProvinces"
 import Stack from "./Stack" // Intermediate Stack component
+import { useGameState } from "../../GameStateContext"
 
 const createStackData = (province, counter) => {
   const { top, left } = province
@@ -41,11 +42,13 @@ function SingleStacks({ controller, currentScale }) {
         counters: provinceStack,
         baseTop: province.top,
         baseLeft: province.left,
-        homeland: p.homeland
+        homeland: p.homeland,
       })
     }
     setStackArray(newStackArray)
   }, [controller])
+
+  const { gameState } = useGameState()
 
   useEffect(() => {
     generateAllStacks()
@@ -53,13 +56,17 @@ function SingleStacks({ controller, currentScale }) {
 
   const renderedStacks = useMemo(() => {
     // We map over the enriched stack data
-    
+
     return stackArray.map((stackData, i) => {
-      return <Stack key={i} provinceData={stackData} currentScale={currentScale} areaHeight={3.6} areaWidth={2.5}/>
+      return <Stack key={i} provinceData={stackData} currentScale={currentScale} areaHeight={3.6} areaWidth={2.5} />
     })
   }, [stackArray, currentScale])
 
-  return <>{renderedStacks}</>
+  if (gameState.show) {
+    return <>{renderedStacks}</>
+  } else {
+    return <></>
+  }
 }
 
 export default memo(SingleStacks)

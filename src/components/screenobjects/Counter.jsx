@@ -2,7 +2,7 @@
 
 import React, { memo } from "react"
 
-function Counter({ counterData, index, offsetAmount, onDoubleClick, onMouseEnter, onMouseLeave, topOffset, leftOffset }) {
+function Counter({ counterData, index, offsetAmount, onDoubleClick, onMouseEnter, onMouseOut, topOffset, leftOffset }) {
   // ... (rest of the component logic remains the same) ...
   const offsetX = index * offsetAmount
   const offsetY = index * -offsetAmount
@@ -36,7 +36,7 @@ function Counter({ counterData, index, offsetAmount, onDoubleClick, onMouseEnter
         onDoubleClick={handleDoubleClick}
         // Handlers attached here
         onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        onMouseOut={onMouseOut}
       />
     </div>
   )

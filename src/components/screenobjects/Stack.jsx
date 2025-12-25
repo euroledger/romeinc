@@ -1,53 +1,41 @@
-// Stack.jsx
-
 import React, { useMemo, memo, useRef, useState, useCallback } from "react"
-import { CSSTransition } from "react-transition-group" // Import CSSTransition
+import { CSSTransition } from "react-transition-group"
 import Counter from "./Counter"
 import Popup from "./Popup"
 
-// Define the threshold (e.g., if the stack is within the top 20% of the board, flip the popup direction)
-const TOP_THRESHOLD_PERCENT = 20
-// Set a timeout duration for the animation (must match CSS transition time in Popup.css)
+// Flip threshold percentages
+const TOP_THRESHOLD_PERCENT = 30
+const RIGHT_THRESHOLD_PERCENT = 75
 const ANIMATION_TIMEOUT = 700
 
 function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
   const nodeRef = useRef(null)
-  // We no longer need hoverBasePosition state as it's derived from useMemo
+
+  // Use stable handlers to prevent re-renders
+  const show = useCallback(() => setIsHovered(true), [])
+  const hide = useCallback(() => setIsHovered(false), [])
 
   const toggleExpand = useCallback(() => {
     setIsExpanded((prev) => !prev)
   }, [])
 
-  // Stable hover handlers for the entire stack area (attached to the main div)
-  const show = useCallback(() => {
-    console.log("PROVINCE:",provinceData.provinceName, "ENTER")
-    setIsHovered(true)
-  }, [])
-  const hide = useCallback(() => {
-        console.log("PROVINCE:",provinceData.provinceName, "LEAVE")
-
-    setIsHovered(false)
-  }, [])
-
   const OFFSET_AMOUNT_PX = useMemo(() => (isExpanded ? 10 : 3), [isExpanded])
 
-  // Derive the single stable anchor position for the stack area upfront
+  // Derive stable anchor position for the province
   const stableAnchorPosition = useMemo(() => {
-    // Assuming the first counter in the list is the top-left one
     if (provinceData.counters.length > 0) {
-      return provinceData.counters[0].position // Access the first item's position
+      return provinceData.counters[0].position
     }
-    // return { top: 0, left: 0 } // Fallback
     return { top: provinceData.baseTop || 0, left: provinceData.baseLeft || 0 }
   }, [provinceData.counters, provinceData.baseLeft, provinceData.baseTop])
 
-  // Check if the stack is near the top edge based on the stable position
   const isNearTopEdge = stableAnchorPosition.top < TOP_THRESHOLD_PERCENT
+  const isNearRightEdge = stableAnchorPosition.left > RIGHT_THRESHOLD_PERCENT
 
-  // --- NEW ANCHOR COMPONENT ---
-  const HoverAnchor = memo(({ stableAnchorPosition, areaWidth, areaHeight, onMouseEnter, onMouseLeave }) => {
+  // Detection Anchor Component
+  const HoverAnchor = memo(({ stableAnchorPosition, areaWidth, areaHeight }) => {
     const style = {
       position: "absolute",
       top: `${stableAnchorPosition.top}%`,
@@ -55,107 +43,94 @@ function Stack({ provinceData, currentScale, areaHeight, areaWidth }) {
       width: `${areaWidth}%`,
       height: `${areaHeight}%`,
       transform: "translate(-50%, -50%)",
-      // backgroundColor: "rgba(75, 60, 52, 0.6)",
-
-      zIndex: 100, // Above canvas
+      zIndex: 100,
       cursor: "pointer",
-      // backgroundColor: "rgba(0, 255, 0, 0.3)", // Debug color for the anchor div
+      pointerEvents: "auto", // Crucial: This child captures the events
     }
-    // This div captures all mouse events for the province area
-    return <div style={style} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} />
+    return <div style={style} />
   })
-
-  // *** FIX: Add display name ***
   HoverAnchor.displayName = "HoverAnchor"
-
-  // ----------------------------
 
   const renderedCounters = useMemo(() => {
     const groups = {}
     provinceData.counters.forEach((counterData) => {
       const key = counterData.stackPositionId
-      if (!groups[key]) {
-        groups[key] = []
-      }
+      if (!groups[key]) groups[key] = []
       groups[key].push(counterData)
     })
-    let COMP_LEFT_PERCENT = 1.8
-    let COMP_TOP_PERCENT = 2.6
 
-    if (provinceData.homeland) {
-      COMP_LEFT_PERCENT = 0.9
-      COMP_TOP_PERCENT = 1.6
-    }
+    const COMP_LEFT_PERCENT = provinceData.homeland ? 0.9 : 1.8
+    const COMP_TOP_PERCENT = provinceData.homeland ? 1.6 : 2.6
 
     return Object.keys(groups).flatMap((positionIdKey) => {
       const countersInVisualStack = groups[positionIdKey]
-
-      return countersInVisualStack.map((counterData, i) => {
-        const key = counterData.id || `${positionIdKey}-${i}`
-        return (
-          <Counter
-            key={key}
-            leftOffset={COMP_LEFT_PERCENT}
-            topOffset={COMP_TOP_PERCENT}
-            counterData={counterData}
-            index={i}
-            offsetAmount={OFFSET_AMOUNT_PX}
-            onDoubleClick={toggleExpand}
-            // Handlers passed to every counter for hover detection
-            onMouseEnter={show}
-            onMouseLeave={hide}
-            onPointerEnter={show}
-            onPointerLeave={hide}
-            currentScale={currentScale}
-          />
-        )
-      })
+      return countersInVisualStack.map((counterData, i) => (
+        <Counter
+          key={counterData.id || `${positionIdKey}-${i}`}
+          leftOffset={COMP_LEFT_PERCENT}
+          topOffset={COMP_TOP_PERCENT}
+          counterData={counterData}
+          index={i}
+          offsetAmount={OFFSET_AMOUNT_PX}
+          onDoubleClick={toggleExpand}
+          currentScale={currentScale}
+          // Individual counters also report hover to the shared state
+          onMouseEnter={show}
+          onMouseLeave={hide}
+        />
+      ))
     })
   }, [OFFSET_AMOUNT_PX, toggleExpand, currentScale, show, hide, provinceData])
 
-  const PopupComponent = (
-    <CSSTransition nodeRef={nodeRef} in={isHovered} timeout={ANIMATION_TIMEOUT} classNames="popup" unmountOnExit>
-      <Popup
-        provinceName={provinceData.provinceName}
-        provinceGold={provinceData.provinceGold}
-        provinceHomeland={provinceData.homeland}
-        provinceCommand={provinceData.provinceCommand}
-        counters={provinceData.counters}
-        basePosition={stableAnchorPosition}
-        flipDirection={isNearTopEdge}
-        currentScale={currentScale}
-        ref={nodeRef}
-      />
-    </CSSTransition>
-  )
-  if (renderedCounters.length === 0) {
-    return (
-      <>
+  return (
+    // PARENT WRAPPER: Must be absolute 100x100 to avoid collapsing 
+    // but pointerEvents: none so it doesn't block other provinces.
+    <div 
+      style={{ 
+        position: 'absolute', 
+        top: 0, 
+        left: 0, 
+        width: '100%', 
+        height: '100%', 
+        pointerEvents: 'none' 
+      }}
+    >
+      {/* DETECTION AREA: High z-index to capture hover */}
+      <div 
+        onMouseEnter={show} 
+        onMouseLeave={hide} 
+        style={{ pointerEvents: 'auto' }}
+      >
         <HoverAnchor
           stableAnchorPosition={stableAnchorPosition}
           areaWidth={areaWidth}
           areaHeight={areaHeight}
-          onMouseEnter={show}
-          onMouseLeave={hide}
-        />
-        {PopupComponent}
-      </>
-    )
-  } else {
-    return (
-      <div>
-        <HoverAnchor
-          stableAnchorPosition={stableAnchorPosition}
-          areaWidth={areaWidth}
-          areaHeight={areaHeight}
-          onMouseEnter={show}
-          onMouseLeave={hide}
         />
         {renderedCounters}
-        {PopupComponent}
       </div>
-    )
-  }
+
+      <CSSTransition 
+        nodeRef={nodeRef} 
+        in={isHovered} 
+        timeout={ANIMATION_TIMEOUT} 
+        classNames="popup" 
+        unmountOnExit
+      >
+        <Popup
+          provinceName={provinceData.provinceName}
+          provinceGold={provinceData.provinceGold}
+          provinceHomeland={provinceData.homeland}
+          provinceCommand={provinceData.provinceCommand}
+          counters={provinceData.counters}
+          basePosition={stableAnchorPosition}
+          flipDirection={isNearTopEdge}
+          flipDirectionX={isNearRightEdge}
+          currentScale={currentScale}
+          ref={nodeRef}
+        />
+      </CSSTransition>
+    </div>
+  )
 }
 
 export default memo(Stack)

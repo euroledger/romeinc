@@ -30,8 +30,7 @@ const createStackData = (province, counter) => {
   return counterData
 }
 
-function printGameState(gameState) {
-}
+function printGameState(gameState) {}
 function Stacks({ controller, currentScale }) {
   const { gameState } = useGameState()
 
@@ -81,7 +80,10 @@ function Stacks({ controller, currentScale }) {
     })
   }, [stackArray, currentScale])
 
-  return <>{renderedStacks}</>
+  if (gameState.show) {
+    return <>{renderedStacks}</>
+  }
+  return <></>
 }
 
 export default memo(Stacks)

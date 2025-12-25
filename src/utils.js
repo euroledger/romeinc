@@ -2,6 +2,15 @@ import { BOTTOM_LEFT, BOTTOM_RIGHT, PROVINCES, TOP_LEFT, TOP_RIGHT } from "./com
 import GlobalGameState from "./model/GlobalGameState"
 import GlobalUnitsModel from "./model/GlobalUnitsModel"
 import GlobalInit from "./model/GlobalInit"
+import ProvinceMarker from "./counters/ProvinceMarker"
+import RomanFleet from "./counters/RomanFleet"
+import RomanAuxilia from "./counters/RomanAuxilia"
+import RomanLegion from "./counters/RomanLegion"
+import RomanImperialCavalry from "./counters/RomanImperialCavalry"
+import RomanPraetorianGuard from "./counters/RomanPraetorianGuard"
+import RomanWall from "./counters/RomanWall"
+import War from "./counters/War"
+import Leader from "./counters/Leader"
 
 export function windowsInit() {
   document.body.style.zoom = "100%"
@@ -153,21 +162,21 @@ export function getImageForCounter(boxType, value) {
   return { imageSource1, imageSource2 }
 }
 
-export function getPositionForCounter(counter) {
+ export function getPositionForCounter(counter) {
   switch (counter.constructor.name) {
-    case "ProvinceMarker": {
+    case ProvinceMarker.name: {
       return TOP_LEFT
     }
-    case "RomanLegion":
-    case "RomanAuxilia":
-    case "RomanImperialCavalry":
-    case "RomanPraetorianGuard":
-    case "RomanWall":
+    case RomanLegion.name:
+    case RomanAuxilia.name:
+    case RomanImperialCavalry.name:
+    case RomanPraetorianGuard.name:
+    case RomanWall.name:
       return TOP_RIGHT
-    case "RomanFleet":
+    case RomanFleet.name:
       return BOTTOM_LEFT
-    case "War":
-    case "Leader":
+    case War.name:
+    case Leader.name:
       return BOTTOM_RIGHT
   }
 }

@@ -18,7 +18,7 @@ export const PROVINCES = [
     centerX: 1095,
     centerY: 313,
     radius: 87,
-     top: 9.5,
+    top: 9.5,
     left: 21.0,
   },
 
@@ -29,7 +29,7 @@ export const PROVINCES = [
     name: GlobalUnitsModel.PROVINCE.BRITANNIA_INFERIOR,
     info: "Region: Britannia",
 
-    // TO DO REMOVE 
+    // TO DO REMOVE
 
     // Might need the circle to highlight certain subset
     // of provinces
@@ -41,7 +41,7 @@ export const PROVINCES = [
     radius: 87,
     // ---------------
 
-    top: 16.7,
+    top: 15.7,
     left: 27.2,
   },
   {
@@ -53,6 +53,75 @@ export const PROVINCES = [
     // radius: 87,
     top: 7.4,
     left: 26.2,
+  },
+  {
+    id: 5,
+    name: GlobalUnitsModel.PROVINCE.BRITANNIA_SUPERIOR,
+    info: "Region: Britannia",
+
+    // TO DO REMOVE
+
+    // Might need the circle to highlight certain subset
+    // of provinces
+
+    // OR might we use transparent buttons???
+
+    // centerX: 1413,
+    // centerY: 547,
+    // radius: 87,
+    // ---------------
+
+    top: 22.5,
+    left: 25.2,
+  },
+  {
+    id: 6,
+    name: GlobalUnitsModel.PROVINCE.FRISIA,
+    info: "Region: Gallia",
+
+    top: 20.5,
+    left: 33.7,
+  },
+  {
+    id: 7,
+    name: GlobalUnitsModel.PROVINCE.GERMANIA_INFERIOR,
+    info: "Region: Gallia",
+
+    top: 27.0,
+    left: 32.2,
+  },
+    {
+    id: 8,
+    name: GlobalUnitsModel.PROVINCE.GERMANIA_MAGNA,
+    info: "Region: Gallia",
+
+    top: 25.8,
+    left: 38.5,
+  },
+    {
+    id: 9,
+    name: GlobalUnitsModel.PROVINCE.BELGICA,
+    info: "Region: Gallia",
+
+    top: 28.8,
+    left: 27.2,
+  },
+    {
+    id: 10,
+    name: GlobalUnitsModel.PROVINCE.LUGDUNENSIS,
+    info: "Region: Gallia",
+
+    top: 34.8,
+    left: 25.2,
+  },
+
+      {
+    id: 11,
+    name: GlobalUnitsModel.PROVINCE.GERMANIA_SUPERIOR,
+    info: "Region: Gallia",
+
+    top: 34.8,
+    left: 32.8,
   },
 ]
 

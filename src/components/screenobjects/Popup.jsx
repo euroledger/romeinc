@@ -1,11 +1,11 @@
 // Popup.jsx
-import React, { memo, useMemo, forwardRef } from "react";
-import "./Popup.css";
+import React, { memo, useMemo, forwardRef } from "react"
+import "./Popup.css"
 
-const POPUP_OFFSET_Y_PX = 50;
-const POPUP_OFFSET_X_PX = 10;
-const BORDER_RADIUS_PX = 8;
-const MIN_POPUP_WIDTH_PX = 200;
+const POPUP_OFFSET_Y_PX = 35
+const POPUP_OFFSET_X_PX = 140
+const BORDER_RADIUS_PX = 8
+const MIN_POPUP_WIDTH_PX = 200
 
 const Popup = forwardRef(function Popup(
   {
@@ -16,6 +16,7 @@ const Popup = forwardRef(function Popup(
     provinceGold,
     provinceCommand,
     flipDirection,
+    flipDirectionX,
     currentScale,
     // hover handlers forwarded from parent (optional)
     onMouseEnter,
@@ -25,18 +26,21 @@ const Popup = forwardRef(function Popup(
   },
   ref
 ) {
-  const topOffset = flipDirection ? POPUP_OFFSET_Y_PX : -POPUP_OFFSET_Y_PX;
-  const transformValue = `scale(${1 / currentScale}) translateY(${flipDirection ? "0%" : "-100%"})`;
+  const topOffset = flipDirection ? POPUP_OFFSET_Y_PX : -POPUP_OFFSET_Y_PX
+  const rightOffset = flipDirectionX ? -POPUP_OFFSET_X_PX : 0
+
+  const transformValue = `scale(${1 / currentScale}) translateY(${flipDirection ? "0%" : "-100%"})`
 
   const sortedCounters = useMemo(() => {
-    return [...counters].sort((a, b) => a.stackPositionId - b.stackPositionId);
-  }, [counters]);
+    return [...counters].sort((a, b) => a.stackPositionId - b.stackPositionId)
+  }, [counters])
 
-  let backgroundColor = "rgba(75, 60, 52, 0.9)";
+  let backgroundColor = "rgba(75, 60, 52, 0.9)"
   if (provinceHomeland) {
-    backgroundColor = "rgba(121, 122, 63, 0.9)";
+    backgroundColor = "rgba(121, 122, 63, 0.9)"
   }
 
+  console.log("NAME:", provinceName, "flipDirectionX=", flipDirectionX)
   return (
     <div
       ref={ref} // forward the ref so CSSTransition can use nodeRef safely
@@ -48,10 +52,10 @@ const Popup = forwardRef(function Popup(
       style={{
         position: "absolute",
         top: `calc(${basePosition.top}% + ${topOffset}px)`,
-        left: `calc(${basePosition.left}% + ${POPUP_OFFSET_X_PX}px)`,
+        left: `calc(${basePosition.left}% + ${rightOffset}px)`,
         backgroundColor,
         border: "1px solid black",
-        padding: "16px",
+        padding: "1rem",
         zIndex: 10000,
         boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
         color: "white",
@@ -60,7 +64,7 @@ const Popup = forwardRef(function Popup(
         minWidth: `${MIN_POPUP_WIDTH_PX}px`,
         transform: transformValue,
         transformOrigin: "top left",
-        pointerEvents: "auto", // ensure popup receives pointer events
+        pointerEvents: "none", // Makes the popup "ghost-like" so it won't block the leave event
       }}
     >
       <div style={{ fontWeight: "bold", marginBottom: "8px" }}>
@@ -76,9 +80,7 @@ const Popup = forwardRef(function Popup(
           </div>
         )}
         {provinceHomeland && (
-          <div style={{ borderBottom: "1px solid white", paddingTop: "10px", paddingBottom: "16px" }}>
-            (Homeland)
-          </div>
+          <div style={{ borderBottom: "1px solid white", paddingTop: "10px", paddingBottom: "16px" }}>(Homeland)</div>
         )}
       </div>
 
@@ -88,7 +90,7 @@ const Popup = forwardRef(function Popup(
         ))}
       </div>
     </div>
-  );
-});
+  )
+})
 
-export default memo(Popup);
+export default memo(Popup)

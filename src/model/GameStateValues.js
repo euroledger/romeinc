@@ -6,5 +6,9 @@ import GlobalGameState from "../model/GlobalGameState"
 
 export default function initialGameState() {
   console.log("BEZINGA! SCENARIO=", GlobalGameState.scenario)
-  return GlobalGameState.treasuryValues
+  const values = {
+    ...GlobalGameState.treasuryValues,
+    show: true
+  }
+  return values;
 }

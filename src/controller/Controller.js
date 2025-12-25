@@ -262,7 +262,11 @@ export default class Controller {
     switch (counterType) {
       case GlobalUnitsModel.ROMAN_UNIT_TYPE.LEGION:
       case GlobalUnitsModel.ROMAN_UNIT_TYPE.FLEET: {
+        console.log("____________BARF 1 !!!!!!!!!!!! get unit for counter", counter)
         const unit = this.counters.romanunits.get(counter)
+
+        console.log("____________BARF 2 !!!!!!!!!!!! unit =", unit)
+
         this.promoteRomanUnit(unit.name)
         this.addToProvince(unit, province)
         break
